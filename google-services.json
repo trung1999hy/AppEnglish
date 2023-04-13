@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "754136924216",
+    "firebase_url": "https://english-ttcm-default-rtdb.firebaseio.com",
+    "project_id": "english-ttcm",
+    "storage_bucket": "english-ttcm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754136924216:android:08b6189ec0846ec75ea6cd",
+        "android_client_info": {
+          "package_name": "com.example.englishttcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754136924216-p07p26kui436qv9gfae4c9fg5rhcf67q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.englishttcm",
+            "certificate_hash": "70fa7754d0d1b7187bb4be1210e4ca8aba514a69"
+          }
+        },
+        {
+          "client_id": "754136924216-pvm143hkglt7gb79bavigka2kg8ralb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgjUEECsi5kJV7l5st1KsfQk5M1l-hePg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754136924216-pvm143hkglt7gb79bavigka2kg8ralb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

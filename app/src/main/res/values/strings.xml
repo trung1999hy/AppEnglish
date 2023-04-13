@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">EnglishTTCM</string>
+    <string name="author">Powered by Group 4 TTCM Android</string>
+    <string name="user">User</string>
+    <string name="win">win</string>
+    <string name="win_count">1</string>
+    <string name="learning">Learning</string>
+    <string name="vocabulary">Vocabulary</string>
+    <string name="play_now">Play Now</string>
+    <string name="playing_game">Playing Game</string>
+    <string name="learning_now">Learning Now</string>
+    <string name="story_quote"><![CDATA[Stories & Quotes]]></string>
+</resources>
