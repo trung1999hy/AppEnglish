@@ -12,6 +12,8 @@ class LogPagerAdapter(
     viewLifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, viewLifecycle){
     override fun getItemCount(): Int = 2
+    //test
+    //hello
 
     override fun createFragment(position: Int): Fragment {
         return if(position == 0) LogInFragment() else SignUpFragment()
