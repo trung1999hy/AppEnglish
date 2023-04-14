@@ -19,4 +19,8 @@
     <string name="log_in_now">Log in now!</string>
     <string name="not_accounted">You don\'t have account?</string>
     <string name="sign_up_now">Sign up now!</string>
+    <string name="empty_email">Empty Email!</string>
+    <string name="empty_password">Empty Password!</string>
+    <string name="counter_length">Your password lenght is shoter than 6</string>
+    <string name="empty_name">Empty Name!</string>
 </resources>

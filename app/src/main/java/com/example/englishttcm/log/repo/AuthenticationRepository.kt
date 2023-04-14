@@ -52,6 +52,7 @@ class AuthenticationRepository(_application: Application) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful){
                 firebaseUserMutableLiveData.postValue(auth.currentUser)
+                userLoggedMutableLiveData.postValue(true)
                 Toast.makeText(application, "Log in successfully", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(application, it.exception!!.message, Toast.LENGTH_SHORT).show()
@@ -61,7 +62,7 @@ class AuthenticationRepository(_application: Application) {
 
     fun signOut(){
         auth.signOut()
-        userLoggedMutableLiveData.postValue(true)
+        //userLoggedMutableLiveData.postValue(true)
     }
 
 }

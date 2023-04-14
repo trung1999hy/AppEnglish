@@ -14,8 +14,11 @@ import com.example.englishttcm.learnzone.view.LearnDetailFragment
 import com.example.englishttcm.playzone.model.GamePlayMode
 import com.example.englishttcm.storyquote.model.StoryQuote
 import com.example.englishttcm.learnzone.model.Study
+import com.google.firebase.auth.FirebaseUser
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+
+    private lateinit var firebaseUser: FirebaseUser
 
     private lateinit var listStudyTitle: ArrayList<Study>
     private lateinit var listPlayMode: ArrayList<GamePlayMode>
@@ -25,6 +28,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         FragmentHomeBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
+        firebaseUser = data as FirebaseUser
+        Log.i("id", firebaseUser.uid)
         setLearnData()
         setPlayMode()
         setStoryData()
@@ -32,7 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.rcvStudyZone.adapter = StudyZoneAdapter(requireContext(),listStudyTitle, object : OnItemClickListener{
             override fun onItemClick(data: Any?) {
                 val studyItem = data as Study
-                callback.showFragment(HomeFragment::class.java, LearnDetailFragment::class.java, studyItem, true)
+                callback.showFragment(HomeFragment::class.java, LearnDetailFragment::class.java, R.anim.slide_in, R.anim.slide_out, studyItem, true)
                 //notify(studyItem.title)
             }
         })

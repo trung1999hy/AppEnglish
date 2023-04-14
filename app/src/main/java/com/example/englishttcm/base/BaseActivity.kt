@@ -26,6 +26,8 @@ abstract class BaseActivity<VM: ViewBinding> : AppCompatActivity(), OnActionCall
     override fun showFragment(
         fromFragment: Class<*>,
         toFragment: Class<*>,
+        enterAnim: Int,
+        exitAnim: Int,
         data: Any?,
         isBack: Boolean
     ) {
@@ -37,6 +39,7 @@ abstract class BaseActivity<VM: ViewBinding> : AppCompatActivity(), OnActionCall
         if(isBack){
             trans.addToBackStack(null)
         }
+        trans.setCustomAnimations(enterAnim, exitAnim)
         trans.replace(R.id.fr_main, fragment, toFragment.name)
         trans.commit()
     }
