@@ -1,5 +1,5 @@
 /* NAM NV created on 10:00 13-4-2023 */
-package com.example.englishttcm.model
+package com.example.englishttcm.learnzone.model
 
 data class Study(
     val bgColor: Int,

@@ -1,5 +1,5 @@
 /* NAM NV created on 10:00 13-4-2023 */
-package com.example.englishttcm.adapter
+package com.example.englishttcm.learnzone.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import com.example.englishttcm.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishttcm.R
-import com.example.englishttcm.model.Study
+import com.example.englishttcm.learnzone.model.Study
 
 class StudyZoneAdapter(
     private var context: Context,

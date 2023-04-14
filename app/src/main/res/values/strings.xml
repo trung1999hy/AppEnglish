@@ -10,4 +10,13 @@
     <string name="playing_game">Playing Game</string>
     <string name="learning_now">Learning Now</string>
     <string name="story_quote"><![CDATA[Stories & Quotes]]></string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="name">Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="accounted">You had an account?</string>
+    <string name="log_in_now">Log in now!</string>
+    <string name="not_accounted">You don\'t have account?</string>
+    <string name="sign_up_now">Sign up now!</string>
 </resources>

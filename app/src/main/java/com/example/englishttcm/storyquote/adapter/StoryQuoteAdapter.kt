@@ -1,6 +1,6 @@
 
 /* NAM NV created on 10:50 13-4-2023 */
-package com.example.englishttcm.adapter
+package com.example.englishttcm.storyquote.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.example.englishttcm.OnItemClickListener
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishttcm.R
-import com.example.englishttcm.model.StoryQuote
+import com.example.englishttcm.storyquote.model.StoryQuote
 
 class StoryQuoteAdapter(
     private val context: Context,
