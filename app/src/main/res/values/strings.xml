@@ -21,6 +21,20 @@
     <string name="sign_up_now">Sign up now!</string>
     <string name="empty_email">Empty Email!</string>
     <string name="empty_password">Empty Password!</string>
+    <string name="empty_cpassword">Empty Password!</string>
+    <string name="same_password">Password and confirm password must be same!</string>
+
     <string name="counter_length">Your password lenght is shoter than 6</string>
     <string name="empty_name">Empty Name!</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="login_to_continue">Login to continue</string>
+    <string name="login">Login</string>
+    <string name="valid_email">Please enter a valid email</string>
+    <string name="forgot_password">Forgot Password?</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_your_email_address_to_reset_your_password">Enter your email address to reset your password</string>
+    <string name="reset_password">Reset Password</string>
 </resources>

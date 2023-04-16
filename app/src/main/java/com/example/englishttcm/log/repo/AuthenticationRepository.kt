@@ -1,6 +1,8 @@
 package com.example.englishttcm.log.repo
 
 import android.app.Application
+import android.preference.PreferenceManager
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.log.model.User
@@ -15,6 +17,7 @@ class AuthenticationRepository(_application: Application) {
     private var userLoggedMutableLiveData: MutableLiveData<Boolean>
     private var auth: FirebaseAuth
 
+
     val getFirebaseUser: MutableLiveData<FirebaseUser>
         get() = firebaseUserMutableLiveData
 
@@ -24,9 +27,8 @@ class AuthenticationRepository(_application: Application) {
     init {
         application = _application
         firebaseUserMutableLiveData = MutableLiveData<FirebaseUser>()
-        userLoggedMutableLiveData = MutableLiveData()
+        userLoggedMutableLiveData = MutableLiveData<Boolean>()
         auth = FirebaseAuth.getInstance()
-
         if(auth.currentUser != null){
             firebaseUserMutableLiveData.postValue(auth.currentUser)
         }
@@ -39,7 +41,7 @@ class AuthenticationRepository(_application: Application) {
                 val dbUserRef = FirebaseDatabase.getInstance().getReference("users")
                 val user = User(email, password, name, 500, 0, 0)
                 dbUserRef.child(auth.uid!!).setValue(user).addOnCompleteListener {
-                    Toast.makeText(application, "Update user's profile successfully", Toast.LENGTH_SHORT).show()
+                    Log.d("UpdateUser","Update user's profile successfully")
                 }
                 Toast.makeText(application, "Sign up successfully", Toast.LENGTH_SHORT).show()
             } else {
@@ -60,9 +62,24 @@ class AuthenticationRepository(_application: Application) {
         }
     }
 
+
+
+    fun forgotPassword(email: String){
+        auth.sendPasswordResetEmail(email).addOnCompleteListener {
+            if(it.isSuccessful()){
+                Toast.makeText(application, "Check your email to reset your password!", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(application, "Try again! Something wrong happened!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
     fun signOut(){
         auth.signOut()
         //userLoggedMutableLiveData.postValue(true)
     }
+
 
 }
