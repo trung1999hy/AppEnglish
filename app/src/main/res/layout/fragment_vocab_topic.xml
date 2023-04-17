@@ -55,6 +55,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:id="@+id/tv_previous" />
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
