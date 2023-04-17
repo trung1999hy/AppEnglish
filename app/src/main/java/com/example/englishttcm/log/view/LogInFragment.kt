@@ -1,5 +1,6 @@
 package com.example.englishttcm.log.view
 
+import android.text.TextUtils
 import android.util.Log
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
@@ -22,24 +23,36 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
 
     override fun initViews() {
         authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
+        loggedCheck = authenticationViewModel.getLoggedStatus
         authenticationViewModel.getUserData.observe(this) { user ->
             binding.btnLogIn.setOnClickListener {
                 val email = binding.edtEmail.text.toString()
                 val password = binding.edtPassword.text.toString()
-                if (email.isEmpty()) {
+                if (TextUtils.isEmpty(email)) {
                     binding.edtEmail.error = getString(R.string.empty_email)
-                } else if (password.isEmpty()) {
+                } else if (TextUtils.isEmpty(password)) {
                     binding.edtPassword.error = getString(R.string.empty_password)
                 } else {
                     authenticationViewModel.logIn(email, password)
-                    callback.showFragment(LogInFragment::class.java, HomeFragment::class.java, R.anim.slide_in, 0, user)
+                    callback.showFragment(
+                        LogInFragment::class.java,
+                        HomeFragment::class.java,
+                        0,
+                        0,
+                        user
+                    )
                 }
             }
         }
 
 
         binding.signUpNow.setOnClickListener {
-            callback.showFragment(LogInFragment::class.java, SignUpFragment::class.java, R.anim.slide_in, 0)
+            callback.showFragment(
+                LogInFragment::class.java,
+                SignUpFragment::class.java,
+                R.anim.slide_in,
+                0
+            )
         }
     }
 }

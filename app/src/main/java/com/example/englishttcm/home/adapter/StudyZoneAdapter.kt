@@ -1,5 +1,5 @@
 /* NAM NV created on 10:00 13-4-2023 */
-package com.example.englishttcm.learnzone.adapter
+package com.example.englishttcm.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,11 +12,11 @@ import androidx.core.content.ContextCompat
 import com.example.englishttcm.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishttcm.R
-import com.example.englishttcm.learnzone.model.Study
+import com.example.englishttcm.home.model.StudyMode
 
 class StudyZoneAdapter(
     private var context: Context,
-    private val listStudyTitle: ArrayList<Study>,
+    private val listStudyTitle: ArrayList<StudyMode>,
     private var listener: OnItemClickListener
 ) : RecyclerView.Adapter<StudyZoneAdapter.StudyZoneHolder>() {
 

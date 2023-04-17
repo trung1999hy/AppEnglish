@@ -1,5 +1,5 @@
 /* NAM NV created on 10:30 13-4-2023 */
-package com.example.englishttcm.playzone.model
+package com.example.englishttcm.home.model
 
 data class GamePlayMode(
     val bgColor: Int,

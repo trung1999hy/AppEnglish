@@ -1,6 +1,7 @@
 package com.example.englishttcm.log.repo
 
 import android.app.Application
+import android.text.TextUtils
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.log.model.User
@@ -55,6 +56,7 @@ class AuthenticationRepository(_application: Application) {
                 userLoggedMutableLiveData.postValue(true)
                 Toast.makeText(application, "Log in successfully", Toast.LENGTH_SHORT).show()
             } else {
+                userLoggedMutableLiveData.postValue(false)
                 Toast.makeText(application, it.exception!!.message, Toast.LENGTH_SHORT).show()
             }
         }
