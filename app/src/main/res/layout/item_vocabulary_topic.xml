@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="175dp"
+    android:layout_height="225dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:strokeWidth="1dp"
+        app:cardCornerRadius="20dp"
+        app:strokeColor="@color/grey"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_vocab_topic"
+                android:scaleType="centerCrop"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/app_icon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"/>
+
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_vocab_topic"
+                android:id="@+id/tv_vocab_topic"
+                android:layout_centerHorizontal="true"
+                android:text="@string/topic"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

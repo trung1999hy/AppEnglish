@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.englishttcm.OnActionCallback
 
-abstract class BaseFragment<VM: ViewBinding>: Fragment(){
+abstract class BaseFragment<VB: ViewBinding>: Fragment(){
 
     protected lateinit var mContext: Context
-    protected lateinit var binding: VM
+    protected lateinit var binding: VB
     lateinit var callback: OnActionCallback
     var data: Any? = null
 
@@ -32,7 +32,7 @@ abstract class BaseFragment<VM: ViewBinding>: Fragment(){
         return binding.root
     }
 
-    abstract fun getLayout(container: ViewGroup?): VM
+    abstract fun getLayout(container: ViewGroup?): VB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

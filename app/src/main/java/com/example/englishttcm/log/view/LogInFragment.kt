@@ -1,5 +1,6 @@
 package com.example.englishttcm.log.view
 
+import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
 import android.view.ViewGroup

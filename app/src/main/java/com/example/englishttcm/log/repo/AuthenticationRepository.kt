@@ -3,6 +3,7 @@ package com.example.englishttcm.log.repo
 import android.app.Application
 import android.preference.PreferenceManager
 import android.util.Log
+import android.text.TextUtils
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.log.model.User
@@ -29,6 +30,7 @@ class AuthenticationRepository(_application: Application) {
         firebaseUserMutableLiveData = MutableLiveData<FirebaseUser>()
         userLoggedMutableLiveData = MutableLiveData<Boolean>()
         auth = FirebaseAuth.getInstance()
+
         if(auth.currentUser != null){
             firebaseUserMutableLiveData.postValue(auth.currentUser)
         }
@@ -57,6 +59,7 @@ class AuthenticationRepository(_application: Application) {
                 userLoggedMutableLiveData.postValue(true)
                 Toast.makeText(application, "Log in successfully", Toast.LENGTH_SHORT).show()
             } else {
+                userLoggedMutableLiveData.postValue(false)
                 Toast.makeText(application, it.exception!!.message, Toast.LENGTH_SHORT).show()
             }
         }

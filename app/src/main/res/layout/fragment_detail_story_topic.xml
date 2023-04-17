@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_back_circle"
+        app:tint="@color/black"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/story_quote"
+        android:textSize="28sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/fat_font_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_topic"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        android:id="@+id/rcv_detail_topic"/>
+
+</RelativeLayout>
