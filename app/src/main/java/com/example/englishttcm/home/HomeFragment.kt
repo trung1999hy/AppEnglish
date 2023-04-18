@@ -3,6 +3,9 @@ package com.example.englishttcm.home
 
 import android.util.Log
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentHomeBinding
@@ -14,7 +17,10 @@ import com.example.englishttcm.learnzone.grammar.LearnGrammarFragment
 import com.example.englishttcm.learnzone.learning.LearnListenFragment
 import com.example.englishttcm.learnzone.reading.LearnReadFragment
 import com.example.englishttcm.learnzone.vocabulary.LearnVocabularyFragment
+import com.example.englishttcm.log.view.LogInFragment
+import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
 import com.example.englishttcm.playzone.SelectTypeFragment
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -23,13 +29,37 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var listStudyTitle: ArrayList<StudyMode>
     private lateinit var listPlayMode: ArrayList<GamePlayMode>
+    private lateinit var authenticationViewModel: AuthenticationViewModel
+    lateinit var toggle: ActionBarDrawerToggle
+
+
 
     override fun getLayout(container: ViewGroup?): FragmentHomeBinding =
         FragmentHomeBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
+        authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
+
+        binding.ivApp.setOnClickListener {
+            authenticationViewModel.signOut()
+            callback.showFragment(
+                HomeFragment::class.java,
+                LogInFragment::class.java,
+                0,
+                0,
+                null,
+                false
+            )
+        }
         firebaseUser = data as FirebaseUser
-        Log.i("id", firebaseUser.uid)
+        authenticationViewModel.getUserDetail(firebaseUser.uid)
+        authenticationViewModel.getUserDetail.observe(viewLifecycleOwner){
+            binding.tvNameUser.setText(it.name)
+            binding.tvWinCount.setText(it.win!!.toString())
+            binding.tvCoinCount.setText(it.coin!!.toString())
+            binding.tvTrophyCount.setText(it.trophy!!.toString())
+        }
+
         setLearnData()
         setPlayMode()
         Log.i("list", listStudyTitle.size.toString())
@@ -84,11 +114,41 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             PlayZoneAdapter(requireContext(), listPlayMode, object : OnItemClickListener {
                 override fun onItemClick(data: Any?) {
                     val gameMode = data as GamePlayMode
-                    if(gameMode.mode == MULTIPLE_CHOICE){
-                        callback.showFragment(HomeFragment::class.java, SelectTypeFragment::class.java,0,0)
+                    if (gameMode.mode == MULTIPLE_CHOICE) {
+                        callback.showFragment(
+                            HomeFragment::class.java,
+                            SelectTypeFragment::class.java,
+                            0,
+                            0
+                        )
                     }
                 }
             })
+
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navigationView
+        toggle = ActionBarDrawerToggle(
+            activity,
+            drawerLayout,
+            R.string.open_navigation,
+            R.string.close_navigation
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_account -> callback.showFragment(
+                    HomeFragment::class.java,
+                    AccountFragment::class.java,
+                    R.anim.slide_in,
+                    R.anim.slide_out,
+                    firebaseUser,
+                    true
+                )
+            }
+            true
+
+        }
     }
 
     private fun setPlayMode() {
