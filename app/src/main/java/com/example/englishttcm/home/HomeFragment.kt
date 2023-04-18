@@ -13,7 +13,7 @@ import com.example.englishttcm.home.model.StudyMode
 import com.example.englishttcm.learnzone.grammar.LearnGrammarFragment
 import com.example.englishttcm.learnzone.learning.LearnListenFragment
 import com.example.englishttcm.learnzone.reading.LearnReadFragment
-import com.example.englishttcm.learnzone.vocabulary.LearnVocabularyFragment
+import com.example.englishttcm.learnzone.vocabulary.view.LearnVocabularyFragment
 import com.example.englishttcm.playzone.SelectTypeFragment
 import com.google.firebase.auth.FirebaseUser
 

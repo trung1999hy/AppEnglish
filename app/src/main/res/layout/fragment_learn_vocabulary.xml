@@ -43,13 +43,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_7sdp">
+        android:layout_margin="@dimen/_5sdp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_topic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/item_vocabulary_topic" />
     </ScrollView>

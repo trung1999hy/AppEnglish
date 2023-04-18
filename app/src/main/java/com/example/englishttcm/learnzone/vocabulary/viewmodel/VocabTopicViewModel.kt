@@ -1,11 +1,11 @@
-package com.example.englishttcm.learnzone.viewmodel
+package com.example.englishttcm.learnzone.vocabulary.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.englishttcm.learnzone.model.VocabularyTopic
+import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
 
 class VocabTopicViewModel : ViewModel(){
-    private val listVocabTopicLive : MutableLiveData<ArrayList<VocabularyTopic>> = MutableLiveData()
+    private val listVocabTopicLive : MutableLiveData<List<VocabularyTopic>> = MutableLiveData()
 
     init {
         initData()
@@ -18,5 +18,5 @@ class VocabTopicViewModel : ViewModel(){
         listVocabTopicLive.value = listVocabTopic
     }
 
-    fun getListVocabTopic() : MutableLiveData<ArrayList<VocabularyTopic>> = listVocabTopicLive
+    fun getListVocabTopic() : MutableLiveData<List<VocabularyTopic>> = listVocabTopicLive
 }

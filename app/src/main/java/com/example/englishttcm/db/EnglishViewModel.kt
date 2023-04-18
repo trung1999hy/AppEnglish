@@ -8,5 +8,6 @@ class EnglishViewModel(application: Application): AndroidViewModel(application) 
     private val englishDao = EnglishDatabase.getDatabase(application).getEnglishDao()
     private val repository = EnglishRepository(englishDao)
     val readAllQuestionVocab = repository.readAllQuestion
-
+    val readAllTopicVocab = repository.readAllVocabTopic
+//    fun readWordByTopic(topicId : Int) = repository.readVocabWordByTopicId(topicId)
 }
