@@ -60,6 +60,9 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
         binding.btnChangeName.setOnClickListener{
             authenticationViewModel.updateUserName(firebaseUser.uid,binding.etName.text.toString())
         }
+        binding.btnBack.setOnClickListener{
+            callback.backToPrevious()
+        }
     }
 
 
@@ -74,6 +77,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
             }
         }
     }
+
 
 
 

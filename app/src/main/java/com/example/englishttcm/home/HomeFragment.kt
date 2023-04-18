@@ -2,8 +2,10 @@
 package com.example.englishttcm.home
 
 import android.util.Log
+import android.view.Gravity
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
@@ -140,14 +142,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 R.id.nav_account -> callback.showFragment(
                     HomeFragment::class.java,
                     AccountFragment::class.java,
-                    R.anim.slide_in,
-                    R.anim.slide_out,
+                    0,0,
                     firebaseUser,
                     true
                 )
+                R.id.nav_signout -> {
+                    authenticationViewModel.signOut()
+                    callback.showFragment(HomeFragment::class.java, LogInFragment::class.java,0,0,null,false)
+                }
             }
             true
 
+        }
+        binding.menu.setOnClickListener {
+            binding.drawerLayout.openDrawer(GravityCompat.START)
         }
     }
 

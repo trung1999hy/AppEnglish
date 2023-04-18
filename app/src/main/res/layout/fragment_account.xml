@@ -14,14 +14,26 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Edit Profile"
-            android:textSize="@dimen/_18ssp"
-            android:textColor="@color/primary_text"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_circle"
+                app:tint="@color/primary_text"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"/>
+            <TextView
+                android:layout_marginLeft="90dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:textSize="@dimen/_18ssp"
+                android:textColor="@color/primary_text"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/layoutImage"

@@ -8,10 +8,9 @@
         android:id="@+id/iv_back"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_back_circle"
-        app:tint="@color/pink"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"/>
+        android:src="@drawable/ic_back_circle"
+        app:tint="@color/pink" />
 
     <TextView
         android:id="@+id/tv_mul_type"
