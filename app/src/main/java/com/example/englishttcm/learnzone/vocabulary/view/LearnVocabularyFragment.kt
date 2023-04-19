@@ -27,7 +27,7 @@ class LearnVocabularyFragment : BaseFragment<FragmentLearnVocabularyBinding>() {
                         VocabularyWordFragment::class.java,
                         0,
                         0,
-                        topic.topicId,
+                        topic,
                         true
                     )
                 }

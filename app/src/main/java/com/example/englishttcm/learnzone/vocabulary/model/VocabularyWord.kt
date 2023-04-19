@@ -9,7 +9,7 @@ data class VocabularyWord(
     val id: Int,
     val word : String,
     val mean : String,
-    val example : String,
+    val pronounce : String,
     val topicId : Int,
-    val image : String
+    val image : String,
 )

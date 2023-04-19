@@ -8,7 +8,7 @@ import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 import com.example.englishttcm.playzone.model.QuizMode
 
-@Database(entities = [QuizMode::class, VocabularyTopic ::class], version = 1)
+@Database(entities = [QuizMode::class, VocabularyTopic::class], version = 1)
 abstract class EnglishDatabase : RoomDatabase() {
     abstract fun getEnglishDao(): EnglishDao
 

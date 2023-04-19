@@ -16,6 +16,6 @@ interface EnglishDao {
     @Query("select * from VocabularyTopic")
     fun readVocabTopic() : LiveData<List<VocabularyTopic>>
 
-//    @Query("select * from VocabularyWord where topicId LIKE :topicId")
+//    @Query("select * from VocabularyWord where topicId = :topicId")
 //    fun readVocabWordByTopicId(topicId : Int) : LiveData<List<VocabularyWord>>
 }
