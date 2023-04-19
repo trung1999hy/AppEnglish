@@ -26,20 +26,21 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
         authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
 
         loggedCheck = authenticationViewModel.getLoggedStatus
-        authenticationViewModel.getUserData.observe(this) { user ->
-            binding.btnLogin.setOnClickListener {
-                val email = binding.etEmail.text.toString()
-                val password = binding.etPassword.text.toString()
-                if (email.isEmpty()) {
-                    binding.etEmail.error = getString(R.string.empty_email)
-                }
-                else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    binding.etEmail.error = getString(R.string.valid_email)
-                }
-                else if (password.isEmpty()) {
-                    binding.etPassword.error = getString(R.string.empty_password)
-                } else {
-                    authenticationViewModel.logIn(email, password)
+        binding.btnLogin.setOnClickListener {
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            if (email.isEmpty()) {
+                binding.etEmail.error = getString(R.string.empty_email)
+            }
+            else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                binding.etEmail.error = getString(R.string.valid_email)
+            }
+            else if (password.isEmpty()) {
+                binding.etPassword.error = getString(R.string.empty_password)
+            } else {
+                authenticationViewModel.logIn(email, password)
+                authenticationViewModel.getUserData.observe(viewLifecycleOwner){
+                    user ->
                     loggedCheck.observe(this){
                         if(it){
                             callback.showFragment(LogInFragment::class.java, HomeFragment::class.java, R.anim.slide_in, 0,user)
