@@ -152,7 +152,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-        </RelativeLayout>
+            </RelativeLayout>
 
         <ScrollView
             android:layout_marginTop="16dp"
@@ -264,7 +264,7 @@
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"/>
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -291,7 +291,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
 
-            </RelativeLayout>
+                </RelativeLayout>
 
         </ScrollView>
 
