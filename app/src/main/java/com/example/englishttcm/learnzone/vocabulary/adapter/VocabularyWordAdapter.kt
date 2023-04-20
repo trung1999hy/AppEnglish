@@ -21,7 +21,7 @@ class VocabularyWordAdapter(
             Glide.with(context).load(word.image).into(bind.imgWord)
             bind.txtWord.text = word.word
             bind.txtMean.text = word.mean
-            bind.txtExample.text = "Ex: What your name"
+            bind.txtExample.text = word.example
             bind.txtPronounce.text = word.pronounce
             bind.imgAdd.setOnClickListener {
                 clickListener.onItemClick(listWord[adapterPosition])

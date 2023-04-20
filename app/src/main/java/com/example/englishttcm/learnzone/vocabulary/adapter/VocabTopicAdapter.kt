@@ -20,7 +20,7 @@ class VocabTopicAdapter(
         fun bind(vocabTopic: VocabularyTopic) {
             binding.txtNametopic.text = vocabTopic.name
             Glide.with(context).load(vocabTopic.image).into(binding.imgTopic)
-            binding.imgTopic.setOnClickListener {
+            binding.rlTopic.setOnClickListener {
                 itemClick.onItemClick(listVocabTopic[adapterPosition])
             }
         }
