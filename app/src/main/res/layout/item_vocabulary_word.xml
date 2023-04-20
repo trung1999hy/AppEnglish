@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginHorizontal="24dp"
+        app:cardCornerRadius="8dp"
+        android:id="@+id/layout_iv_word"
+        app:strokeColor="@color/grey"
+        app:strokeWidth="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/img_word"
+                android:contentDescription="@string/word" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txt_mean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mean"
+        android:layout_below="@id/layout_iv_word"
+        android:textSize="28sp"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_marginHorizontal="24dp"
+        app:cardCornerRadius="8dp"
+        android:id="@+id/layout_word"
+        android:layout_below="@+id/txt_mean"
+        android:layout_marginTop="20dp"
+        app:strokeColor="@color/grey"
+        app:strokeWidth="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/word"
+                android:textColor="@color/black"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/txt_pronounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pronounce"
+                android:layout_centerInParent="true"
+                android:textSize="18sp"
+                android:layout_below="@id/txt_word"
+                android:layout_marginTop="8dp"/>
+
+            <ImageView
+                android:id="@+id/img_add"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_add"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"/>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:id="@+id/layout_speaker"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/layout_word"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/hex"
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/speaker"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/volume"
+            android:layout_gravity="center"
+            android:contentDescription="@string/speaker" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_example"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/layout_speaker"
+        android:layout_centerHorizontal="true"
+        android:text="Ex:"
+        android:textSize="@dimen/_16ssp"/>
+
+</RelativeLayout>

@@ -62,4 +62,10 @@
     <string name="topic_quiz">Family</string>
     <string name="what_mean">Meaning of the ... is</string>
     <string name="timer">60</string>
+    <string name="open_navigation">Open navigation drawer</string>
+    <string name="close_navigation">Close navigation drawer</string>
+    <string name="account">Account</string>
+    <string name="signout">SignOut</string>
+    <string name="learn_english">Learn English</string>
+    <string name="search">search</string>
 </resources>

@@ -15,7 +15,7 @@
         android:contentDescription="@string/back_home" />
 
     <TextView
-        android:id="@+id/tv_topic"
+        android:id="@+id/txt_title_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -27,9 +27,10 @@
         android:layout_marginTop="24dp"/>
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpg_word"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tv_topic"
+        android:layout_below="@id/txt_title_topic"
         android:layout_marginHorizontal="12dp"
         android:layout_marginBottom="100dp"/>
 
@@ -43,6 +44,7 @@
         android:id="@+id/cv_previous">
 
         <LinearLayout
+            android:id="@+id/btn_prev"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/yellow"
@@ -71,6 +73,7 @@
         android:id="@+id/cv_next">
 
         <LinearLayout
+            android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/yellow"
