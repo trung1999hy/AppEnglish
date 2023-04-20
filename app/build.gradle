@@ -74,4 +74,10 @@ dependencies {
 
     //Rounded ImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    // LiveData
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+
+    implementation 'androidx.fragment:fragment-ktx:1.5.6'
+
 }
