@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_centerVertical="true"
-                android:text="@string/story_quote"
+                android:text="@string/story"
                 android:textSize="20sp"
                 android:maxLines="1"
                 android:textColor="@color/black"/>

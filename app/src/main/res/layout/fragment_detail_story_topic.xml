@@ -16,7 +16,7 @@
         android:id="@+id/tv_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/story_quote"
+        android:text="@string/story"
         android:textSize="28sp"
         android:textColor="@color/black"
         android:fontFamily="@font/fat_font_1"
