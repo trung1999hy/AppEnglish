@@ -22,6 +22,7 @@ import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
 import com.example.englishttcm.learnzone.vocabulary.view.LearnVocabularyFragment
 import com.example.englishttcm.playzone.SelectTypeFragment
+import com.example.englishttcm.storyzone.view.StoryFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 
@@ -156,6 +157,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
         binding.menu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
+        binding.ivTopicStory.setOnClickListener {
+            callback.showFragment(
+                HomeFragment::class.java,
+                StoryFragment::class.java,
+                0,
+                0,
+                null,
+                true
+            )
         }
     }
 

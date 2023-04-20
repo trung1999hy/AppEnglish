@@ -9,7 +9,7 @@
     <string name="play_now">Play Now</string>
     <string name="playing_game">Playing Game</string>
     <string name="learning_now">Learning Now</string>
-    <string name="story_quote"><![CDATA[Stories & Quotes]]></string>
+    <string name="story"><![CDATA[Stories]]></string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="log_in">Log in</string>
@@ -68,4 +68,6 @@
     <string name="signout">SignOut</string>
     <string name="learn_english">Learn English</string>
     <string name="search">search</string>
+    <string name="description">Description</string>
+    <string name="download">Download</string>
 </resources>
