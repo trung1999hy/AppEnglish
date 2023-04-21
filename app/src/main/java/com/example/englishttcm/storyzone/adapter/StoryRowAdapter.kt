@@ -2,8 +2,6 @@ package com.example.englishttcm.storyzone.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
@@ -15,7 +13,6 @@ import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
 class StoryRowAdapter(
     private val listStory: List<Story>,
     private val storyViewModel: StoryViewModel,
-    private val viewLifecycleOwner: LifecycleOwner,
     private val onItemClick: OnItemClickListener
 ) : RecyclerView.Adapter<StoryRowAdapter.StoryRowViewHolder>() {
 

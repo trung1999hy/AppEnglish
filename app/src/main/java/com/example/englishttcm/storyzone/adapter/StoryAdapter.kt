@@ -28,7 +28,6 @@ class StoryAdapter(
                 bind.rcvRowStory.adapter = StoryRowAdapter(
                     it,
                     storyViewModel,
-                    viewLifeCycle,
                     object : OnItemClickListener {
                         override fun onItemClick(data: Any?) {
                             val story = data as Story
