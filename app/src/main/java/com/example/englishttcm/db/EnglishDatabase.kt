@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
+import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 import com.example.englishttcm.playzone.model.QuizMode
 
 @Database(entities = [QuizMode::class, VocabularyTopic::class], version = 1)

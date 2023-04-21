@@ -9,20 +9,17 @@ import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.databinding.ItemVocabularyTopicBinding
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
 
-class VocabularyTopicAdapter(
+class VocabTopicAdapter(
     private val listVocabTopic: List<VocabularyTopic>,
+    private val context: Context,
     private val itemClick: OnItemClickListener
-) : RecyclerView.Adapter<VocabularyTopicAdapter.VocabTopicViewHolder>() {
+) : RecyclerView.Adapter<VocabTopicAdapter.VocabTopicViewHolder>() {
 
     inner class VocabTopicViewHolder(val binding: ItemVocabularyTopicBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(vocabTopic: VocabularyTopic) {
             binding.txtNametopic.text = vocabTopic.name
-            Glide.with(itemView.context).load(vocabTopic.image).into(binding.imgTopic)
-        }
-
-        init {
+            Glide.with(context).load(vocabTopic.image).into(binding.imgTopic)
             binding.rlTopic.setOnClickListener {
                 itemClick.onItemClick(listVocabTopic[adapterPosition])
             }
@@ -30,7 +27,7 @@ class VocabularyTopicAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocabTopicViewHolder {
-        val inflate = LayoutInflater.from(parent.context)
+        val inflate = LayoutInflater.from(context)
         val view = ItemVocabularyTopicBinding.inflate(inflate, parent, false)
         return VocabTopicViewHolder(view)
     }

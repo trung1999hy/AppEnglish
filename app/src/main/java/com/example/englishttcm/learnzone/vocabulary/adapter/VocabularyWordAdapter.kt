@@ -1,6 +1,6 @@
 package com.example.englishttcm.learnzone.vocabulary.adapter
 
-import android.speech.tts.TextToSpeech
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,35 +10,34 @@ import com.example.englishttcm.databinding.ItemVocabularyWordBinding
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 
 class VocabularyWordAdapter(
-    private val listVocabWord: List<VocabularyWord>,
+    private val listWord : List<VocabularyWord>,
+    private val context : Context,
     private val clickListener: OnItemClickListener
 ) : RecyclerView.Adapter<VocabularyWordAdapter.VocabularyWordViewHolder>() {
 
     inner class VocabularyWordViewHolder(val bind : ItemVocabularyWordBinding) : RecyclerView.ViewHolder(bind.root){
 
-        fun binding(vocabWord : VocabularyWord) {
-            Glide.with(itemView.context).load(vocabWord.image).into(bind.imgWord)
-            bind.txtWord.text = vocabWord.word
-            bind.txtMean.text = vocabWord.mean
-            bind.txtExample.text = vocabWord.example
-            bind.txtPronounce.text = vocabWord.pronounce
-        }
-        init {
-            bind.btnSpeaker.setOnClickListener {
-                clickListener.onItemClick(listVocabWord[adapterPosition])
+        fun binding(word : VocabularyWord) {
+            Glide.with(context).load(word.image).into(bind.imgWord)
+            bind.txtWord.text = word.word
+            bind.txtMean.text = word.mean
+            bind.txtExample.text = word.example
+            bind.txtPronounce.text = word.pronounce
+            bind.imgAdd.setOnClickListener {
+                clickListener.onItemClick(listWord[adapterPosition])
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocabularyWordViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(context)
         val view = ItemVocabularyWordBinding.inflate(inflater, parent, false)
         return VocabularyWordViewHolder(view)
     }
 
-    override fun getItemCount(): Int = listVocabWord.size
+    override fun getItemCount(): Int = listWord.size
 
     override fun onBindViewHolder(holder: VocabularyWordViewHolder, position: Int) {
-        holder.binding(listVocabWord[position])
+        holder.binding(listWord[position])
     }
 }
