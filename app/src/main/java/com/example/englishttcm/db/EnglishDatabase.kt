@@ -7,8 +7,9 @@ import androidx.room.RoomDatabase
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 import com.example.englishttcm.playzone.model.QuizMode
+import com.example.englishttcm.storyzone.model.StoryDownloaded
 
-@Database(entities = [QuizMode::class, VocabularyTopic::class], version = 1)
+@Database(entities = [StoryDownloaded::class], version = 1, exportSchema = false)
 abstract class EnglishDatabase : RoomDatabase() {
     abstract fun getEnglishDao(): EnglishDao
 
@@ -17,18 +18,14 @@ abstract class EnglishDatabase : RoomDatabase() {
         private var INSTANCE: EnglishDatabase? = null
 
         fun getDatabase(context: Context): EnglishDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this) {
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     EnglishDatabase::class.java,
-                    "englishDB.db"
-                ).createFromAsset("db/englishDB.db").build()
+                    "englishDB"
+                ).build()
                 INSTANCE = instance
-                return instance
+                instance
             }
         }
     }

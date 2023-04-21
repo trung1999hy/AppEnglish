@@ -1,21 +1,20 @@
 package com.example.englishttcm.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Query
-import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
-import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
-import com.example.englishttcm.playzone.model.QuizMode
+import androidx.room.*
+import com.example.englishttcm.storyzone.model.StoryDownloaded
 
 @Dao
 interface EnglishDao {
 
-    @Query("select * from QuizMode")
-    fun readQuestion(): LiveData<List<QuizMode>>
+    @Query("select * from Story")
+    fun readAllStoryDownloaded(): LiveData<List<StoryDownloaded>>
 
-    @Query("select * from VocabularyTopic")
-    fun readVocabTopic() : LiveData<List<VocabularyTopic>>
+    @Query("SELECT * FROM Story WHERE id = :storyId")
+    fun readStoryDownloadedById(storyId: String): LiveData<StoryDownloaded>
 
-//    @Query("select * from VocabularyWord where topicId = :topicId")
-//    fun readVocabWordByTopicId(topicId : Int) : LiveData<List<VocabularyWord>>
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertStoryDownloaded(story: StoryDownloaded)
+    @Delete
+    suspend fun deleteStoryDownloaded(story: StoryDownloaded)
 }

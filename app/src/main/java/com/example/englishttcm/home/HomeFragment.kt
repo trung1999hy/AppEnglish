@@ -29,7 +29,6 @@ import com.google.firebase.auth.FirebaseUser
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var firebaseUser: FirebaseUser
-
     private lateinit var listStudyTitle: ArrayList<StudyMode>
     private lateinit var listPlayMode: ArrayList<GamePlayMode>
     private lateinit var authenticationViewModel: AuthenticationViewModel

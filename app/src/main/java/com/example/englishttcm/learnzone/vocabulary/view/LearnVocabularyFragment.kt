@@ -18,20 +18,20 @@ class LearnVocabularyFragment : BaseFragment<FragmentLearnVocabularyBinding>() {
 
     override fun initViews() {
         englishViewModel = ViewModelProvider(this)[EnglishViewModel::class.java]
-        englishViewModel.readAllTopicVocab.observe(viewLifecycleOwner) {
-            binding.rcvTopic.adapter = VocabTopicAdapter(it, requireContext() ,object : OnItemClickListener{
-                override fun onItemClick(data: Any?) {
-                    val topic = data as VocabularyTopic
-                    callback.showFragment(
-                        LearnVocabularyFragment::class.java,
-                        VocabularyWordFragment::class.java,
-                        0,
-                        0,
-                        topic,
-                        true
-                    )
-                }
-            })
-        }
+//        englishViewModel.readAllTopicVocab.observe(viewLifecycleOwner) {
+//            binding.rcvTopic.adapter = VocabTopicAdapter(it, requireContext() ,object : OnItemClickListener{
+//                override fun onItemClick(data: Any?) {
+//                    val topic = data as VocabularyTopic
+//                    callback.showFragment(
+//                        LearnVocabularyFragment::class.java,
+//                        VocabularyWordFragment::class.java,
+//                        0,
+//                        0,
+//                        topic,
+//                        true
+//                    )
+//                }
+//            })
+//        }
     }
 }

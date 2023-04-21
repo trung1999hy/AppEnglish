@@ -18,9 +18,9 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
     override fun initViews() {
         englishViewModel = ViewModelProvider(this)[EnglishViewModel::class.java]
 
-        englishViewModel.readAllQuestionVocab.observe(viewLifecycleOwner, Observer {
-            Log.i("test_db,", it.toString())
-        })
+//        englishViewModel.readAllQuestionVocab.observe(viewLifecycleOwner, Observer {
+//            Log.i("test_db,", it.toString())
+//        })
     }
 
 }
