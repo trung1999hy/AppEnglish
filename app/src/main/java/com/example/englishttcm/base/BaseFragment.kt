@@ -3,6 +3,7 @@ package com.example.englishttcm.base
 
 import android.content.Context
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,5 +45,7 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment(){
     fun notify(msg: String){
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
+
+
 
 }

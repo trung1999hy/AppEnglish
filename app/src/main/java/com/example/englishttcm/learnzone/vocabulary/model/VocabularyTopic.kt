@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 data class VocabularyTopic(
     @PrimaryKey(autoGenerate = true)
     val topicId: Int? = null,
-    val name : String? = null,
-    val image : String? = null,
+    val name: String? = null,
+    val image: String? = null
 )
