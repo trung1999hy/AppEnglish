@@ -23,6 +23,8 @@ import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
 import com.example.englishttcm.learnzone.vocabulary.view.LearnVocabularyFragment
 import com.example.englishttcm.playzone.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 
@@ -168,6 +170,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 true
             )
         }
+        addBannerAds()
     }
 
     private fun setPlayMode() {
@@ -182,5 +185,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_pink, "Grammar", R.drawable.img_vocabulary))
         listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_yellow, "Listening", R.drawable.img_vocabulary))
         listStudyTitle.add(StudyMode(R.drawable.header_home_background, "Reading", R.drawable.img_vocabulary))
+    }
+
+    private fun addBannerAds(){
+        MobileAds.initialize(requireActivity())
+        val adRequest =AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
     }
 }
