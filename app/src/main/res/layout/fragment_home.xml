@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- NAM NV created on 22:47 12-4-2023-->
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,6 +17,7 @@
             android:layout_height="175dp"
             android:id="@+id/layout_header"
             android:background="@drawable/header_home_background">
+
 
             <ImageView
                 android:id="@+id/menu"
@@ -152,7 +154,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-        </RelativeLayout>
+            </RelativeLayout>
 
         <ScrollView
             android:layout_marginTop="16dp"
@@ -264,7 +266,7 @@
                         android:textStyle="bold"
                         android:layout_marginStart="8dp"/>
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -290,10 +292,21 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+                </RelativeLayout>
 
-            </RelativeLayout>
+
+
 
         </ScrollView>
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
@@ -303,5 +316,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/layout_header_navigation"
         app:menu="@menu/menu_navigation" />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
