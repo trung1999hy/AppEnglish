@@ -96,7 +96,7 @@
         android:gravity="center">
 
         <ImageView
-            android:id="@+id/btnSpeaker"
+            android:id="@+id/speaker"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/volume"

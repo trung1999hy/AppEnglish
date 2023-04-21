@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
+import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 import com.example.englishttcm.playzone.model.QuizMode
 
 @Dao
