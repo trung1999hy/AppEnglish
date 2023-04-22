@@ -97,7 +97,7 @@ class AdsApplication:Application(),ActivityLifecycleCallbacks,LifecycleObserver{
                         // Called when an app open ad has failed to load.
                         Log.d(LOG_TAG, loadAdError.message)
                         Toast.makeText(context, "onAdFailedToLoad", Toast.LENGTH_SHORT).show()
-                        isLoadingAd = false;
+                        isLoadingAd = false
                     }
                 })
         }
@@ -135,40 +135,39 @@ class AdsApplication:Application(),ActivityLifecycleCallbacks,LifecycleObserver{
                 return
             }
 
-            appOpenAd?.setFullScreenContentCallback(
-                object : FullScreenContentCallback() {
+            appOpenAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
 
-                    override fun onAdDismissedFullScreenContent() {
-                        // Called when full screen content is dismissed.
-                        // Set the reference to null so isAdAvailable() returns false.
-                        Log.d(LOG_TAG, "Ad dismissed fullscreen content.")
-                        Toast.makeText(activity, "onAdDismissedFullScreenContent", Toast.LENGTH_SHORT).show()
-                        appOpenAd = null
-                        isShowingAd = false
+                override fun onAdDismissedFullScreenContent() {
+                    // Called when full screen content is dismissed.
+                    // Set the reference to null so isAdAvailable() returns false.
+                    Log.d(LOG_TAG, "Ad dismissed fullscreen content.")
+                    Toast.makeText(activity, "onAdDismissedFullScreenContent", Toast.LENGTH_SHORT).show()
+                    appOpenAd = null
+                    isShowingAd = false
 
-                        onShowAdCompleteListener.onShowAdComplete()
-                        loadAd(activity)
-                    }
+                    onShowAdCompleteListener.onShowAdComplete()
+                    loadAd(activity)
+                }
 
-                    override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                        // Called when fullscreen content failed to show.
-                        // Set the reference to null so isAdAvailable() returns false.
-                        Log.d(LOG_TAG, adError.message)
-                        Toast.makeText(activity, "onAdFailedToShowFullScreenContent", Toast.LENGTH_SHORT).show()
-                        appOpenAd = null
-                        isShowingAd = false
+                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                    // Called when fullscreen content failed to show.
+                    // Set the reference to null so isAdAvailable() returns false.
+                    Log.d(LOG_TAG, adError.message)
+                    Toast.makeText(activity, "onAdFailedToShowFullScreenContent", Toast.LENGTH_SHORT).show()
+                    appOpenAd = null
+                    isShowingAd = false
 
-                        onShowAdCompleteListener.onShowAdComplete()
-                        loadAd(activity)
-                    }
+                    onShowAdCompleteListener.onShowAdComplete()
+                    loadAd(activity)
+                }
 
-                    override fun onAdShowedFullScreenContent() {
-                        // Called when fullscreen content is shown.
-                        Log.d(LOG_TAG, "Ad showed fullscreen content.")
-                        Toast.makeText(activity, "onAdShowedFullScreenContent", Toast.LENGTH_SHORT).show()
+                override fun onAdShowedFullScreenContent() {
+                    // Called when fullscreen content is shown.
+                    Log.d(LOG_TAG, "Ad showed fullscreen content.")
+                    Toast.makeText(activity, "onAdShowedFullScreenContent", Toast.LENGTH_SHORT).show()
 
-                    }
-                })
+                }
+            }
             isShowingAd = true
             appOpenAd?.show(activity)
         }

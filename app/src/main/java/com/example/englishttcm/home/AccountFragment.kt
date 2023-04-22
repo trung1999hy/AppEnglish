@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentAccountBinding
-import com.example.englishttcm.log.model.User
-import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
+import com.example.englishttcm.learnzone.log.model.User
+import com.example.englishttcm.learnzone.log.viewmodel.AuthenticationViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot

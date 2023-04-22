@@ -1,4 +1,4 @@
-package com.example.englishttcm.log.view
+package com.example.englishttcm.learnzone.log.view
 
 import android.util.Patterns
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentSignUpBinding
-import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
+import com.example.englishttcm.learnzone.log.viewmodel.AuthenticationViewModel
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(){
 

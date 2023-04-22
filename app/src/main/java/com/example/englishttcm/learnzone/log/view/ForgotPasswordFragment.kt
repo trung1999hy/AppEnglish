@@ -1,4 +1,4 @@
-package com.example.englishttcm.log.view
+package com.example.englishttcm.learnzone.log.view
 
 import android.os.Bundle
 import android.util.Patterns
@@ -11,7 +11,7 @@ import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentForgotPasswordBinding
 import com.example.englishttcm.databinding.FragmentLogInBinding
-import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
+import com.example.englishttcm.learnzone.log.viewmodel.AuthenticationViewModel
 
 
 class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>() {

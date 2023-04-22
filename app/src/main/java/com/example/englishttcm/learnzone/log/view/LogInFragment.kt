@@ -1,8 +1,9 @@
-package com.example.englishttcm.log.view
+package com.example.englishttcm.learnzone.log.view
 
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -11,7 +12,8 @@ import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentLogInBinding
 import com.example.englishttcm.home.HomeFragment
-import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
+import com.example.englishttcm.learnzone.log.viewmodel.AuthenticationViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseUser
 
 class LogInFragment : BaseFragment<FragmentLogInBinding>() {
@@ -59,5 +61,11 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
             callback.showFragment(LogInFragment::class.java, ForgotPasswordFragment::class.java, R.anim.slide_in, 0)
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        var fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
+        fab!!.visibility = View.INVISIBLE
     }
 }

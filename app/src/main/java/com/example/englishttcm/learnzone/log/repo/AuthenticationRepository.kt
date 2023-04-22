@@ -1,11 +1,11 @@
-package com.example.englishttcm.log.repo
+package com.example.englishttcm.learnzone.log.repo
 
 import android.app.Application
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.example.englishttcm.log.model.User
+import com.example.englishttcm.learnzone.log.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
