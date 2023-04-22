@@ -11,30 +11,36 @@ import com.example.englishttcm.storyzone.adapter.StoryDownloadedAdapter
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
 
-class StoryFragment : BaseFragment<FragmentStoryBinding>(){
-    private lateinit var storyViewModel : StoryViewModel
-    override fun getLayout(container: ViewGroup?): FragmentStoryBinding = FragmentStoryBinding.inflate(layoutInflater, container, false)
+class StoryFragment : BaseFragment<FragmentStoryBinding>() {
+    private lateinit var storyViewModel: StoryViewModel
+    override fun getLayout(container: ViewGroup?): FragmentStoryBinding =
+        FragmentStoryBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
-        storyViewModel =  ViewModelProvider(this)[StoryViewModel::class.java]
-        storyViewModel.getListStoryDownloadedLive.observe(viewLifecycleOwner){
-            if(it != null){
-                binding.rcvMyLibary.adapter = StoryDownloadedAdapter(it,storyViewModel, object : OnItemClickListener{
-                    override fun onItemClick(data: Any?) {
-                        callback.showFragment(
-                            StoryFragment::class.java,
-                            ReadStoryFragment::class.java,
-                            0,
-                            0,
-                            data as StoryDownloaded,
-                            true
-                        )
-                    }
-                })
+        storyViewModel = ViewModelProvider(this)[StoryViewModel::class.java]
+        storyViewModel.getListStoryDownloadedLive.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.rcvMyLibary.adapter = StoryDownloadedAdapter(
+                    it,
+                    storyViewModel,
+                    viewLifecycleOwner,
+                    object : OnItemClickListener {
+                        override fun onItemClick(data: Any?) {
+                            callback.showFragment(
+                                StoryFragment::class.java,
+                                ReadStoryFragment::class.java,
+                                0,
+                                0,
+                                data as StoryDownloaded,
+                                true
+                            )
+                        }
+                    })
             }
         }
-        storyViewModel.getListGenreLive.observe(viewLifecycleOwner){
-            binding.rcvAllStory.adapter = StoryAdapter(it,storyViewModel, viewLifecycleOwner ,this.callback)
+        storyViewModel.getListGenreLive.observe(viewLifecycleOwner) {
+            binding.rcvAllStory.adapter =
+                StoryAdapter(it, storyViewModel, viewLifecycleOwner, this.callback)
         }
     }
 }

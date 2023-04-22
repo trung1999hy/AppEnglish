@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.databinding.ItemStoryBinding
 import com.example.englishttcm.storyzone.model.StoryDownloaded
@@ -13,13 +12,17 @@ import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
 class StoryDownloadedAdapter(
     private val listStory: List<StoryDownloaded>,
     private val storyViewModel: StoryViewModel,
+    private val viewLifecycle: LifecycleOwner,
     private val onItemClick: OnItemClickListener
 ) : RecyclerView.Adapter<StoryDownloadedAdapter.StoryDownloadedViewHolder>() {
 
     inner class StoryDownloadedViewHolder(private val bind: ItemStoryBinding) :
         RecyclerView.ViewHolder(bind.root) {
         fun binding(storyDownloaded: StoryDownloaded) {
-            bind.ivStory.setImageBitmap(storyViewModel.loadImageFromLocal(storyDownloaded.path, itemView.context))
+            storyViewModel.loadImageFromLocal(storyDownloaded.path, itemView.context)
+                .observe(viewLifecycle) {
+                    bind.ivStory.setImageBitmap(it)
+                }
             bind.tvStory.text = storyDownloaded.name
             bind.ivStory.setOnClickListener {
                 onItemClick.onItemClick(storyDownloaded)

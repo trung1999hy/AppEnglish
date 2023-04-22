@@ -111,7 +111,7 @@ class StoryRepository {
         }
     }
 
-    fun loadImageFromLocal(fileName: String, context: Context): Bitmap? {
+    fun loadImageFromLocal(fileName: String, context: Context): LiveData<Bitmap> {
         val root = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
         } else {
@@ -119,7 +119,9 @@ class StoryRepository {
         }
         val imagePath = File(root, "books/$fileName.png")
         val inputStream = FileInputStream(imagePath)
-        return BitmapFactory.decodeStream(inputStream)
+        val bitmapLive = MutableLiveData<Bitmap>()
+        bitmapLive.value = BitmapFactory.decodeStream(inputStream)
+        return bitmapLive
     }
 
     fun getAllStoryDownloaded(context: Context):LiveData<List<StoryDownloaded>>{

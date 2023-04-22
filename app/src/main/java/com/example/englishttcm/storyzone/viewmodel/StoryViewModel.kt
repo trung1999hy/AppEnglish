@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -71,7 +72,7 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
         })
     }
 
-    fun loadImageFromLocal(fileName: String, context: Context) =
+    fun loadImageFromLocal(fileName: String, context: Context) : LiveData<Bitmap> =
         repository.loadImageFromLocal(fileName, context)
 
 
