@@ -28,7 +28,6 @@ class VocabularyViewModel(application: Application): AndroidViewModel(applicatio
     }
 
     fun getVocabWordList(topicId: Int){
-
         repository.vocabularyWord(topicId)
     }
 }
