@@ -1,68 +1,49 @@
 package com.example.englishttcm.learnzone.vocabulary.view
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import com.example.englishttcm.OnActionCallback
+import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentVocabularyWordBinding
 import com.example.englishttcm.learnzone.vocabulary.adapter.VocabularyWordAdapter
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
-import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.example.englishttcm.learnzone.vocabulary.viewmodel.VocabularyViewModel
 
 
 class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>(), OnItemClickListener {
 
-    private lateinit var vocabList : ArrayList<VocabularyWord>
-    private lateinit var topic:VocabularyTopic
+    private lateinit var topic: VocabularyTopic
+    private lateinit var viewModel: VocabularyViewModel
 
-    private var db = Firebase.firestore
     override fun getLayout(container: ViewGroup?): FragmentVocabularyWordBinding =
         FragmentVocabularyWordBinding.inflate(layoutInflater, container, false)
 
-    override fun initViews() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         topic = data as VocabularyTopic
-        notify(topic.topicId.toString())
-        val wordsRef = db.collection("vocabularyWord")
-        vocabList = arrayListOf()
-        wordsRef
-            .whereEqualTo("topicId", topic.topicId)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful && task.result != null) {
-                    for (document in task.result!!) {
-                        val id = document.id
-                        val word = document.getString("word")
-                        val mean = document.getString("mean")
-                        val speaker = document.getString("speaker")
-                        val pronounce = document.getString("pronounce")
-                        val topicId = document.getLong("topicId")!!.toInt()
-                        val image = document.getString("image")
-                        val example = document.getString("example")
-                        val vocab = VocabularyWord(
-                            id,
-                            word,
-                            mean,
-                            speaker,
-                            pronounce,
-                            topicId,
-                            image,
-                            example
-                        )
-                        vocabList.add(vocab)
-                    }
-                    binding.vpgWord.adapter =
-                        VocabularyWordAdapter(vocabList, requireContext(), this)
+        viewModel = ViewModelProvider(this)[VocabularyViewModel::class.java]
+        topic.topicId?.let { viewModel.getVocabWordList(it) }
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewModel.vocabTopicWord.observe(viewLifecycleOwner){
+            binding.vpgWord.adapter =
+                VocabularyWordAdapter(it, this)
+        }
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+    override fun initViews() {
 
-                } else {
-                    notify("Error")
-                }
-            }
         binding.btnNext.setOnClickListener {
             val currentItem = binding.vpgWord.currentItem
-            val count = binding.vpgWord.adapter?.itemCount ?: 0
-            if (currentItem == count - 1) {
+            val itemCount = binding.vpgWord.adapter?.itemCount ?: 0
+            if (currentItem == itemCount - 1) {
                 binding.vpgWord.setCurrentItem(0, false)
             } else {
                 binding.vpgWord.setCurrentItem(currentItem + 1, true)
@@ -70,25 +51,20 @@ class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>(), On
         }
         binding.btnPrev.setOnClickListener {
             val currentItem = binding.vpgWord.currentItem
-            val count = binding.vpgWord.adapter?.itemCount ?: 0
+            val itemCount = binding.vpgWord.adapter?.itemCount ?: 0
             if (currentItem == 0) {
-                binding.vpgWord.setCurrentItem(count - 1, false)
+                binding.vpgWord.setCurrentItem(itemCount - 1, false)
             } else {
                 binding.vpgWord.setCurrentItem(currentItem - 1, true)
             }
         }
 
         binding.btnBackTopic.setOnClickListener{
-            callback.showFragment(VocabularyWordFragment::class.java,
-            LearnVocabularyFragment::class.java, 0, 0, null, true)
+            callback.backToPrevious()
         }
+
     }
-
-
     override fun onItemClick(data: Any?) {
     }
-
-
-
-
 }
+

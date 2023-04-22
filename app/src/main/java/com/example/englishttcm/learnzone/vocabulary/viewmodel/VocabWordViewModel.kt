@@ -1,23 +1,34 @@
 package com.example.englishttcm.learnzone.vocabulary.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
+import com.example.englishttcm.learnzone.vocabulary.repo.VocabularyRepository
 
-class VocabWordViewModel : ViewModel(){
-    private val listVocabWordLive : MutableLiveData<List<VocabularyWord>> = MutableLiveData()
+class VocabularyViewModel(application: Application): AndroidViewModel(application) {
+    private var repository: VocabularyRepository
+
+    private var _vocabTopicList = MutableLiveData<ArrayList<VocabularyTopic>>()
+    val vocabTopicList: LiveData<ArrayList<VocabularyTopic>> get() = _vocabTopicList
+
+    private var _vocabTopicWord = MutableLiveData<ArrayList<VocabularyWord>>()
+    val vocabTopicWord: LiveData<ArrayList<VocabularyWord>> get() = _vocabTopicWord
 
     init {
-        initData()
-    }
-    private fun initData() {
-        val listVocabWord = ArrayList<VocabularyWord>()
-        for (i in 1..20) {
-        }
-        listVocabWordLive.value = listVocabWord
+        repository = VocabularyRepository(application)
+        _vocabTopicList = repository.getFirebaseVocabTopic
+        _vocabTopicWord = repository.getFirebaseVocabWord
     }
 
-    fun getListVocabTopic() : MutableLiveData<List<VocabularyWord>> = listVocabWordLive
+    fun getVocabTopicList(){
+        repository.vocabularyTopic()
+    }
+
+    fun getVocabWordList(topicId: Int){
+
+        repository.vocabularyWord(topicId)
+    }
 }

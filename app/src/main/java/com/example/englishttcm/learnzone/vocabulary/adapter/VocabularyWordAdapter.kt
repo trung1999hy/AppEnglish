@@ -11,26 +11,27 @@ import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 
 class VocabularyWordAdapter(
     private val listWord : List<VocabularyWord>,
-    private val context : Context,
     private val clickListener: OnItemClickListener
 ) : RecyclerView.Adapter<VocabularyWordAdapter.VocabularyWordViewHolder>() {
 
     inner class VocabularyWordViewHolder(val bind : ItemVocabularyWordBinding) : RecyclerView.ViewHolder(bind.root){
 
         fun binding(word : VocabularyWord) {
-            Glide.with(context).load(word.image).into(bind.imgWord)
+            Glide.with(itemView.context).load(word.image).into(bind.imgWord)
             bind.txtWord.text = word.word
             bind.txtMean.text = word.mean
             bind.txtExample.text = word.example
             bind.txtPronounce.text = word.pronounce
-            bind.imgAdd.setOnClickListener {
+        }
+        init {
+            bind.speaker.setOnClickListener {
                 clickListener.onItemClick(listWord[adapterPosition])
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocabularyWordViewHolder {
-        val inflater = LayoutInflater.from(context)
+        val inflater = LayoutInflater.from(parent.context)
         val view = ItemVocabularyWordBinding.inflate(inflater, parent, false)
         return VocabularyWordViewHolder(view)
     }
