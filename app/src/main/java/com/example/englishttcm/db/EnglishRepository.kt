@@ -1,14 +1,10 @@
 package com.example.englishttcm.db
 
 import androidx.lifecycle.LiveData
-import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
-import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
-import com.example.englishttcm.playzone.model.QuizMode
-import kotlin.properties.Delegates
+import com.example.englishttcm.storyzone.model.StoryDownloaded
 
 class EnglishRepository(private val englishDao: EnglishDao) {
 
-    val readAllQuestion: LiveData<List<QuizMode>> = englishDao.readQuestion()
-    val readAllVocabTopic: LiveData<List<VocabularyTopic>> = englishDao.readVocabTopic()
-//    fun readVocabWordByTopicId(topicId : Int) = englishDao.readVocabWordByTopicId(topicId)
+    val readAllStoryDownloaded = englishDao.readAllStoryDownloaded()
+//    fun readStoryDownloadedById(storyId : Int) = englishDao.readStoryDownloadedById(storyId)
 }

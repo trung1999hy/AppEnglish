@@ -26,20 +26,20 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
     override fun initViews() {
         englishViewModel = ViewModelProvider(this)[EnglishViewModel::class.java]
 
-        englishViewModel.readAllQuestionVocab.observe(viewLifecycleOwner, Observer {
-            listAns.add(it[2].incorrectAnswerOne)
-            listAns.add(it[2].incorrectAnswerThree)
-            listAns.add(it[2].incorrectAnswerThree)
-            listAns.add(it[2].correctAnswer)
-            listAns.shuffle()
-            binding.tvAnsA.text = listAns[0]
-            binding.tvAnsB.text = listAns[1]
-            binding.tvAnsC.text = listAns[2]
-            binding.tvAnsD.text = listAns[3]
-            binding.tvWord.text = it[2].question
-        })
-        countDown()
-        listener()
+//        englishViewModel.readAllQuestionVocab.observe(viewLifecycleOwner, Observer {
+//            listAns.add(it[2].incorrectAnswerOne)
+//            listAns.add(it[2].incorrectAnswerThree)
+//            listAns.add(it[2].incorrectAnswerThree)
+//            listAns.add(it[2].correctAnswer)
+//            listAns.shuffle()
+//            binding.tvAnsA.text = listAns[0]
+//            binding.tvAnsB.text = listAns[1]
+//            binding.tvAnsC.text = listAns[2]
+//            binding.tvAnsD.text = listAns[3]
+//            binding.tvWord.text = it[2].question
+//        })
+//        countDown()
+//        listener()
     }
 
     private fun listener() {

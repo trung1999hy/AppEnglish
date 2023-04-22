@@ -1,23 +1,34 @@
 package com.example.englishttcm.storyzone.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.databinding.ItemStoryBinding
+import com.example.englishttcm.storyzone.callback.OnDownloadCompleteListener
 import com.example.englishttcm.storyzone.model.Story
+import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
 
 class StoryRowAdapter(
     private val listStory: List<Story>,
-    private val context: Context,
-    private val onItemClick : OnItemClickListener
+    private val storyViewModel: StoryViewModel,
+    private val onItemClick: OnItemClickListener
 ) : RecyclerView.Adapter<StoryRowAdapter.StoryRowViewHolder>() {
 
-    inner class StoryRowViewHolder(val bind : ItemStoryBinding) : RecyclerView.ViewHolder(bind.root){
-        fun binding(book : Story){
-            Glide.with(context).load(book.image).into(bind.ivStory)
+    inner class StoryRowViewHolder(val bind: ItemStoryBinding) :
+        RecyclerView.ViewHolder(bind.root) {
+        fun binding(book: Story) {
+            storyViewModel.loadImageFromFirebase(book.url, object : OnDownloadCompleteListener{
+                override fun onDownloadComplete(downloadUrl: String) {
+                    Glide.with(itemView.context).load(downloadUrl)
+                        .into(bind.ivStory)
+                }
+
+                override fun onDownloadFailed(errorMessage: String?) {
+
+                }
+            })
             bind.tvStory.text = book.name
             bind.ivStory.setOnClickListener {
                 onItemClick.onItemClick(book)
@@ -26,7 +37,7 @@ class StoryRowAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryRowViewHolder {
-        val inflater = LayoutInflater.from(context)
+        val inflater = LayoutInflater.from(parent.context)
         val view = ItemStoryBinding.inflate(inflater, parent, false)
         return StoryRowViewHolder(view)
     }

@@ -3,10 +3,11 @@ package com.example.englishttcm.learnzone.vocabulary.view
 import android.content.ContentValues.TAG
 import android.util.Log
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentLearnVocabularyBinding
+import com.example.englishttcm.db.EnglishViewModel
 import com.example.englishttcm.home.HomeFragment
 import com.example.englishttcm.learnzone.vocabulary.adapter.VocabTopicAdapter
 import com.example.englishttcm.learnzone.vocabulary.adapter.VocabularyWordAdapter
