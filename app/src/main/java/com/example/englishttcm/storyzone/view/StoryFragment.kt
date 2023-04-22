@@ -1,10 +1,12 @@
 package com.example.englishttcm.storyzone.view
 
+import android.app.AlertDialog
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.englishttcm.OnActionCallback
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.base.BaseFragment
+import com.example.englishttcm.databinding.CustomDialogDeleteBinding
 import com.example.englishttcm.databinding.FragmentStoryBinding
 import com.example.englishttcm.storyzone.adapter.StoryAdapter
 import com.example.englishttcm.storyzone.adapter.StoryDownloadedAdapter
@@ -35,6 +37,11 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>() {
                                 true
                             )
                         }
+                    }, object : OnItemClickListener {
+                        override fun onItemClick(data: Any?) {
+                            val story = data as StoryDownloaded
+                            showDialog(story)
+                        }
                     })
             }
         }
@@ -42,5 +49,31 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>() {
             binding.rcvAllStory.adapter =
                 StoryAdapter(it, storyViewModel, viewLifecycleOwner, this.callback)
         }
+        binding.ivBack.setOnClickListener {
+            callback.backToPrevious()
+        }
+    }
+
+    private fun showDialog(storyDownloaded: StoryDownloaded) {
+        val builder = AlertDialog.Builder(requireContext())
+        val inflater = LayoutInflater.from(requireContext())
+        val binding = CustomDialogDeleteBinding.inflate(inflater)
+        builder.setView(binding.root)
+        val dialog = builder.create()
+        binding.btnYes.setOnClickListener {
+            storyViewModel.deleteFileFromLocal(storyDownloaded, requireContext())
+                .observe(viewLifecycleOwner) {
+                    if (it) {
+                        notify("Delete success")
+                        dialog.dismiss()
+                    } else {
+                        notify("Delete failed")
+                    }
+                }
+        }
+        binding.btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }

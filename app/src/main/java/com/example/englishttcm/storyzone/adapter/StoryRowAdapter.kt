@@ -20,12 +20,12 @@ class StoryRowAdapter(
         RecyclerView.ViewHolder(bind.root) {
         fun binding(book: Story) {
             storyViewModel.loadImageFromFirebase(book.url, object : OnDownloadCompleteListener{
-                override fun onDownloadComplete(downloadUrl: String) {
-                    Glide.with(itemView.context).load(downloadUrl)
+                override fun onDownloadComplete(data: Any?) {
+                    Glide.with(itemView.context).load(data as String)
                         .into(bind.ivStory)
                 }
 
-                override fun onDownloadFailed(errorMessage: String?) {
+                override fun onDownloadFailed(data: Any?) {
 
                 }
             })

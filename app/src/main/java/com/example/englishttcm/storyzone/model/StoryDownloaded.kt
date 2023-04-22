@@ -13,5 +13,5 @@ data class StoryDownloaded(
     @ColumnInfo("pathStory")
     val path: String,
     @ColumnInfo("currentPage")
-    val currentPage: Int,
+    var currentPage: Int,
 )
