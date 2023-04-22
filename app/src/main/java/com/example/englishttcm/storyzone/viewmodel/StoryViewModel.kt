@@ -20,6 +20,7 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
     private val _listGenreLive: LiveData<List<Genre>>
     private val repository = StoryRepository()
     private val _listStoryDownloadedLive: LiveData<List<StoryDownloaded>>
+    private val _isPermissionGranted = MutableLiveData<Boolean>()
 
     init {
         _listGenreLive = repository.getListGenresLive()
@@ -30,11 +31,13 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
         get() = _listGenreLive
     val getListStoryDownloadedLive: LiveData<List<StoryDownloaded>>
         get() = _listStoryDownloadedLive
+    val isPermissionGranted: LiveData<Boolean>
+        get() = _isPermissionGranted
 
     fun getListStoryLive(genreId: String): LiveData<List<Story>> =
         repository.getListStoryLive(genreId)
 
-    fun checkPermission(activity: Activity, story: Story, context: Context) {
+    fun checkPermission(activity: Activity) {
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             == PackageManager.PERMISSION_GRANTED
             && ContextCompat.checkSelfPermission(
@@ -43,7 +46,7 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
             )
             == PackageManager.PERMISSION_GRANTED
         ) {
-            downloadFile(story, context)
+            _isPermissionGranted.value = true
         } else {
             ActivityCompat.requestPermissions(
                 activity,
@@ -56,28 +59,55 @@ class StoryViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun downloadFile(story: Story, context: Context) =
-        repository.downloadFile(story, context)
+    fun updatePermission(value: Boolean) {
+        _isPermissionGranted.value = value
+    }
+
+    fun downloadFile(story: Story, context: Context, listener: OnDownloadCompleteListener) =
+        repository.downloadFile(story, context, object : OnDownloadCompleteListener {
+            override fun onDownloadComplete(data: Any?) {
+                listener.onDownloadComplete(data)
+            }
+
+            override fun onDownloadFailed(data: Any?) {
+                listener.onDownloadFailed(data)
+            }
+
+        })
 
     fun loadImageFromFirebase(fileName: String, listener: OnDownloadCompleteListener) {
         repository.loadImageFromFirebaseStorage(fileName, object : OnDownloadCompleteListener {
-            override fun onDownloadComplete(downloadUrl: String) {
-                listener.onDownloadComplete(downloadUrl)
-                Log.d("Long", downloadUrl)
+            override fun onDownloadComplete(data: Any?) {
+                listener.onDownloadComplete(data)
+                Log.d("Long", "load success")
             }
 
-            override fun onDownloadFailed(errorMessage: String?) {
+            override fun onDownloadFailed(data: Any?) {
                 Log.d("Long", "load failed")
             }
         })
     }
 
-    fun loadImageFromLocal(fileName: String, context: Context) : LiveData<Bitmap> =
+    fun loadImageFromLocal(fileName: String, context: Context): LiveData<Bitmap> =
         repository.loadImageFromLocal(fileName, context)
 
+    fun getPdfFromLocal(fileName: String, context: Context) =
+        repository.getPdfFromLocal(fileName, context)
 
-    fun checkIsDownloadStory(storyId: String, context: Context) =
+    fun getStoryDownloadById(storyId: String, context: Context) =
         repository.getStoryDownloadById(storyId, context)
+
+    fun cancelDownload(story: Story, context: Context) = repository.cancelDownload(story, context)
+    fun deleteFileFromLocal(story: StoryDownloaded, context: Context): LiveData<Boolean> {
+        val checkIsDelete = MutableLiveData<Boolean>()
+        try {
+            repository.deleteFileFromLocal(story, context)
+            checkIsDelete.value = true
+        } catch (e: java.lang.Exception) {
+            checkIsDelete.value = false
+        }
+        return checkIsDelete
+    }
 
     companion object {
         private const val REQUEST_EXTERNAL_STORAGE = 1

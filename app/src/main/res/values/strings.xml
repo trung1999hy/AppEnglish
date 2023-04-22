@@ -70,4 +70,9 @@
     <string name="search">search</string>
     <string name="description">Description</string>
     <string name="download">Download</string>
+    <string name="cancel">Cancel</string>
+    <string name="downloading">Downloading..</string>
+    <string name="question_delete">Do you want to delete?</string>
+    <string name="answer_no">No</string>
+    <string name="answer_yes">Yes</string>
 </resources>
