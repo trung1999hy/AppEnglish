@@ -17,4 +17,6 @@ interface EnglishDao {
     suspend fun insertStoryDownloaded(story: StoryDownloaded)
     @Delete
     suspend fun deleteStoryDownloaded(story: StoryDownloaded)
+    @Update
+    suspend fun updateStoryDownloaded(story: StoryDownloaded)
 }

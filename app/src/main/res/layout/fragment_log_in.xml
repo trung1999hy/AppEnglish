@@ -35,42 +35,59 @@
             android:layout_height="@dimen/_100sdp"
             android:src="@drawable/log_in"
             android:id="@+id/ivLogin"/>
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:background="@drawable/background_input"
-            android:id="@+id/etEmail"
-            android:hint="@string/email"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/_16sdp"
-            android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"
-            app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeErrorColor="@color/red"/>
-        <EditText
+            app:hintEnabled="true"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/background_input"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13ssp"
+                app:endIconMode="clear_text"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeErrorColor="@color/red"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/background_input"
-            android:id="@+id/etPassword"
-            android:hint="@string/password"
-            app:passwordToggleEnabled="true"
-            android:imeOptions="actionDone"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/_16sdp"
-            android:paddingEnd="@dimen/_16sdp"
+            app:hintEnabled="true"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:inputType="textPassword"
+                android:background="@drawable/background_input"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13ssp"
+                app:endIconMode="clear_text"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeErrorColor="@color/red"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <CheckBox
+            android:id="@+id/cbRemember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remember"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"
-            app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeErrorColor="@color/red"
-            app:passwordToggleDrawable="@drawable/ic_eye"/>
+            android:textStyle="bold"
+            android:layout_marginLeft="-120dp"/>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
