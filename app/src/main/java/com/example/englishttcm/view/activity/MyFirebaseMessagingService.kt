@@ -1,73 +1,104 @@
 package com.example.englishttcm.view.activity
 
-import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
-import android.widget.RemoteViews
-import android.widget.RemoteViews.RemoteView
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.englishttcm.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-const val channelID = "notification_channel"
-const val channelName  = "com.example.englishttcm.view.activity"
 
-class MyFirebaseMessagingService: FirebaseMessagingService() {
-
-    // genarate the notification
-
+class MyFirebaseService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        if(remoteMessage.getNotification() != null){
-            generateNotification(remoteMessage.notification!!.title!!,remoteMessage.notification!!.body!!)
+        // handle a notification payload.
+        if (remoteMessage.notification != null) {
+            Log.d(
+                TAG, "Message Notification Body: " + remoteMessage.notification!!
+                    .body
+            )
+            sendNotification(remoteMessage.notification!!.body)
         }
     }
 
-    @SuppressLint("RemoteViewLayout")
-    fun getRemoteView(title: String, message: String): RemoteViews {
-        val remoteView = RemoteViews("com.example.englishttcm.view.activity",R.layout.notification)
-
-        remoteView.setTextViewText(R.id.noti_title,title)
-        remoteView.setTextViewText(R.id.noti_message,message)
-        remoteView.setImageViewResource(R.id.app_logo,R.drawable.app_icon)
-
-        return remoteView
-
+    override fun onNewToken(token: String) {
+        Log.d(TAG, "Refreshed token: $token")
+        sendRegistrationToServer(token)
     }
-    fun generateNotification(title: String, message: String){
 
-        val intent = Intent(this,MainActivity::class.java)
+    private fun sendRegistrationToServer(token: String) {
+        // TODO: Implement this method to send token to your app server.
+    }
+
+    private fun sendNotification(messageBody: String?) {
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        val channelId = getString(R.string.project_id)
+        val defaultSoundUri: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBuilder: NotificationCompat.Builder =
+            NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setLargeIcon(
+                    BitmapFactory.decodeResource(
+                        resources,
+                        R.drawable.ic_launcher_background
+                    )
+                )
+                .setContentTitle(getString(R.string.project_id))
+                .setContentText(messageBody)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setContentIntent(pendingIntent)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setPriority(NotificationManager.IMPORTANCE_HIGH)
+                .addAction(
+                    NotificationCompat.Action(
+                        android.R.drawable.sym_call_missed,
+                        "Cancel",
+                        PendingIntent.getActivity(
+                            this,
+                            0,
+                            intent,
+                            PendingIntent.FLAG_CANCEL_CURRENT
+                        )
+                    )
+                )
+                .addAction(
+                    NotificationCompat.Action(
+                        android.R.drawable.sym_call_outgoing,
+                        "OK",
+                        PendingIntent.getActivity(
+                            this,
+                            0,
+                            intent,
+                            PendingIntent.FLAG_CANCEL_CURRENT
+                        )
+                    )
+                )
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-        val pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT)
-
-        //channel id, channel name
-        var builder: NotificationCompat.Builder = NotificationCompat.Builder(applicationContext, channelID)
-            .setSmallIcon(R.drawable.app_icon)
-            .setAutoCancel(true)
-            .setVibrate(longArrayOf(1000,1000,1000,1000))
-            .setOnlyAlertOnce(true)
-            .setContentIntent(pendingIntent)
-
-        builder = builder.setContent(getRemoteView(title,message))
-
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val notificationChannel = NotificationChannel(channelID, channelName,NotificationManager.IMPORTANCE_HIGH)
-             notificationManager.createNotificationChannel(notificationChannel)
+        // Since android Oreo notification channel is needed.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                "Channel human readable title",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
         }
-
-       notificationManager.notify(0, builder.build())
-
+        notificationManager.notify(0, notificationBuilder.build())
     }
 
-
-    // attach the notification created with the custom layout
-    // show the notification
+    companion object {
+        private const val TAG = "MyFirebaseService"
+    }
 }
+
