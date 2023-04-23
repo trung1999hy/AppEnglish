@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentSignUpBinding
+import com.example.englishttcm.home.HomeFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(){
 
@@ -19,10 +21,8 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(){
 
     override fun initViews() {
         authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
-        authenticationViewModel.getUserData.observe(this) {}
 
         binding.btnSignUp.setOnClickListener {
-//            loading(true)
             val name = binding.etName.text.toString()
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
@@ -46,7 +46,14 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(){
             } else if (!password.equals(confirmPassword)) {
                 binding.etConfirmPassword.error = getString(R.string.same_password)
             }else {
+                loading(true)
                 authenticationViewModel.register(email, password, name)
+                authenticationViewModel.getLoggedStatus.observe(this){
+                    if(it){
+                        loading(false)
+                        callback.showFragment(SignUpFragment::class.java, LogInFragment::class.java, R.anim.slide_in, 0)
+                    }
+                }
             }
         }
 
@@ -55,14 +62,19 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(){
         }
 
     }
-//    private fun loading(isLoading: Boolean) {
-//        if (isLoading) {
-//            binding.btnSignUp.visibility = View.INVISIBLE
-//            binding.progressBar.visibility = View.VISIBLE
-//        } else {
-//            binding.btnSignUp.visibility = View.VISIBLE
-//            binding.progressBar.visibility = View.INVISIBLE
-//        }
-//    }
+    override fun onResume() {
+        super.onResume()
+        var fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
+        fab!!.visibility = View.INVISIBLE
+    }
+    private fun loading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.btnSignUp.visibility = View.INVISIBLE
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.btnSignUp.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.INVISIBLE
+        }
+    }
 
 }

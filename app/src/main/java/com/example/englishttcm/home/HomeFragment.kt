@@ -2,12 +2,14 @@
 package com.example.englishttcm.home
 
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
+import com.example.englishttcm.application.AdsApplication
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentHomeBinding
 import com.example.englishttcm.home.adapter.PlayZoneAdapter
@@ -22,8 +24,10 @@ import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
 import com.example.englishttcm.playzone.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
+import com.example.englishttcm.translate.view.TranslateFragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 
@@ -42,25 +46,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initViews() {
         authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
-
-        binding.ivApp.setOnClickListener {
-            authenticationViewModel.signOut()
-            callback.showFragment(
-                HomeFragment::class.java,
-                LogInFragment::class.java,
-                0,
-                0,
-                null,
-                false
-            )
-        }
         firebaseUser = data as FirebaseUser
         authenticationViewModel.getUserDetail(firebaseUser.uid)
         authenticationViewModel.getUserDetail.observe(viewLifecycleOwner){
-            binding.tvNameUser.setText(it.name)
-            binding.tvWinCount.setText(it.win!!.toString())
-            binding.tvCoinCount.setText(it.coin!!.toString())
-            binding.tvTrophyCount.setText(it.trophy!!.toString())
+            binding.tvNameUser.text = it.name
+            binding.tvWinCount.text = it.win!!.toString()
+            binding.tvCoinCount.text = it.coin!!.toString()
+            binding.tvTrophyCount.text = it.trophy!!.toString()
         }
 
         setLearnData()
@@ -147,6 +139,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     firebaseUser,
                     true
                 )
+                R.id.nav_translate -> {
+                    callback.showFragment(HomeFragment::class.java, TranslateFragment::class.java,0,0,null,false)
+
+                }
                 R.id.nav_signout -> {
                     authenticationViewModel.signOut()
                     callback.showFragment(HomeFragment::class.java, LogInFragment::class.java,0,0,null,false)
@@ -190,4 +186,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         val adRequest =AdRequest.Builder().build()
         binding.adView.loadAd(adRequest)
     }
+
+
 }
