@@ -1,18 +1,12 @@
 package com.example.englishttcm.storyzone.view
 
-import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentReadStoryBinding
-import com.example.englishttcm.db.EnglishDatabase
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 import com.example.englishttcm.storyzone.util.Util
 import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.io.File
 
 class ReadStoryFragment : BaseFragment<FragmentReadStoryBinding>() {
@@ -41,16 +35,15 @@ class ReadStoryFragment : BaseFragment<FragmentReadStoryBinding>() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        lifecycleScope.launch {
-            if (mContext != null) {
-                val currentPagePdf = binding.pdfView.currentPage
-                val story = data as StoryDownloaded
-                story.currentPage = currentPagePdf
-                EnglishDatabase.getDatabase(requireContext()).getEnglishDao()
-                    .updateStoryDownloaded(story)
+        val currentPagePdf = binding.pdfView.currentPage
+        val story = data as StoryDownloaded
+        story.currentPage = currentPagePdf
+        storyViewModel!!.updateStoryDownload(story, requireContext())
+        storyViewModel!!.updateResult.observe(viewLifecycleOwner) {
+            if (it) {
                 notify("Update current page success")
             } else {
-                notify("Context null")
+                notify("Update current page failed")
             }
         }
     }

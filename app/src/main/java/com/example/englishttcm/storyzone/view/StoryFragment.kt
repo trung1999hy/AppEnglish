@@ -61,18 +61,28 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>() {
         builder.setView(binding.root)
         val dialog = builder.create()
         binding.btnYes.setOnClickListener {
-            storyViewModel.deleteFileFromLocal(storyDownloaded, requireContext())
-                .observe(viewLifecycleOwner) {
-                    if (it) {
-                        notify("Delete success")
-                        dialog.dismiss()
-                    } else {
-                        notify("Delete failed")
-                    }
+            storyViewModel.deleteStoryDownloaded(storyDownloaded, requireContext())
+            storyViewModel.deleteResult.observe(viewLifecycleOwner) {
+                if (it) {
+                    notify("Delete story downloaded success")
+                } else {
+                    notify("Delete story downloaded failed")
                 }
+            }
+            storyViewModel.deleteFileLocal(storyDownloaded, requireContext())
+            storyViewModel.deleteLocalResult.observe(viewLifecycleOwner) {
+                if (it) {
+                    notify("Delete file local success")
+                } else {
+                    notify("Delete file local failed")
+                }
+            }
+            dialog.dismiss()
+            dialog.cancel()
         }
         binding.btnNo.setOnClickListener {
             dialog.dismiss()
+            dialog.cancel()
         }
         dialog.show()
     }
