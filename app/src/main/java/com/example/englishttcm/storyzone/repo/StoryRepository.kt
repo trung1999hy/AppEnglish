@@ -3,8 +3,6 @@ package com.example.englishttcm.storyzone.repo
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.Build
-import android.os.Environment
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,8 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileInputStream
 
@@ -85,18 +82,7 @@ class StoryRepository {
         }
         Tasks.whenAllSuccess<Any>(*tasks.toTypedArray())
             .addOnSuccessListener {
-                val story = StoryDownloaded(story.id, story.name, story.url, 0)
                 listener.onDownloadComplete(true)
-                GlobalScope.launch {
-                    try {
-                        EnglishDatabase.getDatabase(context).getEnglishDao()
-                            .insertStoryDownloaded(story)
-                        Log.d("Long", "Insert success")
-                    } catch (e: Exception) {
-                        Log.d("Long", "Insert failed")
-                    }
-
-                }
                 Log.d("Long", "Download success")
             }
             .addOnFailureListener {
@@ -105,20 +91,13 @@ class StoryRepository {
             }
     }
 
-    fun cancelDownload(story: Story, context: Context): LiveData<Boolean> {
-        val checkSuccess = MutableLiveData<Boolean>()
-        try {
+    suspend fun cancelDownload() {
+        withContext(Dispatchers.IO) {
             downloadTasks.forEach { task ->
                 task.cancel()
             }
             downloadTasks.clear()
-            val storyDownloaded = StoryDownloaded(story.id, story.name, story.url, 0)
-            deleteFileFromLocal(storyDownloaded, context)
-            checkSuccess.value = true
-        } catch (e: java.lang.Exception) {
-            checkSuccess.value = false
         }
-        return checkSuccess
     }
 
     fun loadImageFromFirebaseStorage(fileName: String, listener: OnDownloadCompleteListener) {
@@ -133,11 +112,7 @@ class StoryRepository {
     }
 
     fun loadImageFromLocal(fileName: String, context: Context): LiveData<Bitmap> {
-        val root = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
-        } else {
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        }
+        val root = Util.getRoot(context)
         val imagePath = File(root, "books/$fileName.png")
         val inputStream = FileInputStream(imagePath)
         val bitmapLive = MutableLiveData<Bitmap>()
@@ -157,8 +132,17 @@ class StoryRepository {
         return fileLive
     }
 
-    fun deleteFileFromLocal(story: StoryDownloaded, context: Context) {
-        GlobalScope.launch {
+    fun getStoryDownloadById(storyId: String, context: Context) =
+        EnglishDatabase.getDatabase(context).getEnglishDao().readStoryDownloadedById(storyId)
+
+    suspend fun updateStoryDownload(story: StoryDownloaded, context: Context) =
+        EnglishDatabase.getDatabase(context).getEnglishDao().updateStoryDownloaded(story)
+
+    suspend fun insertStoryDownload(story: StoryDownloaded, context: Context) =
+        EnglishDatabase.getDatabase(context).getEnglishDao().insertStoryDownloaded(story)
+
+    suspend fun deleteFileLocal(story: StoryDownloaded, context: Context) {
+        withContext(Dispatchers.IO) {
             val root = Util.getRoot(context)
             val filePdf = File(root, "books/${story.path}.pdf")
             val fileImage = File(root, "books/${story.path}.png")
@@ -169,18 +153,8 @@ class StoryRepository {
                 fileImage.delete()
             }
         }
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                EnglishDatabase.getDatabase(context).getEnglishDao()
-                    .deleteStoryDownloaded(story)
-                Log.d("Long", "Delete success")
-            } catch (e: Exception) {
-                Log.d("Long", "Delete failed")
-            }
-
-        }
     }
 
-    fun getStoryDownloadById(storyId: String, context: Context) =
-        EnglishDatabase.getDatabase(context).getEnglishDao().readStoryDownloadedById(storyId)
+    suspend fun deleteStoryDownload(story: StoryDownloaded, context: Context) =
+        EnglishDatabase.getDatabase(context).getEnglishDao().deleteStoryDownloaded(story)
 }
