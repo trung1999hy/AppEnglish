@@ -1,6 +1,7 @@
 package com.example.englishttcm.db
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 
@@ -17,4 +18,6 @@ interface EnglishDao {
     suspend fun insertStoryDownloaded(story: StoryDownloaded)
     @Delete
     suspend fun deleteStoryDownloaded(story: StoryDownloaded)
+    @Update
+    suspend fun updateStoryDownloaded(story: StoryDownloaded)
 }

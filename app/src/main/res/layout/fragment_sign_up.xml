@@ -28,74 +28,97 @@
             android:layout_height="@dimen/_100sdp"
             android:src="@drawable/sign_up"
             android:id="@+id/ivSignUp"/>
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/background_input"
-            android:id="@+id/etName"
-            android:hint="@string/name"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:paddingStart="@dimen/_16sdp"
-            android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"
-            app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeErrorColor="@color/red"/>
-        <EditText
+            app:hintEnabled="true"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/background_input"
+                android:hint="@string/name"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13ssp"
+                app:endIconMode="clear_text"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeErrorColor="@color/red"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/background_input"
-            android:id="@+id/etEmail"
-            android:hint="@string/email"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/_16sdp"
-            android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"
-            app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeErrorColor="@color/red"/>
-        <EditText
+            app:hintEnabled="true"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/background_input"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13ssp"
+                app:endIconMode="clear_text"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeErrorColor="@color/red"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/background_input"
-            android:id="@+id/etPassword"
-            android:hint="@string/password"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/_16sdp"
-            android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"
-            app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeErrorColor="@color/red"/>
-        <EditText
+            app:hintEnabled="true"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:inputType="textPassword"
+                android:background="@drawable/background_input"
+                android:hint="@string/password"
+                android:imeOptions="actionNext"
+                android:importantForAutofill="no"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13ssp"
+                app:endIconMode="clear_text"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeErrorColor="@color/red"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:background="@drawable/background_input"
-            android:id="@+id/etConfirmPassword"
-            android:hint="@string/confirm_password"
-            android:imeOptions="actionDone"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/_16sdp"
-            android:paddingEnd="@dimen/_16sdp"
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/_13ssp"
-            app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeErrorColor="@color/red"/>
+            app:hintEnabled="true"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:inputType="textPassword"
+                android:background="@drawable/background_input"
+                android:hint="@string/confirm_password"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/_13ssp"
+                app:endIconMode="clear_text"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeErrorColor="@color/red"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -36,8 +36,8 @@ class AuthenticationViewModel(application: Application) : AndroidViewModel(appli
         repository.register(email, password, name)
     }
 
-    fun logIn(email: String, password: String){
-        repository.login(email, password)
+    fun logIn(email: String, password: String,remember:Boolean){
+        repository.login(email, password,remember)
     }
     fun forgotPassword(email: String) {
         repository.forgotPassword(email)

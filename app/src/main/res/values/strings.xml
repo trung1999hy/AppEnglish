@@ -33,7 +33,7 @@
     <string name="login">Login</string>
     <string name="valid_email">Please enter a valid email</string>
     <string name="forgot_password">Forgot Password?</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_your_email_address_to_reset_your_password">Enter your email address to reset your password</string>
     <string name="reset_password">Reset Password</string>
@@ -70,4 +70,13 @@
     <string name="search">search</string>
     <string name="description">Description</string>
     <string name="download">Download</string>
+    <string name="cancel">Cancel</string>
+    <string name="downloading">Downloading..</string>
+    <string name="question_delete">Do you want to delete?</string>
+    <string name="answer_no">No</string>
+    <string name="answer_yes">Yes</string>
+    <string name="translate">Translate</string>
+    <string name="account_header">Account</string>
+    <string name="loading">Loading</string>
+    <string name="status">Status</string>
 </resources>

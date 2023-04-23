@@ -6,8 +6,6 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.util.Log
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import com.example.englishttcm.storyzone.callback.OnDownloadCompleteListener
@@ -15,71 +13,136 @@ import com.example.englishttcm.storyzone.model.Genre
 import com.example.englishttcm.storyzone.model.Story
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 import com.example.englishttcm.storyzone.repo.StoryRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StoryViewModel(application: Application) : AndroidViewModel(application) {
-    private val _listGenreLive: LiveData<List<Genre>>
-    private val repository = StoryRepository()
+    private val _listGenreLive: MutableLiveData<List<Genre>>
+    val getListGenreLive: LiveData<List<Genre>>
+        get() = _listGenreLive
     private val _listStoryDownloadedLive: LiveData<List<StoryDownloaded>>
+    val getListStoryDownloadedLive: LiveData<List<StoryDownloaded>>
+        get() = _listStoryDownloadedLive
+    private val _isPermissionGranted = MutableLiveData<Boolean>()
+    val isPermissionGranted: LiveData<Boolean>
+        get() = _isPermissionGranted
+    private val _insertResult = MutableLiveData<Boolean>()
+    val insertResult: LiveData<Boolean>
+        get() = _insertResult
+    private val _deleteResult = MutableLiveData<Boolean>()
+    val deleteResult: LiveData<Boolean>
+        get() = _deleteResult
+    private val _deleteLocalResult = MutableLiveData<Boolean>()
+    val deleteLocalResult: LiveData<Boolean>
+        get() = _deleteLocalResult
+    private val _updateResult = MutableLiveData<Boolean>()
+    val updateResult: LiveData<Boolean>
+        get() = _updateResult
+    private val _cancelResult = MutableLiveData<Boolean>()
+    val cancelResult: LiveData<Boolean>
+        get() = _cancelResult
+    private val repository = StoryRepository()
 
     init {
         _listGenreLive = repository.getListGenresLive()
         _listStoryDownloadedLive = repository.getAllStoryDownloaded(application)
     }
 
-    val getListGenreLive: LiveData<List<Genre>>
-        get() = _listGenreLive
-    val getListStoryDownloadedLive: LiveData<List<StoryDownloaded>>
-        get() = _listStoryDownloadedLive
-
     fun getListStoryLive(genreId: String): LiveData<List<Story>> =
         repository.getListStoryLive(genreId)
 
-    fun checkPermission(activity: Activity, story: Story, context: Context) {
-        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            == PackageManager.PERMISSION_GRANTED
-            && ContextCompat.checkSelfPermission(
+    fun checkPermission(activity: Activity) {
+        _isPermissionGranted.value =
+            (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED
+                    && ContextCompat.checkSelfPermission(
                 activity,
                 Manifest.permission.READ_EXTERNAL_STORAGE
             )
-            == PackageManager.PERMISSION_GRANTED
-        ) {
-            downloadFile(story, context)
-        } else {
-            ActivityCompat.requestPermissions(
-                activity,
-                arrayOf(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ),
-                REQUEST_EXTERNAL_STORAGE
-            )
-        }
+                    == PackageManager.PERMISSION_GRANTED)
     }
 
-    fun downloadFile(story: Story, context: Context) =
-        repository.downloadFile(story, context)
+    fun downloadFile(story: Story, context: Context, listener: OnDownloadCompleteListener) =
+        repository.downloadFile(story, context, object : OnDownloadCompleteListener {
+            override fun onDownloadComplete(data: Any?) {
+                listener.onDownloadComplete(data)
+            }
+
+            override fun onDownloadFailed(data: Any?) {
+                listener.onDownloadFailed(data)
+            }
+
+        })
 
     fun loadImageFromFirebase(fileName: String, listener: OnDownloadCompleteListener) {
         repository.loadImageFromFirebaseStorage(fileName, object : OnDownloadCompleteListener {
-            override fun onDownloadComplete(downloadUrl: String) {
-                listener.onDownloadComplete(downloadUrl)
-                Log.d("Long", downloadUrl)
+            override fun onDownloadComplete(data: Any?) {
+                listener.onDownloadComplete(data)
             }
 
-            override fun onDownloadFailed(errorMessage: String?) {
-                Log.d("Long", "load failed")
+            override fun onDownloadFailed(data: Any?) {
             }
         })
     }
 
-    fun loadImageFromLocal(fileName: String, context: Context) : LiveData<Bitmap> =
+    fun loadImageFromLocal(fileName: String, context: Context): LiveData<Bitmap> =
         repository.loadImageFromLocal(fileName, context)
 
+    fun getPdfFromLocal(fileName: String, context: Context) =
+        repository.getPdfFromLocal(fileName, context)
 
-    fun checkIsDownloadStory(storyId: String, context: Context) =
+    fun getStoryDownloadById(storyId: String, context: Context) =
         repository.getStoryDownloadById(storyId, context)
 
-    companion object {
-        private const val REQUEST_EXTERNAL_STORAGE = 1
+    fun cancelDownload() {
+        viewModelScope.launch {
+            repository.cancelDownload()
+            withContext(Dispatchers.Main) {
+                _cancelResult.value = true
+            }
+        }
+    }
+
+    fun updateStoryDownload(story: StoryDownloaded, context: Context) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.updateStoryDownload(story, context)
+            }
+            withContext(Dispatchers.Main) {
+                _updateResult.value = true
+            }
+        }
+    }
+
+    fun deleteFileLocal(story: StoryDownloaded, context: Context) {
+        viewModelScope.launch {
+            repository.deleteFileLocal(story, context)
+            withContext(Dispatchers.Main) {
+                _deleteLocalResult.value = true
+            }
+        }
+    }
+
+    fun insertStoryDownload(story: StoryDownloaded, context: Context) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.insertStoryDownload(story, context)
+            }
+            withContext(Dispatchers.Main) {
+                _insertResult.value = true
+            }
+        }
+    }
+
+    fun deleteStoryDownloaded(story: StoryDownloaded, context: Context) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                repository.deleteStoryDownload(story, context)
+            }
+            withContext(Dispatchers.Main) {
+                _deleteResult.value = true
+            }
+        }
     }
 }
