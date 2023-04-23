@@ -1,4 +1,4 @@
-package com.example.englishttcm.learnzone.learning
+package com.example.englishttcm.learnzone.reading.learning
 
 import android.view.ViewGroup
 import com.example.englishttcm.base.BaseFragment

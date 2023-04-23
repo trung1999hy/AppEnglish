@@ -31,7 +31,7 @@ class StoryAdapter(
                     object : OnItemClickListener {
                         override fun onItemClick(data: Any?) {
                             val story = data as Story
-                            storyViewModel.checkIsDownloadStory(story.id, itemView.context)
+                            storyViewModel.getStoryDownloadById(story.id, itemView.context)
                                 .observe(viewLifeCycle) {
                                     if (it != null) {
                                         onActionCallback.showFragment(

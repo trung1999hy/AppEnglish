@@ -1,6 +1,6 @@
 package com.example.englishttcm.storyzone.callback
 
 interface OnDownloadCompleteListener {
-    fun onDownloadComplete(downloadUrl: String)
-    fun onDownloadFailed(errorMessage: String?)
+    fun onDownloadComplete(data: Any?)
+    fun onDownloadFailed(data: Any?)
 }
