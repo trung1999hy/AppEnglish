@@ -74,38 +74,27 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
             requireContext(),
             object : OnDownloadCompleteListener {
                 override fun onDownloadComplete(data: Any?) {
-                    if (data as Boolean) {
-                        dialog.dismiss()
-                        callback.showFragment(
-                            DetailStoryFragment::class.java,
-                            StoryFragment::class.java,
-                            0,
-                            0,
-                            null,
-                            true
-                        )
-                        val storyDownloaded =
-                            StoryDownloaded(story.id, story.name, story.url, 0)
-                        storyViewModel!!.insertStoryDownload(
-                            storyDownloaded,
-                            requireContext()
-                        )
-                        storyViewModel!!.insertResult.observe(viewLifecycleOwner) {
-                            if (it) {
-                                notify("Insert success")
-                            } else {
-                                notify("Insert failed")
-                            }
+                    val storyDownloaded =
+                        StoryDownloaded(story.id, story.name, story.url, 0)
+                    storyViewModel!!.insertStoryDownload(
+                        storyDownloaded,
+                        requireContext()
+                    )
+                    storyViewModel!!.insertResult.observe(viewLifecycleOwner) {
+                        if (it) {
+                            notify("Insert success")
+                        } else {
+                            notify("Insert failed")
                         }
                     }
+                    dialog.dismiss()
+                    dialog.cancel()
+                    callback.backToPrevious()
                 }
 
                 override fun onDownloadFailed(data: Any?) {
-                    if (data as Boolean) {
-                        notify("Download failed")
-                    }
+                    notify("Download failed")
                 }
-
             })
     }
 
@@ -122,6 +111,7 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
             storyViewModel!!.cancelResult.observe(viewLifecycleOwner) {
                 if (it) {
                     dialog.dismiss()
+                    dialog.cancel()
                     notify("canceled")
                 } else {
                     notify("cancel failed")

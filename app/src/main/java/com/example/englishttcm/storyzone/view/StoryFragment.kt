@@ -78,9 +78,11 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>() {
                 }
             }
             dialog.dismiss()
+            dialog.cancel()
         }
         binding.btnNo.setOnClickListener {
             dialog.dismiss()
+            dialog.cancel()
         }
         dialog.show()
     }

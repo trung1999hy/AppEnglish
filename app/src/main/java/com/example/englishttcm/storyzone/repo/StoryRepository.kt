@@ -82,11 +82,11 @@ class StoryRepository {
         }
         Tasks.whenAllSuccess<Any>(*tasks.toTypedArray())
             .addOnSuccessListener {
-                listener.onDownloadComplete(true)
+                listener.onDownloadComplete(null)
                 Log.d("Long", "Download success")
             }
             .addOnFailureListener {
-                listener.onDownloadFailed(true)
+                listener.onDownloadFailed(null)
                 Log.d("Long", "Download failed")
             }
     }
