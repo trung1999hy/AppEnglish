@@ -57,6 +57,9 @@ class TranslateFragment : BaseFragment<FragmentTranslateBinding>(),OnItemSelecte
                 binding.edTargettext.setText(it)
             }
         }
+        binding.ivBack.setOnClickListener {
+            callback.backToPrevious()
+        }
 
 
 

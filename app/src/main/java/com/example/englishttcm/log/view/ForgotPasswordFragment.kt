@@ -1,4 +1,4 @@
-package com.example.englishttcm.learnzone.log.view
+package com.example.englishttcm.log.view
 
 import android.os.Bundle
 import android.util.Patterns
@@ -11,7 +11,8 @@ import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentForgotPasswordBinding
 import com.example.englishttcm.databinding.FragmentLogInBinding
-import com.example.englishttcm.learnzone.log.viewmodel.AuthenticationViewModel
+import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>() {
@@ -38,6 +39,11 @@ class ForgotPasswordFragment : BaseFragment<FragmentForgotPasswordBinding>() {
         binding.btnLogin.setOnClickListener {
             callback.showFragment(SignUpFragment::class.java, LogInFragment::class.java, R.anim.slide_out,0)
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        var fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
+        fab!!.visibility = View.INVISIBLE
     }
 
 }

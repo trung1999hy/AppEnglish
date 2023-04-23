@@ -1,4 +1,4 @@
-package com.example.englishttcm.learnzone.log.model
+package com.example.englishttcm.log.model
 
 data class User(
     val email: String? = null,

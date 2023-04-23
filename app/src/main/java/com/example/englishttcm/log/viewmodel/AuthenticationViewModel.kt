@@ -1,11 +1,11 @@
-package com.example.englishttcm.learnzone.log.viewmodel
+package com.example.englishttcm.log.viewmodel
 
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.englishttcm.learnzone.log.model.User
-import com.example.englishttcm.learnzone.log.repo.AuthenticationRepository
+import com.example.englishttcm.log.model.User
+import com.example.englishttcm.log.repo.AuthenticationRepository
 import com.google.firebase.auth.FirebaseUser
 
 class AuthenticationViewModel(application: Application) : AndroidViewModel(application) {
@@ -36,8 +36,8 @@ class AuthenticationViewModel(application: Application) : AndroidViewModel(appli
         repository.register(email, password, name)
     }
 
-    fun logIn(email: String, password: String){
-        repository.login(email, password)
+    fun logIn(email: String, password: String,remember:Boolean){
+        repository.login(email, password,remember)
     }
     fun forgotPassword(email: String) {
         repository.forgotPassword(email)
