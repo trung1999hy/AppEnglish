@@ -1,18 +1,21 @@
 package com.example.englishttcm.learnzone.vocabulary.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.databinding.ItemVocabularyTopicBinding
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
+import kotlin.collections.ArrayList
 
 class VocabularyTopicAdapter(
-    private val listVocabTopic: List<VocabularyTopic>,
+    private var listVocabTopic: ArrayList<VocabularyTopic>,
     private val itemClick: OnItemClickListener
-) : RecyclerView.Adapter<VocabularyTopicAdapter.VocabTopicViewHolder>() {
+) : RecyclerView.Adapter<VocabularyTopicAdapter.VocabTopicViewHolder>(), Filterable {
 
     inner class VocabTopicViewHolder(val binding: ItemVocabularyTopicBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -38,5 +41,29 @@ class VocabularyTopicAdapter(
 
     override fun onBindViewHolder(holder: VocabTopicViewHolder, position: Int) {
         holder.bind(listVocabTopic[position])
+    }
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val filteredResults = ArrayList<VocabularyTopic>()
+                if (!constraint.isNullOrEmpty()) {
+                    for (topic in listVocabTopic) {
+                        if (topic.name?.toLowerCase()?.contains(constraint.toString().toLowerCase()) == true) {
+                            filteredResults.add(topic)
+                        }
+                    }
+                } else {
+                    filteredResults.addAll(listVocabTopic)
+                }
+                val filterResults = FilterResults()
+                filterResults.values = filteredResults
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                listVocabTopic = results?.values as ArrayList<VocabularyTopic>
+                notifyDataSetChanged()
+            }
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.example.englishttcm.learnzone.vocabulary.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,8 +12,7 @@ class VocabularyWordAdapter(
     private val listWord : List<VocabularyWord>,
     private val clickListener: OnItemClickListener
 ) : RecyclerView.Adapter<VocabularyWordAdapter.VocabularyWordViewHolder>() {
-
-    inner class VocabularyWordViewHolder(val bind : ItemVocabularyWordBinding) : RecyclerView.ViewHolder(bind.root){
+    inner class VocabularyWordViewHolder(private val bind : ItemVocabularyWordBinding) : RecyclerView.ViewHolder(bind.root) {
 
         fun binding(word : VocabularyWord) {
             Glide.with(itemView.context).load(word.image).into(bind.imgWord)
@@ -22,6 +20,7 @@ class VocabularyWordAdapter(
             bind.txtMean.text = word.mean
             bind.txtExample.text = word.example
             bind.txtPronounce.text = word.pronounce
+
         }
         init {
             bind.speaker.setOnClickListener {
