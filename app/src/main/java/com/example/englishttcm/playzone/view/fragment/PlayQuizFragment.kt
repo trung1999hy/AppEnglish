@@ -54,7 +54,7 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
         quizViewModel = ViewModelProvider(this)[QuizViewModel::class.java]
         quizViewModel.currentQuiz.observe(viewLifecycleOwner) { quiz ->
             metaData(quiz)
-            countdown(10000)
+            countdown(15000)
 
             ansClicked(
                 binding.cvAnsA,
@@ -202,7 +202,7 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
                     }
                     lose()
                 }
-            }, 2000)
+            }, 2500)
         }
     }
 
@@ -214,7 +214,7 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
         })
         handlerLose!!.postDelayed({
             dialog.show(requireActivity().supportFragmentManager, "lose_dialog")
-        }, 2000)
+        }, 1500)
     }
 
     private fun win() {
@@ -231,12 +231,13 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
     private fun moveToNext() {
         handlerNextQuiz!!.postDelayed({
             quizViewModel.next()
+            stopTime()
             resetView()
-        }, 2000)
+            countdown(15000)
+        }, 3000)
     }
 
     private fun resetView() {
-        countdown(10000)
         enableView(binding.cvAnsA)
         enableView(binding.cvAnsB)
         enableView(binding.cvAnsC)
@@ -295,6 +296,8 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
             isDown = false
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
