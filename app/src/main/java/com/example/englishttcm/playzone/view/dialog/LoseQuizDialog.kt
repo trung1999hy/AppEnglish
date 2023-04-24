@@ -19,7 +19,6 @@ class LoseQuizDialog(private var listener: OnBackListener) : BaseDialog<DialogLo
         }
         mediaLose = MediaPlayer.create(requireContext(), R.raw.game_over)
         mediaLose.start()
-
         onBackPress()
 
     }

@@ -33,6 +33,7 @@ class QuizRepository(_application: Application) {
                     val quiz = Quiz(word, trueAnswer, incorrectAnsOne, incorrectAnsTwo, incorrectAnsThree)
                     listQuiz.add(quiz)
                 }
+                listQuiz.shuffle()
                 setCurrent()
             }
         }.addOnFailureListener{
