@@ -1,0 +1,72 @@
+package com.example.englishttcm.playzone.repository
+
+import android.app.Application
+import android.widget.Toast
+import androidx.lifecycle.MutableLiveData
+import com.example.englishttcm.playzone.model.Quiz
+import com.google.firebase.firestore.FirebaseFirestore
+
+class QuizRepository(_application: Application) {
+
+    private var application: Application
+    private var db: FirebaseFirestore
+    private var listQuiz = arrayListOf<Quiz>()
+    private var _currentQuiz = MutableLiveData<Quiz>()
+    private var currentPos: Int = 0
+
+    init {
+        application = _application
+        db = FirebaseFirestore.getInstance()
+        getQuiz()
+    }
+
+
+    private fun getQuiz(){
+        db.collection("quiz").get().addOnCompleteListener {
+            if(it.isSuccessful && it.result != null){
+                for(data in it.result){
+                    val word = data.getString("word").toString()
+                    val trueAnswer = data.getString("trueAnswer").toString()
+                    val incorrectAnsOne = data.getString("incorrectAnsOne").toString()
+                    val incorrectAnsTwo = data.getString("incorrectAnsTwo").toString()
+                    val incorrectAnsThree = data.getString("incorrectAnsThree").toString()
+                    val quiz = Quiz(word, trueAnswer, incorrectAnsOne, incorrectAnsTwo, incorrectAnsThree)
+                    listQuiz.add(quiz)
+                }
+                setCurrent()
+            }
+        }.addOnFailureListener{
+            Toast.makeText(application, it.toString(), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun checkTrue(answered: String, trueAnswer: String): Boolean{
+        return answered == trueAnswer
+    }
+
+    private fun setCurrent(){
+        _currentQuiz.value = listQuiz[currentPos]
+    }
+
+    fun shuffleAns(ans1: String, ans2: String, ans3: String, ans4: String): ArrayList<String>{
+        val listAns = arrayListOf(ans1, ans2, ans3, ans4)
+        listAns.shuffle()
+        return listAns
+    }
+
+    fun nextQuiz(){
+        currentPos++
+        _currentQuiz.value = listQuiz[currentPos]
+    }
+
+    fun checkWin(): Boolean {
+        return currentPos >=3
+    }
+
+
+    val getCurrentQuiz: MutableLiveData<Quiz>
+        get() = _currentQuiz
+
+
+}
+
