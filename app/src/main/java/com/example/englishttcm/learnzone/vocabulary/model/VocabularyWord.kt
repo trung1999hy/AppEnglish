@@ -9,7 +9,6 @@ data class VocabularyWord(
     val id: String? = null,
     val word: String? = null,
     val mean: String? = null,
-    val speaker: String? = null,
     val pronounce: String? = null,
     val topicId: Int? = null,
     val image: String? = null,

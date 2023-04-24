@@ -1,6 +1,8 @@
 package com.example.englishttcm.learnzone.vocabulary.view
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +12,16 @@ import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentVocabularyWordBinding
 import com.example.englishttcm.learnzone.vocabulary.adapter.VocabularyWordAdapter
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
+import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 import com.example.englishttcm.learnzone.vocabulary.viewmodel.VocabularyViewModel
 
 
+@Suppress("DEPRECATION")
 class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>(), OnItemClickListener {
 
     private lateinit var topic: VocabularyTopic
     private lateinit var viewModel: VocabularyViewModel
+    lateinit var textToSpeech: TextToSpeech
 
     override fun getLayout(container: ViewGroup?): FragmentVocabularyWordBinding =
         FragmentVocabularyWordBinding.inflate(layoutInflater, container, false)
@@ -26,19 +31,16 @@ class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>(), On
         topic = data as VocabularyTopic
         viewModel = ViewModelProvider(this)[VocabularyViewModel::class.java]
         topic.topicId?.let { viewModel.getVocabWordList(it) }
+        textToSpeech = viewModel.speakWord(requireContext())
     }
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun initViews() {
+
         viewModel.vocabTopicWord.observe(viewLifecycleOwner){
             binding.vpgWord.adapter =
                 VocabularyWordAdapter(it, this)
         }
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-    override fun initViews() {
+
+        binding.txtTitleTopic.text = topic.name
 
         binding.btnNext.setOnClickListener {
             val currentItem = binding.vpgWord.currentItem
@@ -65,6 +67,9 @@ class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>(), On
 
     }
     override fun onItemClick(data: Any?) {
+        val word = data as VocabularyWord
+        textToSpeech.speak(word.word.toString(), TextToSpeech.QUEUE_FLUSH, null)
+        Log.d("Item", "${word.word}")
     }
 }
 
