@@ -33,20 +33,8 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="24sp"
-        android:visibility="gone"
         android:layout_marginTop="16dp"
         android:id="@+id/timer"/>
-
-    <Chronometer
-        android:id="@+id/viewTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_mul_type"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:targetApi="24" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -118,7 +106,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:id="@+id/ln_a">
 
                     <TextView
                         android:id="@+id/tv_ans_a"
@@ -147,7 +136,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:id="@+id/ln_b">
 
                     <TextView
                         android:id="@+id/tv_ans_b"
@@ -176,7 +166,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:id="@+id/ln_c">
 
                     <TextView
                         android:id="@+id/tv_ans_c"
@@ -205,7 +196,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:id="@+id/ln_d">
 
                     <TextView
                         android:id="@+id/tv_ans_d"

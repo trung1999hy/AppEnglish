@@ -1,4 +1,4 @@
-package com.example.englishttcm.playzone
+package com.example.englishttcm.playzone.view.fragment
 
 import android.view.ViewGroup
 import com.example.englishttcm.base.BaseFragment
@@ -11,7 +11,7 @@ class SelectTypeFragment : BaseFragment<FragmentMultichoiceSelectionBinding>(){
 
     override fun initViews() {
         binding.layoutVocabularyQuiz.setOnClickListener {
-            callback.showFragment(SelectTypeFragment::class.java, PlayQuizFragment::class.java,0,0)
+            callback.showFragment(SelectTypeFragment::class.java, PlayQuizFragment::class.java,0,0, null, true)
         }
     }
 

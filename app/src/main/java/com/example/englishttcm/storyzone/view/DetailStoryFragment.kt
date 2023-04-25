@@ -1,10 +1,10 @@
 package com.example.englishttcm.storyzone.view
 
+import android.Manifest
 import android.app.AlertDialog
-import android.app.Dialog
-import android.content.pm.PackageManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.englishttcm.base.BaseFragment
@@ -44,36 +44,58 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
         binding.btnDownload.setOnClickListener {
             storyViewModel!!.checkPermission(requireActivity())
         }
-        storyViewModel!!.isPermissionGranted.observe(viewLifecycleOwner) {
-            if (it) {
-                val dialog = showDialog()
-                dialog!!.show()
-                storyViewModel!!.downloadFile(story, requireContext(), object : OnDownloadCompleteListener{
-                    override fun onDownloadComplete(data: Any?) {
-                        if(data as Boolean){
-                            dialog.dismiss()
-                            callback.showFragment(
-                                DetailStoryFragment::class.java,
-                                StoryFragment::class.java,
-                                0,
-                                0,
-                                null,
-                                true
-                            )
-                        }
-                    }
-
-                    override fun onDownloadFailed(data: Any?) {
-                        if(data as Boolean){
-                            notify("Download failed")
-                        }
-                    }
-
-                })
+        val requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permission ->
+            if (permission.all { it.value }) {
+                downloadFile(story)
             } else {
                 notify("You need allow permission for download")
             }
         }
+        storyViewModel!!.isPermissionGranted.observe(viewLifecycleOwner) {
+            if (it) {
+                downloadFile(story)
+            } else {
+                val permissions = arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+                requestPermissionLauncher.launch(permissions)
+            }
+        }
+    }
+
+    private fun downloadFile(story: Story) {
+        val dialog = showDialog()
+        dialog!!.show()
+        storyViewModel!!.downloadFile(
+            story,
+            requireContext(),
+            object : OnDownloadCompleteListener {
+                override fun onDownloadComplete(data: Any?) {
+                    val storyDownloaded =
+                        StoryDownloaded(story.id, story.name, story.url, 0)
+                    storyViewModel!!.insertStoryDownload(
+                        storyDownloaded,
+                        requireContext()
+                    )
+                    storyViewModel!!.insertResult.observe(viewLifecycleOwner) {
+                        if (it) {
+                            notify("Insert success")
+                        } else {
+                            notify("Insert failed")
+                        }
+                    }
+                    dialog.dismiss()
+                    dialog.cancel()
+                    callback.backToPrevious()
+                }
+
+                override fun onDownloadFailed(data: Any?) {
+                    notify("Download failed")
+                }
+            })
     }
 
     private fun showDialog(): AlertDialog? {
@@ -83,37 +105,35 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
         builder.setView(binding.root)
         val dialog = builder.create()
         binding.btnCancel.setOnClickListener {
-            storyViewModel!!.cancelDownload(data as Story, requireContext()).observe(viewLifecycleOwner){
-                if(it){
+            val story = data as Story
+            val storyDownloaded = StoryDownloaded(story.id, story.name, story.url, 0)
+            storyViewModel!!.cancelDownload()
+            storyViewModel!!.cancelResult.observe(viewLifecycleOwner) {
+                if (it) {
                     dialog.dismiss()
+                    dialog.cancel()
                     notify("canceled")
                 } else {
                     notify("cancel failed")
                 }
             }
-        }
-        return dialog
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            REQUEST_EXTERNAL_STORAGE -> {
-                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                            && grantResults[1] == PackageManager.PERMISSION_GRANTED)
-                ) {
-                    storyViewModel?.updatePermission(true)
+            storyViewModel!!.deleteFileLocal(storyDownloaded, requireContext())
+            storyViewModel!!.deleteLocalResult.observe(viewLifecycleOwner) {
+                if (it) {
+                    notify("Delete file local success")
                 } else {
-                    storyViewModel?.updatePermission(false)
+                    notify("Delete file local failed")
+                }
+            }
+            storyViewModel!!.deleteStoryDownloaded(storyDownloaded, requireContext())
+            storyViewModel!!.deleteResult.observe(viewLifecycleOwner) {
+                if (it) {
+                    notify("Delete story downloaded success")
+                } else {
+                    notify("Delete story downloaded local failed")
                 }
             }
         }
-    }
-
-    companion object {
-        private const val REQUEST_EXTERNAL_STORAGE = 1
+        return dialog
     }
 }

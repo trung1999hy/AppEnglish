@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
 import com.example.englishttcm.base.BaseFragment
+import com.example.englishttcm.chatbot.view.ChatBotFragment
 import com.example.englishttcm.databinding.FragmentHomeBinding
 import com.example.englishttcm.home.adapter.PlayZoneAdapter
 import com.example.englishttcm.home.adapter.StudyZoneAdapter
@@ -20,7 +21,7 @@ import com.example.englishttcm.learnzone.reading.LearnReadFragment
 import com.example.englishttcm.learnzone.vocabulary.view.VocabularyTopicFragment
 import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
-import com.example.englishttcm.playzone.SelectTypeFragment
+import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
 import com.example.englishttcm.translate.view.TranslateFragment
 import com.google.android.gms.ads.AdRequest
@@ -151,10 +152,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.menu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
-        binding.ivTopicStory.setOnClickListener {
+        binding.btnBook.setOnClickListener {
             callback.showFragment(
                 HomeFragment::class.java,
                 StoryFragment::class.java,
+                0,
+                0,
+                null,
+                true
+            )
+        }
+        binding.btnChatBot.setOnClickListener {
+            callback.showFragment(
+                HomeFragment::class.java,
+                ChatBotFragment::class.java,
                 0,
                 0,
                 null,
