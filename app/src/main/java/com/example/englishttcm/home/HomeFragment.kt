@@ -152,7 +152,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.menu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
-        binding.ivTopicStory.setOnClickListener {
+        binding.btnBook.setOnClickListener {
             callback.showFragment(
                 HomeFragment::class.java,
                 StoryFragment::class.java,
@@ -162,7 +162,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 true
             )
         }
-        binding.layoutChatgpt.setOnClickListener {
+        binding.btnChatBot.setOnClickListener {
             callback.showFragment(
                 HomeFragment::class.java,
                 ChatBotFragment::class.java,
