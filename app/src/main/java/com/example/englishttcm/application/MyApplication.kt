@@ -3,7 +3,10 @@ package com.example.englishttcm.application
 import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -18,16 +21,30 @@ import java.util.*
 private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/3419835294"
 private const val LOG_TAG = "MyApplication"
 
-class AdsApplication:Application(),ActivityLifecycleCallbacks,LifecycleObserver{
+class MyApplication:Application(),ActivityLifecycleCallbacks,LifecycleObserver{
     private lateinit var appOpenAdManager: AppOpenAdManager
     private var currentActivity: Activity? = null
     override fun onCreate() {
         super.onCreate()
+
+        createNotificationChannel()
+        //
         MobileAds.initialize(this) {}
         appOpenAdManager = AppOpenAdManager()
         registerActivityLifecycleCallbacks(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel("MYCHANNEL", "my channel", NotificationManager.IMPORTANCE_DEFAULT)
+            channel.setSound(null,null)
+            val manager = getSystemService(NotificationManager::class.java)
+            manager?.createNotificationChannel(channel)
+        }
+    }
+
+
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onMoveToForeground() {
         // Show the ad (if available) when the app moves to foreground.

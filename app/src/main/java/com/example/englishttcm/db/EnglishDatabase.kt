@@ -4,9 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
-import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
-import com.example.englishttcm.playzone.model.QuizMode
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 
 @Database(entities = [StoryDownloaded::class], version = 1, exportSchema = false)

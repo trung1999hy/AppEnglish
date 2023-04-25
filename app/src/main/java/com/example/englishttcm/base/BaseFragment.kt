@@ -51,5 +51,4 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment(){
         var fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
         fab!!.visibility = View.VISIBLE
     }
-
 }

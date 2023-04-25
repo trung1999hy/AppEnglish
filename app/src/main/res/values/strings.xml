@@ -79,4 +79,14 @@
     <string name="account_header">Account</string>
     <string name="loading">Loading</string>
     <string name="status">Status</string>
+    <string name="listening">Listening</string>
+    <string name="game_over">Game Over</string>
+    <string name="back_detail_activity">Back</string>
+    <string name="iv_lose">crying</string>
+    <string name="congrats">Congratulations</string>
+    <string name="win_gift">Bạn nhận được 20 vàng</string>
+    <string name="coin_win">coin_win</string>
+    <string name="winner">winner</string>
+    <string name="chat_with_bot">Chat with bot</string>
+    <string name="more_features">More features</string>
 </resources>

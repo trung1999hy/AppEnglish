@@ -1,0 +1,46 @@
+package com.example.englishttcm.learnzone.listening.adapter
+
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.englishttcm.OnItemClickListener
+import com.example.englishttcm.databinding.ItemListeningBinding
+import com.example.englishttcm.learnzone.listening.model.Listening
+
+
+class ListeningAdapter(
+    private val listListening: List<Listening>,
+    private val itemClick: OnItemClickListener
+) : RecyclerView.Adapter<ListeningAdapter.ListeningViewHolder>() {
+
+    inner class ListeningViewHolder(private val binding: ItemListeningBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(listening: Listening) {
+            binding.tvTitle.text = listening.title
+            Glide.with(itemView.context).load(listening.image).into(binding.imgListening)
+        }
+        init {
+            binding.rlListening.setOnClickListener {
+                itemClick.onItemClick(listListening[adapterPosition])
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeningViewHolder {
+        val inflate = LayoutInflater.from(parent.context)
+        val view = ItemListeningBinding.inflate(inflate, parent, false)
+        return ListeningViewHolder(view)
+    }
+
+    override fun getItemCount(): Int{
+        return listListening.size
+        Log.e("ERROR",listListening.size.toString())
+    }
+
+    override fun onBindViewHolder(holder: ListeningViewHolder, position: Int) {
+        holder.bind(listListening[position])
+    }
+}

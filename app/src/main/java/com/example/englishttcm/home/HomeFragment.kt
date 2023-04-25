@@ -2,32 +2,30 @@
 package com.example.englishttcm.home
 
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
-import com.example.englishttcm.application.AdsApplication
 import com.example.englishttcm.base.BaseFragment
+import com.example.englishttcm.chatbot.view.ChatBotFragment
 import com.example.englishttcm.databinding.FragmentHomeBinding
 import com.example.englishttcm.home.adapter.PlayZoneAdapter
 import com.example.englishttcm.home.adapter.StudyZoneAdapter
 import com.example.englishttcm.home.model.GamePlayMode
 import com.example.englishttcm.home.model.StudyMode
 import com.example.englishttcm.learnzone.grammar.LearnGrammarFragment
-import com.example.englishttcm.learnzone.reading.learning.LearnListenFragment
+import com.example.englishttcm.learnzone.listening.view.ListeningFragment
 import com.example.englishttcm.learnzone.reading.LearnReadFragment
 import com.example.englishttcm.learnzone.vocabulary.view.VocabularyTopicFragment
 import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
-import com.example.englishttcm.playzone.SelectTypeFragment
+import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
 import com.example.englishttcm.translate.view.TranslateFragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 
@@ -85,7 +83,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     if (studyMode.title == LISTENING) {
                         callback.showFragment(
                             HomeFragment::class.java,
-                            LearnListenFragment::class.java,
+                            ListeningFragment::class.java,
                             0,
                             0,
                             studyMode,
@@ -154,10 +152,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.menu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
-        binding.ivTopicStory.setOnClickListener {
+        binding.btnBook.setOnClickListener {
             callback.showFragment(
                 HomeFragment::class.java,
                 StoryFragment::class.java,
+                0,
+                0,
+                null,
+                true
+            )
+        }
+        binding.btnChatBot.setOnClickListener {
+            callback.showFragment(
+                HomeFragment::class.java,
+                ChatBotFragment::class.java,
                 0,
                 0,
                 null,
