@@ -16,7 +16,7 @@ import com.example.englishttcm.home.adapter.StudyZoneAdapter
 import com.example.englishttcm.home.model.GamePlayMode
 import com.example.englishttcm.home.model.StudyMode
 import com.example.englishttcm.learnzone.grammar.LearnGrammarFragment
-import com.example.englishttcm.learnzone.reading.learning.LearnListenFragment
+import com.example.englishttcm.learnzone.listening.view.ListeningFragment
 import com.example.englishttcm.learnzone.reading.LearnReadFragment
 import com.example.englishttcm.learnzone.vocabulary.view.VocabularyTopicFragment
 import com.example.englishttcm.log.view.LogInFragment
@@ -83,7 +83,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     if (studyMode.title == LISTENING) {
                         callback.showFragment(
                             HomeFragment::class.java,
-                            LearnListenFragment::class.java,
+                            ListeningFragment::class.java,
                             0,
                             0,
                             studyMode,

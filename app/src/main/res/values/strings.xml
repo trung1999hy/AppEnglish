@@ -79,6 +79,7 @@
     <string name="account_header">Account</string>
     <string name="loading">Loading</string>
     <string name="status">Status</string>
+    <string name="listening">Listening</string>
     <string name="game_over">Game Over</string>
     <string name="back_detail_activity">Back</string>
     <string name="iv_lose">crying</string>
