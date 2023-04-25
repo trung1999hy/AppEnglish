@@ -86,4 +86,6 @@
     <string name="win_gift">Bạn nhận được 20 vàng</string>
     <string name="coin_win">coin_win</string>
     <string name="winner">winner</string>
+    <string name="chat_with_bot">Chat with bot</string>
+    <string name="more_features">More features</string>
 </resources>
