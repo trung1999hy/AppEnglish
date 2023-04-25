@@ -2,10 +2,8 @@ package com.example.englishttcm.learnzone.vocabulary.viewmodel
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.speech.tts.TextToSpeech
 import android.util.Log
-import android.widget.Filter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -38,7 +36,7 @@ class VocabularyViewModel(application: Application): AndroidViewModel(applicatio
     fun getVocabWordList(topicId: Int){
         repository.vocabularyWord(topicId)
     }
-    fun speakWord(context: Context): TextToSpeech{
+    /*fun speakWord(context: Context): TextToSpeech{
         textToSpeech = TextToSpeech(context) { status ->
             if (status == TextToSpeech.SUCCESS) {
                 val result = textToSpeech.isLanguageAvailable(Locale.UK)
@@ -49,12 +47,13 @@ class VocabularyViewModel(application: Application): AndroidViewModel(applicatio
                 }
             } else {
                 Log.e("textToSpeech", "Initialization failed")
-                val intent = Intent()
-                intent.action = TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA
-                context.startActivity(intent)
             }
         }
         return textToSpeech
 
+    }*/
+
+    fun speakWord(audioUrl: String){
+        repository.speak(audioUrl)
     }
 }

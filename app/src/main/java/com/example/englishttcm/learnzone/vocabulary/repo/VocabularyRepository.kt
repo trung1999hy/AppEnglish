@@ -1,19 +1,23 @@
 package com.example.englishttcm.learnzone.vocabulary.repo
 
 import android.app.Application
+import android.media.AudioManager
+import android.media.MediaPlayer
 import android.util.Log
-import android.widget.Filter
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.io.IOException
 import kotlin.collections.ArrayList
 
+@Suppress("DEPRECATION")
 class VocabularyRepository(_application: Application) {
     private var topicList : MutableLiveData<ArrayList<VocabularyTopic>>
     private var wordList : MutableLiveData<ArrayList<VocabularyWord>>
+    var mediaPlayer: MediaPlayer? = null
 
     private var db: FirebaseFirestore = Firebase.firestore
     private lateinit var topic: VocabularyTopic
@@ -65,6 +69,7 @@ class VocabularyRepository(_application: Application) {
                         val id = document.id
                         val word = document.getString("word")
                         val mean = document.getString("mean")
+                        val speaker = document.getString("speaker")
                         val pronounce = document.getString("pronounce")
                         val topicId = document.getLong("topicId")!!.toInt()
                         val image = document.getString("image")
@@ -73,6 +78,7 @@ class VocabularyRepository(_application: Application) {
                             id,
                             word,
                             mean,
+                            speaker,
                             pronounce,
                             topicId,
                             image,
@@ -84,5 +90,17 @@ class VocabularyRepository(_application: Application) {
                     wordList.postValue(list)
                 }
             }
+    }
+
+    fun speak(audioUrl: String){
+        mediaPlayer = MediaPlayer()
+        mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
+        try{
+            mediaPlayer!!.setDataSource(audioUrl)
+            mediaPlayer!!.prepare()
+            mediaPlayer!!.start()
+        }catch (e : IOException){
+            e.printStackTrace()
+        }
     }
 }
