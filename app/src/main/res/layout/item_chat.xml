@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/_7sdp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd_message_bot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_75sdp"
+        android:backgroundTint="#DDDFE3"
+        app:cardCornerRadius="@dimen/_7sdp"
+        android:layout_alignParentStart="true">
+        <TextView
+            android:id="@+id/txt_message_bot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:text="Hello how are you"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cd_message_human"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_75sdp"
+        android:backgroundTint="#2766E4"
+        app:cardCornerRadius="@dimen/_7sdp"
+        android:layout_alignParentEnd="true">
+        <TextView
+            android:id="@+id/txt_message_human"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:text="Hello how are you"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp" />
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

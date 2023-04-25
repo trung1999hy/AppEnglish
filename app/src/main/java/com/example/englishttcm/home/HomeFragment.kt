@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
 import com.example.englishttcm.base.BaseFragment
+import com.example.englishttcm.chatbot.view.ChatBotFragment
 import com.example.englishttcm.databinding.FragmentHomeBinding
 import com.example.englishttcm.home.adapter.PlayZoneAdapter
 import com.example.englishttcm.home.adapter.StudyZoneAdapter
@@ -155,6 +156,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             callback.showFragment(
                 HomeFragment::class.java,
                 StoryFragment::class.java,
+                0,
+                0,
+                null,
+                true
+            )
+        }
+        binding.layoutChatgpt.setOnClickListener {
+            callback.showFragment(
+                HomeFragment::class.java,
+                ChatBotFragment::class.java,
                 0,
                 0,
                 null,

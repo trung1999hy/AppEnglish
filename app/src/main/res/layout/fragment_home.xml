@@ -291,6 +291,31 @@
                     </RelativeLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_chatgpt"
+                    android:layout_marginTop="12dp"
+                    android:layout_below="@id/cv_story_quote">
+
+                    <ImageView
+                        android:id="@+id/chatgpt"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/story" />
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/chatgpt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chat gpt"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"/>
+
+                </RelativeLayout>
 
                 </RelativeLayout>
 
