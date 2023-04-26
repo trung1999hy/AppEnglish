@@ -2,7 +2,6 @@
 package com.example.englishttcm.home
 
 import android.util.Log
-import android.view.Gravity
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -22,8 +21,7 @@ import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
 import com.example.englishttcm.learnzone.vocabulary.view.LearnVocabularyFragment
 import com.example.englishttcm.playzone.SelectTypeFragment
-import com.example.englishttcm.playzone.scramble.model.ScrambleModel
-import com.example.englishttcm.playzone.scramble.view.SelectScrambleFragment
+import com.example.englishttcm.playzone.scramble.view.ScrambleFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 
@@ -129,11 +127,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     if(gameMode.mode == SCRAMBLE){
                         callback.showFragment(
                             HomeFragment::class.java,
-                            SelectScrambleFragment::class.java,
+                            ScrambleFragment::class.java,
                             0,
                             0,
                             gameMode,
-                        true)
+                            true
+                        )
                     }
                 }
             })
