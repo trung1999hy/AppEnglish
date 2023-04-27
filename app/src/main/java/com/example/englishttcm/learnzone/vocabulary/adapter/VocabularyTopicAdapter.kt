@@ -22,7 +22,6 @@ class VocabularyTopicAdapter(
             Glide.with(itemView.context).load(vocabTopic.image).into(binding.imgTopic)
 
         }
-
         init {
             binding.rlTopic.setOnClickListener {
                 itemClick.onItemClick(listVocabTopic[adapterPosition])
