@@ -21,6 +21,7 @@ import com.example.englishttcm.learnzone.reading.LearnReadFragment
 import com.example.englishttcm.learnzone.vocabulary.view.VocabularyTopicFragment
 import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
+import com.example.englishttcm.playzone.scramble.view.ScrambleFragment
 import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
 import com.example.englishttcm.translate.view.TranslateFragment
@@ -113,6 +114,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             SelectTypeFragment::class.java,
                             0,
                             0
+                        )
+                    }
+                    if(gameMode.mode == SCRAMBLE){
+                        callback.showFragment(
+                            HomeFragment::class.java,
+                            ScrambleFragment::class.java,
+                            0,
+                            0,
+                            gameMode,
+                            true
                         )
                     }
                 }
