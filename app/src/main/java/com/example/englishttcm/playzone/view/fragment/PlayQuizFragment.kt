@@ -4,11 +4,11 @@ import android.media.MediaPlayer
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
@@ -91,6 +91,11 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
 
         }
 
+        binding.ivFiftyfifty.setOnClickListener() {
+            binding.ivFiftyfifty.isVisible = false
+            supportFiftyFiftyClicked()
+        }
+
         binding.ivBack.setOnClickListener {
             backToBackStack()
         }
@@ -113,14 +118,21 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
         bgColor.background = ContextCompat.getDrawable(mContext, R.color.red)
     }
 
-    private fun setMediaTrue(){
+    private fun setMediaTrue() {
         mediaCorrect = MediaPlayer.create(mContext, R.raw.correct)
         mediaCorrect.start()
     }
 
-    private fun setMediaFalse(){
+    private fun setMediaFalse() {
         mediaWrong = MediaPlayer.create(mContext, R.raw.wrong)
         mediaWrong.start()
+    }
+
+    private fun fiftyFiftyClicked(
+    ) {
+        binding.ivFiftyfifty.setOnClickListener() {
+            backToBackStack()
+        }
     }
 
     private fun ansClicked(
@@ -298,7 +310,6 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
     }
 
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         if (mediaBg.isPlaying) {
@@ -309,6 +320,33 @@ class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
         handlerNextQuiz!!.removeCallbacksAndMessages(null)
         handlerLose!!.removeCallbacksAndMessages(null)
         handlerWin!!.removeCallbacksAndMessages(null)
+    }
+
+    private fun supportFiftyFiftyClicked() {
+        quizViewModel.fiftyFiftySupport(
+            binding.tvAnsA,
+            binding.tvAnsB,
+            binding.tvAnsC,
+            binding.tvAnsD
+        )
+        quizViewModel.fiftyFiftySupport(
+            binding.tvAnsB,
+            binding.tvAnsA,
+            binding.tvAnsC,
+            binding.tvAnsD
+        )
+        quizViewModel.fiftyFiftySupport(
+            binding.tvAnsC,
+            binding.tvAnsA,
+            binding.tvAnsB,
+            binding.tvAnsD
+        )
+        quizViewModel.fiftyFiftySupport(
+            binding.tvAnsD,
+            binding.tvAnsA,
+            binding.tvAnsB,
+            binding.tvAnsC
+        )
     }
 
 }

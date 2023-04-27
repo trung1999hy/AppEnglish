@@ -1,10 +1,12 @@
 package com.example.englishttcm.playzone.repository
 
 import android.app.Application
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.playzone.model.Quiz
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlin.random.Random
 
 class QuizRepository(_application: Application) {
 
@@ -68,6 +70,35 @@ class QuizRepository(_application: Application) {
     val getCurrentQuiz: MutableLiveData<Quiz>
         get() = _currentQuiz
 
-
+    fun fiftyFiftySupport(
+        tvTrueAnswer: TextView,
+        tv1: TextView,
+        tv2: TextView,
+        tv3: TextView
+    ) {
+        val rd = Random.nextInt(1, 4)
+        if (tvTrueAnswer.text.toString() == listQuiz[currentPos].trueAnswer) {
+            when (rd) {
+                1 -> {
+                    tv1.isEnabled = false
+                    tv2.isEnabled = false
+                    tv1.text = ""
+                    tv2.text = ""
+                }
+                2 -> {
+                    tv2.isEnabled = false
+                    tv3.isEnabled = false
+                    tv2.text = ""
+                    tv3.text = ""
+                }
+                3 -> {
+                    tv1.isEnabled = false
+                    tv3.isEnabled = false
+                    tv1.text = ""
+                    tv3.text = ""
+                }
+            }
+        }
+    }
 }
 
