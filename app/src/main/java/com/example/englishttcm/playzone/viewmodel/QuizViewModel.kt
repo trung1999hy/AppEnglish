@@ -1,6 +1,7 @@
 package com.example.englishttcm.playzone.viewmodel
 
 import android.app.Application
+import android.widget.TextView
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.playzone.model.Quiz
@@ -24,11 +25,15 @@ class QuizViewModel(application: Application) : AndroidViewModel(application) {
         return quizRepository.checkWin()
     }
 
-    fun checkTrue(answered: String, trueAns: String): Boolean{
+    fun checkTrue(answered: String, trueAns: String): Boolean {
         return quizRepository.checkTrue(answered, trueAns)
     }
 
-    fun next(){
+    fun next() {
         quizRepository.nextQuiz()
+    }
+
+    fun fiftyFiftySupport(tvTrueAnswer: TextView,tv1: TextView,tv2: TextView,tv3: TextView) {
+        quizRepository.fiftyFiftySupport(tvTrueAnswer,tv1,tv2,tv3);
     }
 }

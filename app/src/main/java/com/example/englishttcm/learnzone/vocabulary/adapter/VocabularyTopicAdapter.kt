@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.databinding.ItemVocabularyTopicBinding
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
-import kotlin.collections.ArrayList
 
 class VocabularyTopicAdapter(
     private var listVocabTopic: ArrayList<VocabularyTopic>,
@@ -23,6 +22,7 @@ class VocabularyTopicAdapter(
             Glide.with(itemView.context).load(vocabTopic.image).into(binding.imgTopic)
 
         }
+
         init {
             binding.rlTopic.setOnClickListener {
                 itemClick.onItemClick(listVocabTopic[adapterPosition])
