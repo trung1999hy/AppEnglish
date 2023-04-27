@@ -6,8 +6,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.log.model.User
+import com.example.englishttcm.until.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.core.Constants
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +26,7 @@ class AuthenticationRepository(_application: Application) {
     private val defaultImage: String = "https://firebasestorage.googleapis.com/v0/b/english-ttcm.appspot.com/o/avatar_default%2FDefault_avatar.png?alt=media&token=9f936a48-7411-4a96-b2fe-4658334fb016"
     private val storageReference: StorageReference
     private val firestoreDatabase: FirebaseFirestore
+    private val preferenceManager:PreferenceManager
 
     val getFirebaseUser: MutableLiveData<FirebaseUser>
         get() = firebaseUserMutableLiveData
@@ -43,6 +46,7 @@ class AuthenticationRepository(_application: Application) {
         }
         storageReference = FirebaseStorage.getInstance().getReference("user_image/"+auth.currentUser?.uid)
         firestoreDatabase = FirebaseFirestore.getInstance()
+        preferenceManager = PreferenceManager(application)
     }
 
     fun register(email: String, password: String, name: String){
@@ -65,18 +69,28 @@ class AuthenticationRepository(_application: Application) {
                 }
                 Toast.makeText(application, "Sign up successfully", Toast.LENGTH_SHORT).show()
             } else {
+                userLoggedMutableLiveData.postValue(false)
                 Toast.makeText(application, it.exception!!.message, Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    fun login(email: String, password: String){
+    fun login(email: String, password: String, remember:Boolean){
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful){
                 firebaseUserMutableLiveData.postValue(auth.currentUser)
                 userLoggedMutableLiveData.postValue(true)
                 Toast.makeText(application, "Log in successfully", Toast.LENGTH_SHORT).show()
+                if(remember){
+                    auth.currentUser.let {
+                        user ->
+                        preferenceManager.putBoolean("isRemember",remember)
+                        preferenceManager.putString("email",email)
+                        preferenceManager.putString("password",password)
+                    }
+                }
             } else {
+                userLoggedMutableLiveData.postValue(false)
                 Toast.makeText(application, it.exception!!.message, Toast.LENGTH_SHORT).show()
             }
         }
@@ -89,20 +103,7 @@ class AuthenticationRepository(_application: Application) {
         auth.sendPasswordResetEmail(email).addOnCompleteListener {
 
             if(it.isSuccessful){
-                userLoggedMutableLiveData.postValue(true)
-//                val userId = auth.currentUser?.uid
-//                val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId!!)
-//
-//                userRef.child("password").setValue(newPassword).addOnCompleteListener{
-//                    if(it.isSuccessful){
-//                        Toast.makeText(application, "Update password successfully", Toast.LENGTH_SHORT).show()
-//                    }
-//                    else{
-//                        Toast.makeText(application, "Update password successfully", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
                 Toast.makeText(application, "Check your email to reset your password!", Toast.LENGTH_SHORT).show()
-
             }
             else {
                 Toast.makeText(application, "Try again! Something wrong happened!", Toast.LENGTH_SHORT).show()
@@ -117,10 +118,12 @@ class AuthenticationRepository(_application: Application) {
                 firestoreDatabase.collection("users").document(auth.currentUser!!.uid)
                     .update("image", uri.toString())
                     .addOnSuccessListener {
+                        userLoggedMutableLiveData.postValue(true)
                         Toast.makeText(application, "Upload successfully!", Toast.LENGTH_SHORT)
                             .show()
                         getUserDetail(auth.currentUser!!.uid)
                     }.addOnFailureListener { exception ->
+                        userLoggedMutableLiveData.postValue(false)
                         Toast.makeText(application, "Error updating image", Toast.LENGTH_SHORT)
                             .show()
                     }
@@ -137,6 +140,7 @@ class AuthenticationRepository(_application: Application) {
         userRef.update("name", newName)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    userLoggedMutableLiveData.postValue(true)
                     Toast.makeText(application, "Update username successfully", Toast.LENGTH_SHORT).show()
                     getUserDetail(auth.currentUser!!.uid)
                 } else {
@@ -144,6 +148,7 @@ class AuthenticationRepository(_application: Application) {
                 }
             }
             .addOnFailureListener { exception ->
+                userLoggedMutableLiveData.postValue(false)
                 Toast.makeText(application, "Error updating username", Toast.LENGTH_SHORT).show()
             }
     }
@@ -166,6 +171,7 @@ class AuthenticationRepository(_application: Application) {
     fun signOut(){
         auth.signOut()
 //        userLoggedMutableLiveData.postValue(true)
+        preferenceManager.clear()
     }
 
 

@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.englishttcm.databinding.ItemScrambleBinding
 import com.example.englishttcm.playzone.scramble.model.Scramble
 
-class ScrambleAdapter(private val listScramble: List<Scramble>): RecyclerView.Adapter<ScrambleAdapter.ScrambleViewHolder>() {
+class ScrambleAdapter(private val listScramble: List<Scramble>) :
+    RecyclerView.Adapter<ScrambleAdapter.ScrambleViewHolder>() {
 
-    inner class ScrambleViewHolder(private val binding: ItemScrambleBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ScrambleViewHolder(private val binding: ItemScrambleBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(scramble: Scramble) {
             binding.tvScrambleWord.text = scramble.scrambled
         }
@@ -19,6 +21,8 @@ class ScrambleAdapter(private val listScramble: List<Scramble>): RecyclerView.Ad
         val view = ItemScrambleBinding.inflate(inflate, parent, false)
         return ScrambleViewHolder(view)
     }
+
+    fun getItem(position: Int) = listScramble[position]
 
     override fun getItemCount(): Int = listScramble.size
 

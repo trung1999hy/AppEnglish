@@ -9,7 +9,7 @@
     <string name="play_now">Play Now</string>
     <string name="playing_game">Playing Game</string>
     <string name="learning_now">Learning Now</string>
-    <string name="story_quote"><![CDATA[Stories & Quotes]]></string>
+    <string name="story"><![CDATA[Stories]]></string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="log_in">Log in</string>
@@ -33,7 +33,7 @@
     <string name="login">Login</string>
     <string name="valid_email">Please enter a valid email</string>
     <string name="forgot_password">Forgot Password?</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_your_email_address_to_reset_your_password">Enter your email address to reset your password</string>
     <string name="reset_password">Reset Password</string>
@@ -53,15 +53,13 @@
 
     <string name="score">Score: </string>
     <string name="scramble_word">hello</string>
-    <string name="how_tp_play_scramble">Unscramble the word using all letters</string>
+    <string name="how_tp_play_scramble">Unscramble the word using all letters </string>
+    <string name="conditions">You must reach 100 points to win</string>
     <string name="enter_word">Enter your word</string>
     <string name="submit">Submit</string>
     <string name="skip">Skip</string>
     <string name="answered">You scramble 10 words!</string>
-    <string name="congratulations">Congratulations!</string>
-    <string name="you_scored">"You scored:"</string>
     <string name="exit">Exit</string>
-    <string name="play_again">Play Again</string>
     <string name="try_again">Try again!</string>
 
     <string name="choose_type_quiz">Choose type quiz</string>
@@ -76,4 +74,25 @@
     <string name="signout">SignOut</string>
     <string name="learn_english">Learn English</string>
     <string name="search">search</string>
+    <string name="description">Description</string>
+    <string name="download">Download</string>
+    <string name="cancel">Cancel</string>
+    <string name="downloading">Downloading..</string>
+    <string name="question_delete">Do you want to delete?</string>
+    <string name="answer_no">No</string>
+    <string name="answer_yes">Yes</string>
+    <string name="translate">Translate</string>
+    <string name="account_header">Account</string>
+    <string name="loading">Loading</string>
+    <string name="status">Status</string>
+    <string name="listening">Listening</string>
+    <string name="game_over">Game Over</string>
+    <string name="back_detail_activity">Back</string>
+    <string name="iv_lose">crying</string>
+    <string name="congrats">Congratulations</string>
+    <string name="win_gift">Bạn nhận được 20 vàng</string>
+    <string name="coin_win">coin_win</string>
+    <string name="winner">winner</string>
+    <string name="chat_with_bot">Chat with bot</string>
+    <string name="more_features">More features</string>
 </resources>

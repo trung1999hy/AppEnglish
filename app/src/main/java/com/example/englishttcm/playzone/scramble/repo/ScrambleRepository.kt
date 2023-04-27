@@ -4,12 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.playzone.scramble.model.Scramble
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ScrambleRepository {
-
-    private var _currentWordCount: Int = 0
-    private var _score: Int = 0
 
     private val db = FirebaseFirestore.getInstance()
     fun getWords(): LiveData<List<Scramble>> {
@@ -32,29 +30,14 @@ class ScrambleRepository {
         }
         return data
     }
-    fun reinitializeData() {
-        _score = 0
-        _currentWordCount = 0
-        getWords()
-    }
-    private fun increaseScore() {
-        _score += 10
-    }
-    fun checkTrue(answered: String, trueAns: String): Boolean {
-        if (answered == trueAns ) {
-            increaseScore()
-            return true
+
+    fun updateCoin() {
+        val userId = FirebaseAuth.getInstance().currentUser!!.uid
+        db.collection("users").document(userId).get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                val coin = documentSnapshot.getLong("coin")?.toInt() ?: 0
+                db.collection("users").document(userId).update("coin", coin + 20)
+            }
         }
-        return false
     }
-    fun nextWord(): Boolean {
-       if (_currentWordCount < 10) {
-           getWords()
-           return true
-       } else {
-           return false
-       }
-    }
-
-
 }

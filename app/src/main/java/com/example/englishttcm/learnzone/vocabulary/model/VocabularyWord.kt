@@ -6,10 +6,12 @@ import androidx.room.PrimaryKey
 @Entity
 data class VocabularyWord(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val word : String,
-    val mean : String,
-    val pronounce : String,
-    val topicId : Int,
-    val image : String,
+    val id: String? = null,
+    val word: String? = null,
+    val mean: String? = null,
+    val speaker: String? = null,
+    val pronounce: String? = null,
+    val topicId: Int? = null,
+    val image: String? = null,
+    val example: String? = null
 )

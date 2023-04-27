@@ -9,26 +9,30 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
 import com.example.englishttcm.base.BaseFragment
+import com.example.englishttcm.chatbot.view.ChatBotFragment
 import com.example.englishttcm.databinding.FragmentHomeBinding
 import com.example.englishttcm.home.adapter.PlayZoneAdapter
 import com.example.englishttcm.home.adapter.StudyZoneAdapter
 import com.example.englishttcm.home.model.GamePlayMode
 import com.example.englishttcm.home.model.StudyMode
 import com.example.englishttcm.learnzone.grammar.LearnGrammarFragment
-import com.example.englishttcm.learnzone.learning.LearnListenFragment
+import com.example.englishttcm.learnzone.listening.view.ListeningFragment
 import com.example.englishttcm.learnzone.reading.LearnReadFragment
+import com.example.englishttcm.learnzone.vocabulary.view.VocabularyTopicFragment
 import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
-import com.example.englishttcm.learnzone.vocabulary.view.LearnVocabularyFragment
-import com.example.englishttcm.playzone.SelectTypeFragment
 import com.example.englishttcm.playzone.scramble.view.ScrambleFragment
+import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
+import com.example.englishttcm.storyzone.view.StoryFragment
+import com.example.englishttcm.translate.view.TranslateFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var firebaseUser: FirebaseUser
-
     private lateinit var listStudyTitle: ArrayList<StudyMode>
     private lateinit var listPlayMode: ArrayList<GamePlayMode>
     private lateinit var authenticationViewModel: AuthenticationViewModel
@@ -41,25 +45,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initViews() {
         authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
-
-        binding.ivApp.setOnClickListener {
-            authenticationViewModel.signOut()
-            callback.showFragment(
-                HomeFragment::class.java,
-                LogInFragment::class.java,
-                0,
-                0,
-                null,
-                false
-            )
-        }
         firebaseUser = data as FirebaseUser
         authenticationViewModel.getUserDetail(firebaseUser.uid)
         authenticationViewModel.getUserDetail.observe(viewLifecycleOwner){
-            binding.tvNameUser.setText(it.name)
-            binding.tvWinCount.setText(it.win!!.toString())
-            binding.tvCoinCount.setText(it.coin!!.toString())
-            binding.tvTrophyCount.setText(it.trophy!!.toString())
+            binding.tvNameUser.text = it.name
+            binding.tvWinCount.text = it.win!!.toString()
+            binding.tvCoinCount.text = it.coin!!.toString()
+            binding.tvTrophyCount.text = it.trophy!!.toString()
         }
 
         setLearnData()
@@ -72,7 +64,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     if (studyMode.title == VOCABULARY) {
                         callback.showFragment(
                             HomeFragment::class.java,
-                            LearnVocabularyFragment::class.java,
+                            VocabularyTopicFragment::class.java,
                             0,
                             0,
                             studyMode,
@@ -92,7 +84,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     if (studyMode.title == LISTENING) {
                         callback.showFragment(
                             HomeFragment::class.java,
-                            LearnListenFragment::class.java,
+                            ListeningFragment::class.java,
                             0,
                             0,
                             studyMode,
@@ -156,6 +148,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     firebaseUser,
                     true
                 )
+                R.id.nav_translate -> {
+                    callback.showFragment(HomeFragment::class.java, TranslateFragment::class.java,0,0,null,false)
+
+                }
                 R.id.nav_signout -> {
                     authenticationViewModel.signOut()
                     callback.showFragment(HomeFragment::class.java, LogInFragment::class.java,0,0,null,false)
@@ -167,6 +163,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.menu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
+        binding.btnBook.setOnClickListener {
+            callback.showFragment(
+                HomeFragment::class.java,
+                StoryFragment::class.java,
+                0,
+                0,
+                null,
+                true
+            )
+        }
+        binding.btnChatBot.setOnClickListener {
+            callback.showFragment(
+                HomeFragment::class.java,
+                ChatBotFragment::class.java,
+                0,
+                0,
+                null,
+                true
+            )
+        }
+        addBannerAds()
     }
 
     private fun setPlayMode() {
@@ -182,4 +199,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_yellow, "Listening", R.drawable.img_vocabulary))
         listStudyTitle.add(StudyMode(R.drawable.header_home_background, "Reading", R.drawable.img_vocabulary))
     }
+
+    private fun addBannerAds(){
+        MobileAds.initialize(requireActivity())
+        val adRequest =AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+    }
+
+
 }

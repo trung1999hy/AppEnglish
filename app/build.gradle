@@ -36,11 +36,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    compileSdkPreview 'UpsideDownCake'
 }
 
 dependencies {
-
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core:1.12.0-alpha03'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -49,6 +49,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
     implementation 'androidx.room:room-common:2.5.1'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.1.1'
+    implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
+    implementation 'androidx.core:core-ktx:+'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
+    implementation 'com.google.android.gms:play-services-ads-lite:22.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -75,9 +79,25 @@ dependencies {
     //Rounded ImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
-    // LiveData
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    //Read pdf
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
-    implementation 'androidx.fragment:fragment-ktx:1.5.6'
+    //ads
+    implementation 'com.google.android.gms:play-services-ads:22.0.0'
+//    def lifecycle_version = "2.3.1"
+//    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+//    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+//    implementation 'androidx.multidex:multidex:2.0.1'
 
+    //volley
+    implementation("com.android.volley:volley:1.2.1")
+    //media
+    implementation "androidx.media:media:1.6.0"
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    // GSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'

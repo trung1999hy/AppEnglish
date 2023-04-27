@@ -45,11 +45,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vp2_scramble" />
 
+    <TextView
+        android:id="@+id/tv_scramble_conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/conditions"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_scramble_how_to_play" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layout_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
         android:hint="@string/enter_word"
@@ -57,7 +68,7 @@
         app:boxStrokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_scramble_how_to_play">
+        app:layout_constraintTop_toBottomOf="@id/tv_scramble_conditions">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_your_word"
