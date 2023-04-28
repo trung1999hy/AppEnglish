@@ -59,7 +59,6 @@ class ScrambleFragment : BaseFragment<FragmentScrambleGameBinding>() {
         scrambleViewModel.isWin.observe(viewLifecycleOwner) {
             if (it) {
                 win()
-
             } else {
                 lose()
             }

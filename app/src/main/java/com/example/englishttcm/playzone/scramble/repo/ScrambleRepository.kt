@@ -23,7 +23,8 @@ class ScrambleRepository {
                     val word = Scramble(id, scrambled, original)
                     words.add(word)
                 }
-                data.value = words
+                words.shuffle()
+                data.value = words.take(10)
             } else {
                 Log.e("Error", "getScrambleError")
             }
