@@ -50,12 +50,18 @@
     <string name="detail_word">Xem chi tiết</string>
     <string name="note">Note</string>
     <string name="story_content">17 Camels and 3 Sons: Long ago, there lived an old man with his three sons in a deserted village, located in the vicinity of a desert. He had 17 camels, and they were the main source of his income. He used to rent out camels as a means of shipping in the desert. One day, he passed away. He had left a will, leaving his assets for his three sons. After the funeral and the other obligations were over, the three sons read the will. While their father had divided all the property he had into three equal parts, he had divided the 17 camels in a different way. They were not shared equally among the three as 17 is an odd number and a prime number, which cannot be divided. The old man had stated that the eldest son will own half of the 17 camels, the middle one will get one third of the 17 camels, and the youngest one will get his share of camels as one ninth! All of them were stunned to read the will and questioned each other how to divide the 17 camels as mentioned in the will. It is not possible to divide 17 camels and give half of the 17 camels to the eldest one. It is not possible also to divide the camels for the other two sons. They spent several days thinking of ways to divide the camels as mentioned in the will, but none could find the answer. They finally took the issue to the wise man in their village. The wise man heard the problem and instantly found a solution. He asked them to bring all the 17 camels to him. The sons brought the camels to the wise man\'s place. The wise man added a camel owned by him and made the total number of camels 18. Now, he asked the first son to read the will. As per the will, the eldest son got half the camels, which now counted to 18 / 2 = 9 camels! The eldest one got 9 camels as his share. The remaining camels were 9. The wise man asked the second son to read the will. He was assigned 1 / 3 of the total camels. It came to 18 / 3 = 6 camels. The second son got 6 camels as his share. Total number of camels shared by the elder sons - 9 + 6 = 15 camels. The third son read out his share of camels: 1 / 9th of the total number of camels - 18 / 9 = 2 camels. The youngest one got 2 camels as his share. Totally there were 9 + 6 + 2 camels shared by the brothers, which counted to 17 camels. Now, the one camel added by the wise man was taken back. The wise man solved this problem smartly with his intelligence. Intelligence is nothing but finding a common ground to solve an issue. In short, every problem has a solution.</string>
-    <string name="score">Score</string>
+
+    <string name="score">Score: </string>
     <string name="scramble_word">hello</string>
-    <string name="how_tp_play_scramble">Unscramble the word using all letters</string>
+    <string name="how_tp_play_scramble">Unscramble the word using all letters </string>
+    <string name="conditions">You must reach 100 points to win</string>
     <string name="enter_word">Enter your word</string>
     <string name="submit">Submit</string>
+    <string name="skip">Skip</string>
     <string name="answered">You scramble 10 words!</string>
+    <string name="exit">Exit</string>
+    <string name="try_again">Try again!</string>
+
     <string name="choose_type_quiz">Choose type quiz</string>
     <string name="or">OR</string>
     <string name="mul_type">Multichoice type</string>

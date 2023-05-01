@@ -45,7 +45,7 @@ class TranslateRepository(_application: Application) {
                 val headers = HashMap<String, String>()
                 headers["content-type"] = "application/x-www-form-urlencoded"
                 headers["accept-encoding"] = "application/gzip"
-                headers["x-rapidapi-key"] = "493cccb533msh025402af1703e18p1431aajsnd419962591d3"
+                headers["x-rapidapi-key"] = "1729b92335msh97ef4c8466b7755p169fb8jsnb3e64b781708"
                 headers["x-rapidapi-host"] = "google-translate1.p.rapidapi.com"
                 return headers
             }
