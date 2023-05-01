@@ -24,12 +24,12 @@ class VocabularyTopicFragment : BaseFragment<FragmentVocabularyTopicBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(this)[VocabularyViewModel::class.java]
         viewModel.getVocabTopicList()
     }
+
     override fun initViews() {
-        binding.searchView.addTextChangedListener(object : TextWatcher {
+        binding.searchTopic.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
