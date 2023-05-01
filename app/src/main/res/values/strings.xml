@@ -98,6 +98,5 @@
     <string name="add">Add</string>
     <string name="bookmark">Bookmark</string>
     <string name="update">Update</string>
-    <string name="exit">Exit</string>
     <string name="note_this_word_to_the_bookmark">Note this word to the bookmark</string>
 </resources>

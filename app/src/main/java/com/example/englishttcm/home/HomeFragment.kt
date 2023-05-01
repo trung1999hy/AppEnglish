@@ -117,6 +117,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             0
                         )
                     }
+                    if(gameMode.mode == SCRAMBLE){
+                        callback.showFragment(
+                            HomeFragment::class.java,
+                            ScrambleFragment::class.java,
+                            0,
+                            0,
+                            gameMode,
+                            true
+                        )
+                    }
                 }
             })
 
@@ -168,6 +178,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             callback.showFragment(
                 HomeFragment::class.java,
                 ChatBotFragment::class.java,
+                0,
+                0,
+                null,
+                true
+            )
+        }
+        binding.btnBookmark.setOnClickListener {
+            callback.showFragment(
+                HomeFragment::class.java,
+                BookmarkWordFragment::class.java,
                 0,
                 0,
                 null,
