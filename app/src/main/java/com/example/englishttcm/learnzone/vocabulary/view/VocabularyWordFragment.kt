@@ -3,21 +3,21 @@ package com.example.englishttcm.learnzone.vocabulary.view
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentVocabularyWordBinding
+import com.example.englishttcm.learnzone.vocabulary.OnItemWordClickListener
 import com.example.englishttcm.learnzone.vocabulary.adapter.VocabularyWordAdapter
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
+import com.example.englishttcm.learnzone.vocabulary.view.dialog.NoteWordDialog
+import com.example.englishttcm.learnzone.vocabulary.view.dialog.OnClickListener
 import com.example.englishttcm.learnzone.vocabulary.viewmodel.VocabularyViewModel
 
 
-class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>(), OnItemClickListener  {
+class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>()  {
 
     private lateinit var topic: VocabularyTopic
     private lateinit var viewModel: VocabularyViewModel
-    /*lateinit var textToSpeech: TextToSpeech*/
-
 
     override fun getLayout(container: ViewGroup?): FragmentVocabularyWordBinding =
         FragmentVocabularyWordBinding.inflate(layoutInflater, container, false)
@@ -27,14 +27,45 @@ class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>(), On
         topic = data as VocabularyTopic
         viewModel = ViewModelProvider(this)[VocabularyViewModel::class.java]
         topic.topicId?.let { viewModel.getVocabWordList(it) }
-        /*textToSpeech = viewModel.speakWord(requireContext())*/
-
     }
+
     override fun initViews() {
 
-        viewModel.vocabTopicWord.observe(viewLifecycleOwner){
-            binding.vpgWord.adapter =
-                VocabularyWordAdapter(it, this)
+        viewModel.vocabTopicWord.observe(viewLifecycleOwner) {
+            binding.vpgWord.adapter = VocabularyWordAdapter(it, object : OnItemWordClickListener {
+                override fun onItemClick(data: Any?) {
+                    val word = data as VocabularyWord
+                    viewModel.speakWord(word.speaker.toString())
+                }
+
+                override fun onItemNoteClick(data: Any?) {
+                    if (data is VocabularyWord) {
+                        val vocabWord = data
+                        val dialog = NoteWordDialog(object: OnClickListener {
+                            override fun onClick() {
+                                viewModel.getNoteWord(vocabWord)
+                                notify("Success")
+                            }
+
+                            override fun onClick(
+                                word: String,
+                                mean: String,
+                                speaker: String,
+                                pronounce: String,
+                                example: String
+                            ) {
+                            }
+                        })
+                        dialog.show(requireActivity().supportFragmentManager, "note_word_dialog")
+                    } else {
+                        notify("Error Data")
+                    }
+                }
+
+                override fun onItemEditClick(data: Any?) {
+                }
+
+            })
         }
 
         binding.txtTitleTopic.text = topic.name
@@ -58,19 +89,10 @@ class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>(), On
             }
         }
 
-        binding.btnBackTopic.setOnClickListener{
+        binding.btnBackTopic.setOnClickListener {
             callback.backToPrevious()
         }
 
-    }
-    override fun onItemClick(data: Any?) {
-        /*val word = data as VocabularyWord
-        textToSpeech.speak(word.word.toString(), TextToSpeech.QUEUE_FLUSH, null)
-        Log.d("Item", "${word.word}")*/
-
-        val word = data as VocabularyWord
-        val audioUrl = word.speaker.toString()
-        viewModel.speakWord(audioUrl)
     }
 }
 

@@ -31,7 +31,7 @@
     </com.google.android.material.appbar.MaterialToolbar>
 
     <EditText
-        android:id="@+id/searchView"
+        android:id="@+id/searchTopic"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_7sdp"

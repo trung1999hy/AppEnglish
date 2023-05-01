@@ -9,19 +9,17 @@ import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.databinding.ItemVocabularyTopicBinding
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
-import kotlin.collections.ArrayList
 
 class VocabularyTopicAdapter(
-    private var listVocabTopic: ArrayList<VocabularyTopic>,
+    private var listVocabTopic: List<VocabularyTopic>,
     private val itemClick: OnItemClickListener
-) : RecyclerView.Adapter<VocabularyTopicAdapter.VocabTopicViewHolder>(), Filterable {
+) : RecyclerView.Adapter<VocabularyTopicAdapter.VocabTopicViewHolder>(), Filterable{
 
     inner class VocabTopicViewHolder(val binding: ItemVocabularyTopicBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(vocabTopic: VocabularyTopic) {
             binding.txtNametopic.text = vocabTopic.name
             Glide.with(itemView.context).load(vocabTopic.image).into(binding.imgTopic)
-
         }
         init {
             binding.rlTopic.setOnClickListener {
@@ -42,27 +40,29 @@ class VocabularyTopicAdapter(
         holder.bind(listVocabTopic[position])
     }
     override fun getFilter(): Filter {
-        return object : Filter(){
+        return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val filteredResults = ArrayList<VocabularyTopic>()
-                if (!constraint.isNullOrEmpty()) {
-                    for (topic in listVocabTopic) {
-                        if (topic.name?.toLowerCase()?.contains(constraint.toString().toLowerCase()) == true) {
-                            filteredResults.add(topic)
+                val filteredList = mutableListOf<VocabularyTopic>()
+                if (constraint.isNullOrBlank()) {
+                    filteredList.addAll(listVocabTopic)
+                } else {
+                    listVocabTopic.forEach { item ->
+                        if (item.name?.contains(constraint, true) == true) {
+                            filteredList.add(item)
                         }
                     }
-                } else {
-                    filteredResults.addAll(listVocabTopic)
                 }
                 val filterResults = FilterResults()
-                filterResults.values = filteredResults
+                filterResults.values = filteredList
                 return filterResults
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                listVocabTopic = results?.values as ArrayList<VocabularyTopic>
+                listVocabTopic = results?.values as List<VocabularyTopic>
                 notifyDataSetChanged()
             }
         }
     }
+
+
 }

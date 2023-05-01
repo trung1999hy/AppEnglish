@@ -21,6 +21,7 @@ import com.example.englishttcm.learnzone.reading.LearnReadFragment
 import com.example.englishttcm.learnzone.vocabulary.view.VocabularyTopicFragment
 import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
+import com.example.englishttcm.bookmark.view.BookmarkWordFragment
 import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
 import com.example.englishttcm.translate.view.TranslateFragment
@@ -166,6 +167,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             callback.showFragment(
                 HomeFragment::class.java,
                 ChatBotFragment::class.java,
+                0,
+                0,
+                null,
+                true
+            )
+        }
+        binding.btnBookmark.setOnClickListener {
+            callback.showFragment(
+                HomeFragment::class.java,
+                BookmarkWordFragment::class.java,
                 0,
                 0,
                 null,
