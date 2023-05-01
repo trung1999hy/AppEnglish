@@ -36,5 +36,7 @@
     <color name = "icon_background">#20FFFFFF</color>
     <color name = "error">#B00020</color>
     <color name="white_chill">#F8F5F5</color>
+    <color name ="offWhite">#f7f6f9</color>
+
 
 </resources>

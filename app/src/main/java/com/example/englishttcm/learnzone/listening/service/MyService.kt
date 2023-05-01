@@ -4,7 +4,8 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.media.MediaPlayer
 import android.media.PlaybackParams
 import android.net.Uri
@@ -13,6 +14,10 @@ import android.os.IBinder
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationCompat
 import androidx.media.app.NotificationCompat.MediaStyle
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
+import com.example.englishttcm.MyServiceCallback
 import com.example.englishttcm.R
 import com.example.englishttcm.learnzone.listening.model.Listening
 import com.example.englishttcm.learnzone.listening.receiver.Receiver
@@ -25,25 +30,23 @@ class MyService : Service() {
     private var isRepeat:Boolean = false
     private var isSlowMotion:Boolean = false
     private lateinit var mListening:Listening
+    private var callback: MyServiceCallback? = null
     companion object {
         const val ACTION_PAUSE: Int = 1
         const val ACTION_RESUME: Int = 2
         const val ACTION_CLEAR: Int = 3
     }
-
-
+    fun setCallback(callback: MyServiceCallback) {
+        this.callback = callback
+    }
     inner class LocalBinder : Binder() {
-        // Return this instance of LocalService so clients can call public methods.
         fun getService(): MyService = this@MyService
     }
-
 
     override fun onBind(intent: Intent): IBinder {
         return binder
 
     }
-
-
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val bundle = intent?.extras
@@ -58,23 +61,20 @@ class MyService : Service() {
         val actionListening = intent?.getIntExtra("action_listening_service",0)
         if(actionListening != null){
             handleActionListening(actionListening)
-
-
         }
 
 
-        return START_NOT_STICKY
+        return START_REDELIVER_INTENT
     }
 
     private fun handleActionListening(actionListening: Int) {
         when (actionListening){
             ACTION_PAUSE -> {
                 pauseListening()
-                isPlaying = false
             }
             ACTION_RESUME -> resumeListening()
             ACTION_CLEAR ->{
-                stopForeground(true)
+                stopForeground(STOP_FOREGROUND_REMOVE)
                 stopSelf()
                 if(mediaPlayer != null){
                     mediaPlayer!!.release()
@@ -93,15 +93,21 @@ class MyService : Service() {
         }
         mediaPlayer!!.start()
         isPlaying = true
+        callback?.onPlayingStateChanged(true)
+
+
     }
 
 
-   fun pauseListening(){
+
+
+    fun pauseListening(){
         if(mediaPlayer != null && isPlaying){
             mediaPlayer!!.pause()
             isPlaying = false
             sendNotification(mListening)
-            isPlaying()
+            callback?.onPlayingStateChanged(isPlaying)
+
 
         }
     }
@@ -110,13 +116,12 @@ class MyService : Service() {
             mediaPlayer!!.start()
             isPlaying = true
             sendNotification(mListening)
-            isPlaying()
-
+            callback?.onPlayingStateChanged(isPlaying)
         }
 
    }
     fun seekTo(i: Int) {
-        mediaPlayer!!.seekTo(i)
+        mediaPlayer?.seekTo(i)
     }
     fun replay5s(){
         val currentPosition = mediaPlayer?.currentPosition
@@ -137,8 +142,6 @@ class MyService : Service() {
             mediaPlayer?.start()
         }
         isRepeat = true
-
-
     }
     fun noRepeat(){
         mediaPlayer?.setOnCompletionListener(null)
@@ -146,24 +149,23 @@ class MyService : Service() {
     }
 
     fun slowMotion(){
-        val playbackParams = PlaybackParams().setSpeed(0.75f)
-        mediaPlayer?.setPlaybackParams(playbackParams)
-        isSlowMotion = true
+        if(isPlaying){
+            val playbackParams = PlaybackParams().setSpeed(0.75f)
+            mediaPlayer?.playbackParams = playbackParams
+            isSlowMotion = true
+        }
+        else {
+            return
+        }
+
     }
     fun normalSpeed(){
         val playbackParams = PlaybackParams().setSpeed(1f)
-        mediaPlayer?.setPlaybackParams(playbackParams)
+        mediaPlayer?.playbackParams = playbackParams
         isSlowMotion = false
     }
 
-
-
-
-
-
-
     private fun sendNotification(listening: Listening) {
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.app_icon)
         val mediaSessionCompat = MediaSessionCompat(this,"tag")
 
 
@@ -171,26 +173,41 @@ class MyService : Service() {
         val builder = NotificationCompat.Builder(this,"MYCHANNEL")
             .setSmallIcon(R.drawable.ic_headphone)
             .setContentTitle(listening.title)
-            .setLargeIcon(bitmap)
             .setStyle(
                 MediaStyle()
                     .setMediaSession(mediaSessionCompat.sessionToken)
                     .setShowActionsInCompactView(0,1)
             )
-        if(isPlaying){
-            builder
-                .addAction(R.drawable.ic_pause,"Pause",getPendingIntent(this, ACTION_PAUSE))
-                .addAction(R.drawable.ic_close,"Close", getPendingIntent(this, ACTION_CLEAR))
-        }
-        if(!isPlaying){
-            builder
-                .addAction(R.drawable.ic_play,"Play",getPendingIntent(this, ACTION_RESUME))
-                .addAction(R.drawable.ic_close,"Close", getPendingIntent(this, ACTION_CLEAR))
-        }
 
-        val notification = builder.build()
 
-        startForeground(1,notification)
+        Glide.with(this)
+            .asBitmap()
+            .load(listening.image)
+            .into(object : CustomTarget<Bitmap>(){
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    builder.setLargeIcon(resource)
+                    if(isPlaying){
+                        builder
+                            .addAction(R.drawable.ic_pause,"Pause",getPendingIntent(this@MyService, ACTION_PAUSE))
+                            .addAction(R.drawable.ic_close,"Close", getPendingIntent(this@MyService, ACTION_CLEAR))
+                    }
+                    if(!isPlaying){
+                        builder
+                            .addAction(R.drawable.ic_play,"Play",getPendingIntent(this@MyService, ACTION_RESUME))
+                            .addAction(R.drawable.ic_close,"Close", getPendingIntent(this@MyService, ACTION_CLEAR))
+                    }
+
+                    val notification = builder.build()
+
+                    startForeground(1,notification)
+                }
+
+                override fun onLoadCleared(placeholder: Drawable?) {
+                }
+
+            })
+
+
     }
 
     override fun onUnbind(intent: Intent?): Boolean {
@@ -210,8 +227,8 @@ class MyService : Service() {
         i.putExtra("action_listening",action)
         return PendingIntent.getBroadcast(context,action,i,PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     }
-    fun getListening() :Listening = mListening
     fun isPlaying() :Boolean = isPlaying
+
     fun getCurrentPosition() = mediaPlayer?.currentPosition
     fun getDuration() = mediaPlayer?.duration
     fun isRepeat():Boolean = isRepeat

@@ -1,12 +1,9 @@
 package com.example.englishttcm.log.view
 
-import android.text.TextUtils
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
@@ -15,7 +12,6 @@ import com.example.englishttcm.home.HomeFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
 import com.example.englishttcm.until.PreferenceManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.auth.FirebaseUser
 
 class LogInFragment : BaseFragment<FragmentLogInBinding>() {
 
@@ -90,7 +86,7 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
 
     override fun onResume() {
         super.onResume()
-        var fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
         fab!!.visibility = View.INVISIBLE
     }
     private fun loading(isLoading: Boolean) {

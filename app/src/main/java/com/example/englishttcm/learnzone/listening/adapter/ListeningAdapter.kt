@@ -1,14 +1,13 @@
 package com.example.englishttcm.learnzone.listening.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.databinding.ItemListeningBinding
 import com.example.englishttcm.learnzone.listening.model.Listening
+
 
 
 class ListeningAdapter(
@@ -37,7 +36,6 @@ class ListeningAdapter(
 
     override fun getItemCount(): Int{
         return listListening.size
-        Log.e("ERROR",listListening.size.toString())
     }
 
     override fun onBindViewHolder(holder: ListeningViewHolder, position: Int) {

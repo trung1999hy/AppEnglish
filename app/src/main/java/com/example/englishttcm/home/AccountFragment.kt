@@ -1,5 +1,6 @@
 package com.example.englishttcm.home
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
@@ -12,28 +13,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.CustomDialogDeleteBinding
 import com.example.englishttcm.databinding.CustomDialogLoadingBinding
 import com.example.englishttcm.databinding.FragmentAccountBinding
-import com.example.englishttcm.log.model.User
-import com.example.englishttcm.log.view.LogInFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
-import com.example.englishttcm.storyzone.model.StoryDownloaded
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
 
 class AccountFragment : BaseFragment<FragmentAccountBinding>() {
 
@@ -42,12 +32,14 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var loggedCheck: MutableLiveData<Boolean>
     private var imageUri: Uri? = null
+    private var loadingDialog: AlertDialog? = null
 
 
 
     override fun getLayout(container: ViewGroup?): FragmentAccountBinding = FragmentAccountBinding.inflate(layoutInflater,container,false)
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun initViews() {
         authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
         loggedCheck = authenticationViewModel.getLoggedStatus
@@ -76,6 +68,14 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
                 val drawableEndWidth = binding.etName.compoundDrawables[2].bounds.width()
                 if (event.rawX >= (binding.etName.right - drawableEndWidth)) {
                     authenticationViewModel.updateUserName(firebaseUser.uid,binding.etName.text.toString())
+                    showDialog(true)
+                    authenticationViewModel.getLoggedStatus.observe(viewLifecycleOwner){
+                        if(it){
+                            showDialog(false)
+                        }
+
+                    }
+
                     return@setOnTouchListener true
                 }
             }
@@ -88,39 +88,39 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
 
 
 
-    private val pickImage = registerForActivityResult<Intent, ActivityResult>(
+    private val pickImage = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
             if (result.data != null) {
-//                showDialog(true)
+                showDialog(true)
                 imageUri = result.data!!.data
                 authenticationViewModel.updateUserImage(imageUri!!)
-//                showDialog(false)
+                authenticationViewModel.getLoggedStatus.observe(viewLifecycleOwner){
+                    if(it){
+                        showDialog(false)
+                    }
+                }
 
             }
         }
     }
     override fun onResume() {
         super.onResume()
-        var fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
         fab!!.visibility = View.INVISIBLE
     }
     private fun showDialog(show:Boolean) {
-        val builder = AlertDialog.Builder(requireContext())
-        val inflater = LayoutInflater.from(requireContext())
-        val binding = CustomDialogLoadingBinding.inflate(inflater)
-        builder.setView(binding.root)
-        val dialog = builder.create()
-        if(show && !dialog.isShowing){
-            dialog.show()
-        }
-        else if (!show && dialog.isShowing){
-            dialog.dismiss()
+        if (show) {
+            val builder = AlertDialog.Builder(requireContext())
+            val inflater = LayoutInflater.from(requireContext())
+            val binding = CustomDialogLoadingBinding.inflate(inflater)
+            builder.setView(binding.root)
+            loadingDialog = builder.create()
+            loadingDialog?.show()
+        } else {
+            loadingDialog?.dismiss()
         }
     }
-
-
-
 
 }
