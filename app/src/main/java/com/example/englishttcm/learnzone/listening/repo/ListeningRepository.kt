@@ -1,16 +1,9 @@
 package com.example.englishttcm.learnzone.listening.repo
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.englishttcm.learnzone.listening.model.Listening
-import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
-import com.example.englishttcm.log.model.User
-import com.example.englishttcm.until.PreferenceManager
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 
 class ListeningRepository(_application: Application) {
     private var application: Application
@@ -22,7 +15,7 @@ class ListeningRepository(_application: Application) {
     }
 
     fun getAllListening():MutableLiveData<List<Listening>>{
-        var listListening = MutableLiveData<List<Listening>>()
+        val listListening = MutableLiveData<List<Listening>>()
         db.collection("listening").get()
             .addOnCompleteListener{
                     task ->

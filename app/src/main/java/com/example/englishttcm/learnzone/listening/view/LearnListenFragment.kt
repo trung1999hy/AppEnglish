@@ -7,25 +7,26 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import com.example.englishttcm.MyServiceCallback
 import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentLearnListeningBinding
 import com.example.englishttcm.learnzone.listening.model.Listening
 import com.example.englishttcm.learnzone.listening.service.MyService
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(){
-    private lateinit var mService:MyService
-    private var isServiceConnected:Boolean = false
-    private var isFirstPlay = true
+class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(), MyServiceCallback {
+    private var mService: MyService? = null
+    private var isServiceConnected: Boolean = false
     private lateinit var listening: Listening
 
     private val connection = object : ServiceConnection {
 
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance.
             val binder = service as MyService.LocalBinder
             mService = binder.getService()
             isServiceConnected = true
@@ -37,7 +38,6 @@ class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(){
         }
     }
 
-
     override fun getLayout(container: ViewGroup?): FragmentLearnListeningBinding =
         FragmentLearnListeningBinding.inflate(layoutInflater, container, false)
 
@@ -45,45 +45,42 @@ class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(){
         listening = data as Listening
         initLayout()
         binding.btnPlayOrPause.setOnClickListener {
-            if(isFirstPlay){
+            if (!isServiceConnected) {
                 onClickStartService()
-                isFirstPlay = false
-            }else {
-                if(mService.isPlaying()){
-                    mService.pauseListening()
-                }
-                else {
-                    mService.resumeListening()
+            } else {
+                if (mService?.isPlaying() == true) {
+                    mService?.pauseListening()
+                } else {
+                    mService?.resumeListening()
                 }
                 setStatusImageViewPlayOrPause()
-
             }
         }
         binding.btnRepeat.setOnClickListener {
-            if(mService.isRepeat()){
+            if (mService?.isRepeat() == true) {
                 binding.btnRepeat.setImageResource(R.drawable.ic_repeat)
-                mService.noRepeat()
-            }
-            else {
+                mService?.noRepeat()
+            } else {
                 binding.btnRepeat.setImageResource(R.drawable.ic_repeat2)
-                mService.repeat()
+                mService?.repeat()
             }
         }
         binding.btnSpeed.setOnClickListener {
-            if(mService.isSlowMotion()){
-                binding.btnSpeed.setImageResource(R.drawable.ic_1x)
-                mService.normalSpeed()
-            }
-            else {
-                binding.btnSpeed.setImageResource(R.drawable.ic_slow_motion)
-                mService.slowMotion()
+            if (mService?.isPlaying() == true) {
+                if (mService?.isSlowMotion() == true) {
+                    binding.btnSpeed.setImageResource(R.drawable.ic_1x)
+                    mService?.normalSpeed()
+                } else {
+                    binding.btnSpeed.setImageResource(R.drawable.ic_slow_motion)
+                    mService?.slowMotion()
+                }
             }
         }
         binding.btnReplay.setOnClickListener {
-            mService.replay5s()
+            mService?.replay5s()
         }
         binding.btnForward.setOnClickListener {
-            mService.forward5s()
+            mService?.forward5s()
         }
         binding.ivTranslate.setOnClickListener {
             binding.llTranslateText.visibility = View.VISIBLE
@@ -91,8 +88,9 @@ class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(){
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    val seekBarProgress = (progress.toFloat() / 100.0 * mService.getDuration()!!).toInt()
-                    mService.seekTo(seekBarProgress)
+                    val seekBarProgress =
+                        (progress.toFloat() / 100.0 * mService?.getDuration()!!).toInt()
+                    mService?.seekTo(seekBarProgress)
                 }
             }
 
@@ -105,19 +103,17 @@ class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(){
         }
 
 
-
-
     }
 
     private fun onClickStartService() {
         loading(true)
         val i = Intent(mContext, MyService::class.java)
         val bundle = Bundle()
-        bundle.putSerializable("listening",listening)
+        bundle.putSerializable("listening", listening)
         i.putExtras(bundle)
         mContext.startService(i)
 
-        mContext.bindService(i,connection,Context.BIND_AUTO_CREATE)
+        mContext.bindService(i, connection, Context.BIND_AUTO_CREATE)
 
     }
 
@@ -125,27 +121,26 @@ class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(){
         val i = Intent(mContext, MyService::class.java)
         mContext.stopService(i)
 
-        if(isServiceConnected){
+        if (isServiceConnected) {
             mContext.unbindService(connection)
             isServiceConnected = false
         }
     }
+
     private fun handleLayoutListening() {
         binding.layoutBottom.visibility = View.VISIBLE
-        binding.tvDuration.text = milliSecondsToTimer(mService.getDuration()!!.toLong())
+        binding.tvDuration.text = milliSecondsToTimer(mService?.getDuration()!!.toLong())
+        mService?.setCallback(this)
         setStatusImageViewPlayOrPause()
     }
 
-    private fun setStatusImageViewPlayOrPause(){
+
+    private fun setStatusImageViewPlayOrPause() {
         loading(false)
-        if(!::mService.isInitialized) {
-            return
-        }
-        if(mService.isPlaying()){
+        if (mService?.isPlaying() == true) {
             binding.btnPlayOrPause.setImageResource(R.drawable.ic_pause)
             updateSeekBar()
-        }
-        else {
+        } else {
             binding.btnPlayOrPause.setImageResource(R.drawable.ic_play)
         }
     }
@@ -157,20 +152,14 @@ class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(){
 
 
     private fun updateSeekBar() {
-        val mHandler = Handler()
+        val mHandler = Handler(Looper.getMainLooper())
         mHandler.postDelayed(object : Runnable {
             override fun run() {
                 try {
-                    val currentPos = mService.getCurrentPosition()
-                    val duration = mService.getDuration()
-                    if(currentPos != null){
-                        binding.tvCurrent.text = milliSecondsToTimer(currentPos.toLong())
-
-                    }
-                    if(duration != null && currentPos != null){
-                        binding.seekBar.progress = currentPos * 100 / duration
-
-                    }
+                    val currentPos = mService?.getCurrentPosition()
+                    val duration = mService?.getDuration()
+                    binding.tvCurrent.text = milliSecondsToTimer(currentPos?.toLong() ?: 0)
+                    binding.seekBar.progress = currentPos?.times(100)?.div(duration ?: 1) ?: 0
                 } catch (e: IllegalStateException) {
                     e.printStackTrace()
                 }
@@ -179,40 +168,54 @@ class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(){
         }, 100)
     }
 
-    private fun milliSecondsToTimer(milliSeconds: Long):String{
-        var timerString:String = ""
-        var secondsString:String
+    private fun milliSecondsToTimer(milliSeconds: Long): String {
+        var timerString = ""
+        val secondsString: String
 
-        var minutes = ((milliSeconds % (1000 * 60 * 60)) / (1000 * 60)).toInt()
-        var seconds = ((milliSeconds % (1000 * 60 * 60)) % (1000 * 60) / 1000).toInt()
-        if(seconds < 10){
-            secondsString = "0" + seconds
+        val minutes = ((milliSeconds % (1000 * 60 * 60)) / (1000 * 60)).toInt()
+        val seconds = ((milliSeconds % (1000 * 60 * 60)) % (1000 * 60) / 1000).toInt()
+        secondsString = if (seconds < 10) {
+            "0$seconds"
+        } else {
+            "" + seconds
         }
-        else {
-            secondsString = "" + seconds
-        }
-        timerString = timerString + minutes + ":" + secondsString
+        timerString = "$timerString$minutes:$secondsString"
         return timerString
 
     }
-    private fun initLayout(){
+
+    private fun initLayout() {
         binding.tvTitle.text = listening.title
         binding.tvContent.text = listening.content
         binding.tvTitleTranslate.text = listening.titleTranslate
         binding.tvContentTranslate.text = listening.contentTranslate
     }
+
     private fun loading(isLoading: Boolean) {
         if (isLoading) {
-            binding.btnPlayOrPause.setVisibility(View.INVISIBLE)
-            binding.progressBar.setVisibility(View.VISIBLE)
+            binding.btnPlayOrPause.visibility = View.INVISIBLE
+            binding.progressBar.visibility = View.VISIBLE
         } else {
-            binding.btnPlayOrPause.setVisibility(View.VISIBLE)
-            binding.progressBar.setVisibility(View.INVISIBLE)
+            binding.btnPlayOrPause.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.INVISIBLE
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
+        fab!!.visibility = View.INVISIBLE
+    }
 
+    override fun onPlayingStateChanged(isPlaying: Boolean) {
+        if (isPlaying) {
+            binding.btnPlayOrPause.setImageResource(R.drawable.ic_pause)
+            updateSeekBar()
+        } else {
+            binding.btnPlayOrPause.setImageResource(R.drawable.ic_play)
+        }
 
+    }
 
 
 }

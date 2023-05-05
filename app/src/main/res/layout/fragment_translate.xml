@@ -1,9 +1,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/offWhite">
 
     <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_toolbar"
@@ -36,91 +38,132 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <TextView
-        android:id="@+id/tv_translate"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+    <LinearLayout
+        android:id="@+id/spinnerLayout"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nhập văn bản"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textColor="#000"/>
-    <EditText
-        android:id="@+id/ed_sourcetext"
-        app:layout_constraintTop_toBottomOf="@id/tv_translate"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:inputType="text|textMultiLine"
-        android:gravity="top"
-        android:background="@drawable/bg_edit_text"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_switch_language"
-        app:layout_constraintTop_toBottomOf="@id/ed_sourcetext"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="@dimen/_56sdp"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_36sdp"
+        android:weightSum="3"
+        android:background="@drawable/background"
+        android:elevation="@dimen/_4sdp">
         <Spinner
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/spn_source"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/spn_target"
-            android:layout_marginRight="60dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
+            android:layout_margin="@dimen/_3sdp"
+            android:padding="@dimen/_3sdp"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/ivExchange"
+            android:layout_width="10dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/transfer" />
         <Spinner
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/spn_target"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/spn_source"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <EditText
-        android:id="@+id/ed_targettext"
-        app:layout_constraintTop_toBottomOf="@id/layout_switch_language"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:padding="10dp"
+            android:layout_margin="@dimen/_3sdp"
+            android:padding="@dimen/_3sdp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textLayout"
+        app:layout_constraintTop_toBottomOf="@id/spinnerLayout"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:inputType="text|textMultiLine"
-        android:gravity="top"
-        android:background="@drawable/bg_edit_text"
-        android:enabled="false"/>
-    <Button
-        android:id="@+id/btn_translate"
-        app:layout_constraintTop_toBottomOf="@id/ed_targettext"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="200dp"
+        android:layout_height="@dimen/_200sdp"
+        app:hintEnabled="true"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:padding="@dimen/_5sdp"
+        app:boxBackgroundMode="none"
+        android:elevation="@dimen/_8sdp" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ed_sourcetext"
+            android:hint="Enter text"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="textImeMultiLine"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15ssp"
+            android:gravity="top"
+            android:background="@drawable/background"
+            android:textColorHint="@color/primary_dark"/>
+        
+
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <FrameLayout
+        android:id="@+id/btnLayout"
+        app:layout_constraintTop_toBottomOf="@id/textLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            android:id="@+id/btn_translate"
+            android:text="@string/translate"
+            android:textSize="@dimen/_15ssp"
+            android:textAllCaps="false"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/btnLayout"
+        android:id="@+id/tv_targettext"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dịch"
-        android:textSize="15sp"
-        android:textStyle="bold"/>
+        android:text="Translated text here"
+        android:elevation="@dimen/_3sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:gravity="center"
+        android:padding="@dimen/_12sdp"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/primary_text"
+        android:letterSpacing="0.03"
+        android:visibility="gone"
+        android:background="@drawable/background"/>
+    <ImageView
+        android:id="@+id/ivVoice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:src="@drawable/ic_voice"
+        app:layout_constraintTop_toBottomOf="@+id/tv_targettext"
+        android:padding="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_20sdp" />
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/ivVoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Say something!"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

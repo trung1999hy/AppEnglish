@@ -2,14 +2,10 @@ package com.example.englishttcm.translate.repo
 
 import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.internal.ContextUtils.getActivity
-import org.json.JSONException
 import org.json.JSONObject
 
 class TranslateRepository(_application: Application) {
@@ -27,11 +23,11 @@ class TranslateRepository(_application: Application) {
             Response.Listener { response ->
                 val json = JSONObject(response)
                 tranText.value = json.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText")
-                Toast.makeText(application, "complete", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(application, "complete", Toast.LENGTH_SHORT).show()
             },
             Response.ErrorListener { error ->
                 Log.d("TranslateFrag", error.networkResponse.statusCode.toString())
-                Toast.makeText(application, error.networkResponse.statusCode.toString(), Toast.LENGTH_SHORT).show()
+//                Toast.makeText(application, error.networkResponse.statusCode.toString(), Toast.LENGTH_SHORT).show()
 
             }) {
             override fun getParams(): MutableMap<String, String> {

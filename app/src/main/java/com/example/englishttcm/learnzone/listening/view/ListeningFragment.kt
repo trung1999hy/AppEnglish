@@ -2,7 +2,6 @@ package com.example.englishttcm.learnzone.listening.view
 
 
 import android.view.ViewGroup
-import android.widget.Toast
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,16 +26,21 @@ class ListeningFragment : BaseFragment<FragmentListeningBinding>() {
 
 
 
-        viewModel.getAllListening().observe(viewLifecycleOwner){
-                binding.rcvListening.layoutManager = LinearLayoutManager(context)
-                binding.rcvListening.adapter = ListeningAdapter(it, object : OnItemClickListener {
-                    override fun onItemClick(data: Any?) {
-                        val listening = data as Listening
-                        callback.showFragment(
-                            ListeningFragment::class.java,
-                            LearnListenFragment::class.java,0,0,listening,true)
-                    }
-                })
+        viewModel.getAllListening().observe(viewLifecycleOwner) {
+            binding.rcvListening.layoutManager = LinearLayoutManager(context)
+            binding.rcvListening.adapter = ListeningAdapter(it, object : OnItemClickListener {
+                override fun onItemClick(data: Any?) {
+                    val listening = data as Listening
+                    callback.showFragment(
+                        ListeningFragment::class.java,
+                        LearnListenFragment::class.java,
+                        0,
+                        0,
+                        listening,
+                        true
+                    )
+                }
+            })
         }
         binding.btnBack.setOnClickListener {
             callback.backToPrevious()

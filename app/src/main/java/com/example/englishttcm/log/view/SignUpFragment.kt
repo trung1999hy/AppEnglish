@@ -3,12 +3,10 @@ package com.example.englishttcm.log.view
 import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.FragmentSignUpBinding
-import com.example.englishttcm.home.HomeFragment
 import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -43,7 +41,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(){
                 binding.etPassword.error = getString(R.string.counter_length)
             } else if (confirmPassword.isEmpty()) {
                 binding.etConfirmPassword.error = getString(R.string.empty_cpassword)
-            } else if (!password.equals(confirmPassword)) {
+            } else if (password != confirmPassword) {
                 binding.etConfirmPassword.error = getString(R.string.same_password)
             }else {
                 loading(true)
@@ -64,7 +62,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(){
     }
     override fun onResume() {
         super.onResume()
-        var fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
+        val fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
         fab!!.visibility = View.INVISIBLE
     }
     private fun loading(isLoading: Boolean) {

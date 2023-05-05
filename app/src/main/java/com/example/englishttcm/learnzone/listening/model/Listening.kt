@@ -1,7 +1,5 @@
 package com.example.englishttcm.learnzone.listening.model
 
-import android.net.Uri
-import java.net.URL
 
 data class Listening(
     var image: String?,
