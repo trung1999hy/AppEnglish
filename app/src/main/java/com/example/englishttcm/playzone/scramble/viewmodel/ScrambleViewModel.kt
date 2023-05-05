@@ -44,7 +44,7 @@ class ScrambleViewModel : ViewModel() {
     }
 
     fun checkWin() {
-        _isWin.value = _currentWordCount.value!! >= 10 && _score.value == 100
+        _isWin.value = _score.value == 100
     }
 
     fun isSkip() {
