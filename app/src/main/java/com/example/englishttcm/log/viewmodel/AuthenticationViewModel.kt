@@ -31,6 +31,10 @@ class AuthenticationViewModel(application: Application) : AndroidViewModel(appli
         get() = user
     val getLoggedStatus: MutableLiveData<Boolean>
         get() = loggedStatus
+    val checkUserImageUpdated: MutableLiveData<Boolean>
+        get() = repository.checkUserImageUpdated
+    val checkUserNameUpdated: MutableLiveData<Boolean>
+        get() = repository.checkUserNameUpdated
 
     fun register(email: String, password: String, name: String){
         repository.register(email, password, name)

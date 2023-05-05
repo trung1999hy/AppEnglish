@@ -18,6 +18,8 @@ class AuthenticationRepository(_application: Application) {
     private var application: Application
     private var firebaseUserMutableLiveData: MutableLiveData<FirebaseUser>
     private var userLoggedMutableLiveData: MutableLiveData<Boolean>
+    private var userImageUpdated: MutableLiveData<Boolean>
+    private var userNameUpdated: MutableLiveData<Boolean>
     private var userMutableLiveData:MutableLiveData<User>
     private var auth: FirebaseAuth
     private val defaultImage: String = "https://firebasestorage.googleapis.com/v0/b/english-ttcm.appspot.com/o/avatar_default%2FDefault_avatar.png?alt=media&token=9f936a48-7411-4a96-b2fe-4658334fb016"
@@ -32,11 +34,17 @@ class AuthenticationRepository(_application: Application) {
         get() = userLoggedMutableLiveData
     val getUserDetail: MutableLiveData<User>
         get() = userMutableLiveData
+    val checkUserNameUpdated: MutableLiveData<Boolean>
+        get() = userNameUpdated
+    val checkUserImageUpdated: MutableLiveData<Boolean>
+        get() = userImageUpdated
     init {
         application = _application
         firebaseUserMutableLiveData = MutableLiveData<FirebaseUser>()
         userMutableLiveData = MutableLiveData<User>()
         userLoggedMutableLiveData = MutableLiveData<Boolean>()
+        userImageUpdated = MutableLiveData<Boolean>()
+        userNameUpdated = MutableLiveData<Boolean>()
         auth = FirebaseAuth.getInstance()
         if(auth.currentUser != null){
             firebaseUserMutableLiveData.postValue(auth.currentUser)
@@ -114,11 +122,11 @@ class AuthenticationRepository(_application: Application) {
                 firestoreDatabase.collection("users").document(auth.currentUser!!.uid)
                     .update("image", uri.toString())
                     .addOnSuccessListener {
-                        userLoggedMutableLiveData.postValue(true)
+                        userImageUpdated.postValue(true)
                         Toast.makeText(application, "Upload successfully!", Toast.LENGTH_SHORT).show()
                         getUserDetail(auth.currentUser!!.uid)
                     }.addOnFailureListener {
-                        userLoggedMutableLiveData.postValue(false)
+                        userImageUpdated.postValue(false)
                         Toast.makeText(application, "Error updating image", Toast.LENGTH_SHORT).show()
                     }
             }
@@ -134,7 +142,7 @@ class AuthenticationRepository(_application: Application) {
         userRef.update("name", newName)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    userLoggedMutableLiveData.postValue(true)
+                    userNameUpdated.postValue(true)
                     Toast.makeText(application, "Update username successfully", Toast.LENGTH_SHORT).show()
                     getUserDetail(auth.currentUser!!.uid)
                 } else {
@@ -142,7 +150,7 @@ class AuthenticationRepository(_application: Application) {
                 }
             }
             .addOnFailureListener {
-                userLoggedMutableLiveData.postValue(false)
+                userNameUpdated.postValue(false)
                 Toast.makeText(application, "Error updating username", Toast.LENGTH_SHORT).show()
             }
     }
@@ -164,7 +172,6 @@ class AuthenticationRepository(_application: Application) {
 
     fun signOut(){
         auth.signOut()
-//        userLoggedMutableLiveData.postValue(true)
         preferenceManager.clear()
     }
 

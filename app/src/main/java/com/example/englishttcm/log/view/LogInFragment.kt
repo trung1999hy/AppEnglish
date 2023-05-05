@@ -38,8 +38,9 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
             authenticationViewModel.getUserData.observe(viewLifecycleOwner){
                     user ->
                 loggedCheck.observe(this){
+                    loading(false)
+
                     if(it){
-                        loading(false)
                         callback.showFragment(LogInFragment::class.java, HomeFragment::class.java, R.anim.slide_in, 0,user)
                     }
                 }
@@ -64,8 +65,8 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
                 authenticationViewModel.getUserData.observe(viewLifecycleOwner){
                     user ->
                     loggedCheck.observe(this){
+                        loading(false)
                         if(it){
-                            loading(false)
                             callback.showFragment(LogInFragment::class.java, HomeFragment::class.java, R.anim.slide_in, 0,user)
                         }
                     }
