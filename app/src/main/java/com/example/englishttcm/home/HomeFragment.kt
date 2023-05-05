@@ -206,9 +206,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun setLearnData() {
         listStudyTitle = arrayListOf()
         listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_green, "Vocabulary", R.drawable.img_vocabulary))
-        listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_pink, "Grammar", R.drawable.img_vocabulary))
         listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_yellow, "Listening", R.drawable.img_vocabulary))
-        listStudyTitle.add(StudyMode(R.drawable.header_home_background, "Reading", R.drawable.img_vocabulary))
     }
 
     private fun addBannerAds(){
