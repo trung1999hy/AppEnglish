@@ -13,6 +13,10 @@ class SelectTypeFragment : BaseFragment<FragmentMultichoiceSelectionBinding>(){
         binding.layoutVocabularyQuiz.setOnClickListener {
             callback.showFragment(SelectTypeFragment::class.java, PlayQuizFragment::class.java,0,0, null, true)
         }
+
+        binding.ivBack.setOnClickListener{
+            callback.backToPrevious()
+        }
     }
 
 }

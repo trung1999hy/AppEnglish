@@ -115,6 +115,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             SelectTypeFragment::class.java,
                             0,
                             0
+                        ,null, true
                         )
                     }
                     if(gameMode.mode == SCRAMBLE){
