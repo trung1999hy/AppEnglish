@@ -4,9 +4,11 @@ import android.Manifest
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.example.englishttcm.application.MyApplication
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.databinding.CustomDialogDownloadBinding
 import com.example.englishttcm.databinding.FragmentDetailStoryBinding
@@ -17,6 +19,7 @@ import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
 
 class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
     private var storyViewModel: StoryViewModel? = null
+    private var currentCoin = MyApplication.getInstance().getPreference().getValueCoin()
     override fun getLayout(container: ViewGroup?): FragmentDetailStoryBinding =
         FragmentDetailStoryBinding.inflate(layoutInflater, container, false)
 
@@ -42,7 +45,34 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
             callback.backToPrevious()
         }
         binding.btnDownload.setOnClickListener {
-            storyViewModel!!.checkPermission(requireActivity())
+            val alertDialog = AlertDialog.Builder(context)
+            alertDialog.apply {
+                setTitle("Purchase confirmation")
+                setMessage("Are you sure you want to pay 2 gold to download this story?")
+                setPositiveButton(
+                    "Yes"
+                ) { dialogInterface, which ->
+                    if (currentCoin > 2) {
+                        currentCoin -= 2
+                        MyApplication.getInstance().getPreference().setValueCoin(currentCoin)
+                        storyViewModel!!.checkPermission(requireActivity())
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "You do not have enough coin, please top up to use this feature",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+                setNegativeButton(
+                    "No"
+                ) { dialog, which ->
+                    dialog.dismiss()
+                }
+            }
+
+            val dialog = alertDialog.create()
+            dialog.show()
         }
         val requestPermissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()

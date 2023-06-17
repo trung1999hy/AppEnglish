@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">EnglishTTCM</string>
-    <string name="author">Powered by Group 4 TTCM Android</string>
+    <string name="author">Powered by BMT team</string>
     <string name="user">User</string>
     <string name="win">win</string>
     <string name="win_count">1</string>
+    <string name="buy_coin">Buy now</string>
     <string name="learning">Learning</string>
     <string name="vocabulary">Vocabulary</string>
     <string name="play_now">Play Now</string>
@@ -99,4 +100,6 @@
     <string name="bookmark">Bookmark</string>
     <string name="update">Update</string>
     <string name="note_this_word_to_the_bookmark">Note this word to the bookmark</string>
+    <string name="message_purchase_one">%s</string>
+
 </resources>

@@ -13,21 +13,15 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     override fun initViews() {
         val application = application as MyApplication
         Handler(Looper.myLooper()!!).postDelayed({
-            application.showAdIfAvailable(
-                this,
-                object : MyApplication.OnShowAdCompleteListener {
-                    override fun onShowAdComplete() {
-                        startMainActivity()
-                        finish()
-                    }
-                })
+            startMainActivity()
+            finish()
         }, 2000)
 
     }
 
     override fun getLayout(): ActivitySplashBinding = ActivitySplashBinding.inflate(layoutInflater)
 
-    fun startMainActivity(){
+    private fun startMainActivity(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }

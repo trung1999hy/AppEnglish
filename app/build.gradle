@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace 'com.example.englishttcm'
-    compileSdk 33
+    compileSdkVersion 34
 
     defaultConfig {
-        applicationId "com.example.englishttcm"
+        applicationId "com.tpk.englishttcm"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core:1.12.0-alpha03'
+    implementation 'androidx.core:core:1.12.0-alpha05'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -53,7 +53,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:+'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.3'
-    implementation 'com.google.android.gms:play-services-ads-lite:22.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -84,8 +83,6 @@ dependencies {
     //Read pdf
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
-    //ads
-    implementation 'com.google.android.gms:play-services-ads:22.0.0'
 //    def lifecycle_version = "2.3.1"
 //    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 //    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
@@ -100,6 +97,12 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     // GSON
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //billingClient library
+    def billing_version = "5.0.0"
+    implementation "com.android.billingclient:billing:$billing_version"
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    implementation 'com.google.guava:guava:24.1-jre'
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'

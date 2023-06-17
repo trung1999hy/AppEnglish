@@ -1,6 +1,7 @@
 /* NAM NV created on 22:08 12-4-2023 */
 package com.example.englishttcm.home
 
+import android.content.Intent
 import android.util.Log
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -8,6 +9,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
+import com.example.englishttcm.application.MyApplication
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.chatbot.view.ChatBotFragment
 import com.example.englishttcm.databinding.FragmentHomeBinding
@@ -26,8 +28,7 @@ import com.example.englishttcm.playzone.scramble.view.ScrambleFragment
 import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
 import com.example.englishttcm.translate.view.TranslateFragment
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
+import com.example.purchase.InAppPurchaseActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 
@@ -38,6 +39,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var listPlayMode: ArrayList<GamePlayMode>
     private lateinit var authenticationViewModel: AuthenticationViewModel
     lateinit var toggle: ActionBarDrawerToggle
+    private val currentCoin = MyApplication.getInstance().getPreference().getValueCoin()
 
 
 
@@ -45,13 +47,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         FragmentHomeBinding.inflate(layoutInflater, container, false)
 
     override fun initViews() {
+        binding.tvCoinCount.text = currentCoin.toString()
+        binding.btnBuyCoin.setOnClickListener {
+            startActivity(Intent(context, InAppPurchaseActivity::class.java))
+        }
         authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
         firebaseUser = data as FirebaseUser
         authenticationViewModel.getUserDetail(firebaseUser.uid)
         authenticationViewModel.getUserDetail.observe(viewLifecycleOwner){
             binding.tvNameUser.text = it.name
             binding.tvWinCount.text = it.win!!.toString()
-            binding.tvCoinCount.text = it.coin!!.toString()
             binding.tvTrophyCount.text = it.trophy!!.toString()
         }
 
@@ -195,7 +200,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 true
             )
         }
-        addBannerAds()
     }
 
     private fun setPlayMode() {
@@ -210,11 +214,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_yellow, "Listening", R.drawable.img_vocabulary))
     }
 
-    private fun addBannerAds(){
-        MobileAds.initialize(requireActivity())
-        val adRequest =AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
-    }
 
 
 }

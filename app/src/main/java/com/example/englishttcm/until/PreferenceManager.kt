@@ -2,13 +2,28 @@ package com.example.englishttcm.until
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
+import com.example.englishttcm.common.Constant.KEY_TOTAL_COIN
 
 class PreferenceManager(context: Context) {
     private val sharedPreferences: SharedPreferences
+    private val editor: SharedPreferences.Editor?
+
+    companion object {
+        private var instance: PreferenceManager?= null
+        fun getInstance(context: Context): PreferenceManager {
+            if (instance == null) {
+                instance = PreferenceManager(context)
+            }
+            return instance!!
+        }
+    }
 
     init {
         sharedPreferences = context.getSharedPreferences("EnglishPreferences", Context.MODE_PRIVATE)
+        editor = sharedPreferences?.edit()
     }
+
 
     fun putBoolean(key: String?, value: Boolean?) {
         val editor = sharedPreferences.edit()
@@ -28,6 +43,14 @@ class PreferenceManager(context: Context) {
 
     fun getString(key: String?): String? {
         return sharedPreferences.getString(key, null)
+    }
+
+    fun setValueCoin(value: Int) {
+        editor?.putInt(KEY_TOTAL_COIN, value)?.apply()
+    }
+
+    fun getValueCoin(): Int {
+        return sharedPreferences.getInt(KEY_TOTAL_COIN, 0) ?: 0
     }
 
     fun clear() {

@@ -13,7 +13,8 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:usesCleartextTraffic="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_logo_app"
+        android:roundIcon="@mipmap/ic_launcher_logo_app"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.EnglishTTCM"
@@ -46,10 +47,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.MainActivity"/>
-        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+        <activity android:name="com.example.purchase.InAppPurchaseActivity"/>
         <service
             android:name=".view.activity.MyFirebaseService"
             android:exported="false">
