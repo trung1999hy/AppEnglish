@@ -51,7 +51,5 @@ class ScrambleViewModel : ViewModel() {
         _isOriginal.value = true
     }
 
-    fun updateCoin() = scrambleRepository.updateCoin()
-
 
 }

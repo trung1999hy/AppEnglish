@@ -4,10 +4,6 @@ package com.example.englishttcm.home
 import android.content.Intent
 import android.util.Log
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.*
 import com.example.englishttcm.application.MyApplication
 import com.example.englishttcm.base.BaseFragment
@@ -21,24 +17,15 @@ import com.example.englishttcm.learnzone.grammar.LearnGrammarFragment
 import com.example.englishttcm.learnzone.listening.view.ListeningFragment
 import com.example.englishttcm.learnzone.reading.LearnReadFragment
 import com.example.englishttcm.learnzone.vocabulary.view.VocabularyTopicFragment
-import com.example.englishttcm.log.view.LogInFragment
-import com.example.englishttcm.log.viewmodel.AuthenticationViewModel
 import com.example.englishttcm.bookmark.view.BookmarkWordFragment
 import com.example.englishttcm.playzone.scramble.view.ScrambleFragment
 import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
-import com.example.englishttcm.translate.view.TranslateFragment
 import com.example.purchase.InAppPurchaseActivity
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseUser
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-
-    private lateinit var firebaseUser: FirebaseUser
     private lateinit var listStudyTitle: ArrayList<StudyMode>
     private lateinit var listPlayMode: ArrayList<GamePlayMode>
-    private lateinit var authenticationViewModel: AuthenticationViewModel
-    lateinit var toggle: ActionBarDrawerToggle
     private val currentCoin = MyApplication.getInstance().getPreference().getValueCoin()
 
 
@@ -50,14 +37,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.tvCoinCount.text = currentCoin.toString()
         binding.btnBuyCoin.setOnClickListener {
             startActivity(Intent(context, InAppPurchaseActivity::class.java))
-        }
-        authenticationViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
-        firebaseUser = data as FirebaseUser
-        authenticationViewModel.getUserDetail(firebaseUser.uid)
-        authenticationViewModel.getUserDetail.observe(viewLifecycleOwner){
-            binding.tvNameUser.text = it.name
-            binding.tvWinCount.text = it.win!!.toString()
-            binding.tvTrophyCount.text = it.trophy!!.toString()
         }
 
         setLearnData()
@@ -136,40 +115,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             })
 
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navigationView
-        toggle = ActionBarDrawerToggle(
-            activity,
-            drawerLayout,
-            R.string.open_navigation,
-            R.string.close_navigation
-        )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-        navView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_account -> callback.showFragment(
-                    HomeFragment::class.java,
-                    AccountFragment::class.java,
-                    0,0,
-                    firebaseUser,
-                    true
-                )
-                R.id.nav_translate -> {
-                    callback.showFragment(HomeFragment::class.java, TranslateFragment::class.java,0,0,null,false)
-
-                }
-                R.id.nav_signout -> {
-                    authenticationViewModel.signOut()
-                    callback.showFragment(HomeFragment::class.java, LogInFragment::class.java,0,0,null,false)
-                }
-            }
-            true
-
-        }
-        binding.menu.setOnClickListener {
-            binding.drawerLayout.openDrawer(GravityCompat.START)
-        }
         binding.btnBook.setOnClickListener {
             callback.showFragment(
                 HomeFragment::class.java,

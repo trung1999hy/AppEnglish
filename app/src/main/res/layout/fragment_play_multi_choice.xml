@@ -15,8 +15,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_support"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/timer"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp"
@@ -31,6 +31,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_below="@id/timer"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_fiftyfifty"/>
     </com.google.android.material.card.MaterialCardView>
 

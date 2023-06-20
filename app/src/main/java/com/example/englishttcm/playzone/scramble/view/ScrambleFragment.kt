@@ -99,7 +99,6 @@ class ScrambleFragment : BaseFragment<FragmentScrambleGameBinding>() {
         handlerWin!!.postDelayed({
             dialog.show(requireActivity().supportFragmentManager, "win_dialog")
         }, 100)
-        scrambleViewModel.updateCoin()
     }
 
     private fun setErrorTextField(error: Boolean) {

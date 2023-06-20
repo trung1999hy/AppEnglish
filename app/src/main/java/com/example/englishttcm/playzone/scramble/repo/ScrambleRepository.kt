@@ -31,14 +31,4 @@ class ScrambleRepository {
         }
         return data
     }
-
-    fun updateCoin() {
-        val userId = FirebaseAuth.getInstance().currentUser!!.uid
-        db.collection("users").document(userId).get().addOnSuccessListener { documentSnapshot ->
-            if (documentSnapshot.exists()) {
-                val coin = documentSnapshot.getLong("coin")?.toInt() ?: 0
-                db.collection("users").document(userId).update("coin", coin + 20)
-            }
-        }
-    }
 }

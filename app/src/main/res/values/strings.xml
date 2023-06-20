@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">EnglishTTCM</string>
     <string name="author">Powered by BMT team</string>
-    <string name="user">User</string>
+    <string name="title">Learn together</string>
     <string name="win">win</string>
     <string name="win_count">1</string>
     <string name="buy_coin">Buy now</string>
@@ -91,7 +91,7 @@
     <string name="back_detail_activity">Back</string>
     <string name="iv_lose">crying</string>
     <string name="congrats">Congratulations</string>
-    <string name="win_gift">Bạn nhận được 20 vàng</string>
+    <string name="win_noti">Bạn đã thắng</string>
     <string name="coin_win">coin_win</string>
     <string name="winner">winner</string>
     <string name="chat_with_bot">Chat with bot</string>
