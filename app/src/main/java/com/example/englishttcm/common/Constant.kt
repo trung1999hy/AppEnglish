@@ -13,6 +13,12 @@ object Constant {
 
     const val KEY_6_COIN = "key_in_app_6" // 700 coin
 
+    const val KEY_7_COIN = "key_in_app_7" //25 coin
+
+    const val KEY_8_COIN = "key_in_app_8" //300 coin
+
+    const val KEY_9_COIN = "key_in_app_9" //650 coin
+
 
     const val KEY_PREMIUM = "KEY_PREMIUM" // premium
 

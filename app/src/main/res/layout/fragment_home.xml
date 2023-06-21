@@ -38,7 +38,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/img_coin" />
+                        android:src="@drawable/img_gold" />
 
                     <TextView
                         android:id="@+id/tvBuyCoin"
@@ -165,7 +165,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/img_coin" />
+                        android:src="@drawable/img_gold" />
 
                     <TextView
                         android:id="@+id/tv_coin_count"
