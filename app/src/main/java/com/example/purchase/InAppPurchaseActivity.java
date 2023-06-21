@@ -152,6 +152,21 @@ public class InAppPurchaseActivity extends AppCompatActivity implements InAppPur
                 QueryProductDetailsParams.Product.newBuilder()
                         .setProductId(Constant.KEY_6_COIN)
                         .setProductType(INAPP)
+                        .build(),
+                //Product 7
+                QueryProductDetailsParams.Product.newBuilder()
+                        .setProductId(Constant.KEY_7_COIN)
+                        .setProductType(INAPP)
+                        .build(),
+                //Product 8
+                QueryProductDetailsParams.Product.newBuilder()
+                        .setProductId(Constant.KEY_8_COIN)
+                        .setProductType(INAPP)
+                        .build(),
+                //Product 9
+                QueryProductDetailsParams.Product.newBuilder()
+                        .setProductId(Constant.KEY_9_COIN)
+                        .setProductType(INAPP)
                         .build()
         );
         return productList;
@@ -247,6 +262,12 @@ public class InAppPurchaseActivity extends AppCompatActivity implements InAppPur
                 return 600;
             case Constant.KEY_6_COIN:
                 return 700;
+            case Constant.KEY_7_COIN:
+                return 25;
+            case Constant.KEY_8_COIN:
+                return 300;
+            case Constant.KEY_9_COIN:
+                return 650;
             default:
                 return 0;
         }
