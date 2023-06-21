@@ -38,7 +38,7 @@ class MyApplication : Application(), LifecycleObserver {
         pref.putBoolean("isFirstCoin", true)
         isFirstCoin = pref.getBoolean("isFirstCoin")
         if (isFirstCoin && pref.getValueCoin() == 0) {
-            pref.setValueCoin(10)
+            pref.setValueCoin(2)
             pref.putBoolean("isFirstCoin", false)
         }
         createNotificationChannel()

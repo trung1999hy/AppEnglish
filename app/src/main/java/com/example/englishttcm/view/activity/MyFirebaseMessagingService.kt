@@ -45,11 +45,11 @@ class MyFirebaseService : FirebaseMessagingService() {
         val defaultSoundUri: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder: NotificationCompat.Builder =
             NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.mipmap.ic_launcher_app_logo_foreground)
                 .setLargeIcon(
                     BitmapFactory.decodeResource(
                         resources,
-                        R.drawable.ic_launcher_background
+                        R.mipmap.ic_launcher_app_logo_foreground
                     )
                 )
                 .setContentTitle(getString(R.string.project_id))

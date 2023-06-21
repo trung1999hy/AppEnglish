@@ -4,6 +4,9 @@ package com.example.englishttcm.home
 import android.content.Intent
 import android.util.Log
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.englishttcm.*
 import com.example.englishttcm.application.MyApplication
 import com.example.englishttcm.base.BaseFragment
@@ -42,6 +45,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         setLearnData()
         setPlayMode()
         Log.i("list", listStudyTitle.size.toString())
+        binding.rcvStudyZone.layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
         binding.rcvStudyZone.adapter =
             StudyZoneAdapter(requireContext(), listStudyTitle, object : OnItemClickListener {
                 override fun onItemClick(data: Any?) {
@@ -157,6 +161,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         listStudyTitle = arrayListOf()
         listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_green, "Vocabulary", R.drawable.img_vocabulary))
         listStudyTitle.add(StudyMode(R.drawable.bg_study_zone_yellow, "Listening", R.drawable.img_vocabulary))
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        binding.tvCoinCount.text = MyApplication.getInstance().getPreference().getValueCoin().toString()
     }
 
 

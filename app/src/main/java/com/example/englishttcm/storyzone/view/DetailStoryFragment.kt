@@ -30,11 +30,10 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
             override fun onDownloadComplete(data: Any?) {
                 Glide.with(requireContext()).load(data as String)
                     .into(binding.imgStory)
-                notify("Load success")
             }
 
             override fun onDownloadFailed(data: Any?) {
-                notify("Load failed")
+
             }
 
         })
@@ -48,11 +47,11 @@ class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
             val alertDialog = AlertDialog.Builder(context)
             alertDialog.apply {
                 setTitle("Purchase confirmation")
-                setMessage("Are you sure you want to pay 2 gold to download this story?")
+                setMessage("Are you sure to pay 2 gold to download this story?")
                 setPositiveButton(
                     "Yes"
                 ) { dialogInterface, which ->
-                    if (currentCoin > 2) {
+                    if (currentCoin >= 2) {
                         currentCoin -= 2
                         MyApplication.getInstance().getPreference().setValueCoin(currentCoin)
                         storyViewModel!!.checkPermission(requireActivity())
