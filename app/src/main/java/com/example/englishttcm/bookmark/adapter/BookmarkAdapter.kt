@@ -3,9 +3,9 @@ package com.example.englishttcm.bookmark.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.englishttcm.databinding.ItemBookmarkBinding
 import com.example.englishttcm.learnzone.vocabulary.OnItemWordClickListener
 import com.example.englishttcm.bookmark.model.BookmarkWord
+import com.tpk.englishttcm.databinding.ItemBookmarkBinding
 
 class BookmarkAdapter(
     var listWord : ArrayList<BookmarkWord>,

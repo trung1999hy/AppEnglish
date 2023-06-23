@@ -4,10 +4,10 @@ package com.example.englishttcm.view.activity
 import android.content.Intent
 import android.os.Looper
 import com.example.englishttcm.base.BaseActivity
-import com.example.englishttcm.databinding.ActivitySplashBinding
 import android.os.Handler
 
 import com.example.englishttcm.application.MyApplication
+import com.tpk.englishttcm.databinding.ActivitySplashBinding
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     override fun initViews() {

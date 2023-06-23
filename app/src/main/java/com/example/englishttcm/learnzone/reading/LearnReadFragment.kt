@@ -2,7 +2,7 @@ package com.example.englishttcm.learnzone.reading
 
 import android.view.ViewGroup
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentLearnReadingBinding
+import com.tpk.englishttcm.databinding.FragmentLearnReadingBinding
 
 class LearnReadFragment : BaseFragment<FragmentLearnReadingBinding>(){
 

@@ -2,7 +2,7 @@ package com.example.englishttcm.learnzone.grammar
 
 import android.view.ViewGroup
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentLearnGrammarBinding
+import com.tpk.englishttcm.databinding.FragmentLearnGrammarBinding
 
 class LearnGrammarFragment : BaseFragment<FragmentLearnGrammarBinding>() {
 

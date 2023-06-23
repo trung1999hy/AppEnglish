@@ -9,10 +9,10 @@ import com.example.englishttcm.OnItemClickListener
 
 import com.example.englishttcm.base.BaseFragment
 
-import com.example.englishttcm.databinding.FragmentListeningBinding
 import com.example.englishttcm.learnzone.listening.adapter.ListeningAdapter
 import com.example.englishttcm.learnzone.listening.model.Listening
 import com.example.englishttcm.learnzone.listening.viewmodel.ListeningViewModel
+import com.tpk.englishttcm.databinding.FragmentListeningBinding
 
 
 class ListeningFragment : BaseFragment<FragmentListeningBinding>() {

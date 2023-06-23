@@ -6,13 +6,14 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishttcm.OnActionCallback
 import com.example.englishttcm.OnItemClickListener
-import com.example.englishttcm.databinding.ItemRowStoryBinding
+
 import com.example.englishttcm.storyzone.model.Genre
 import com.example.englishttcm.storyzone.model.Story
 import com.example.englishttcm.storyzone.view.DetailStoryFragment
 import com.example.englishttcm.storyzone.view.ReadStoryFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
 import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
+import com.tpk.englishttcm.databinding.ItemRowStoryBinding
 
 class StoryAdapter(
     private val listGenres: List<Genre>,

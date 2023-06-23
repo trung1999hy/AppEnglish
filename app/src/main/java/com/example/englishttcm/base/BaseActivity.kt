@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.englishttcm.OnActionCallback
-import com.example.englishttcm.R
+import com.tpk.englishttcm.R
 
 abstract class BaseActivity<VM: ViewBinding> : AppCompatActivity(), OnActionCallback{
 

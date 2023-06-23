@@ -3,8 +3,8 @@ package com.example.englishttcm.playzone.scramble.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.englishttcm.databinding.ItemScrambleBinding
 import com.example.englishttcm.playzone.scramble.model.Scramble
+import com.tpk.englishttcm.databinding.ItemScrambleBinding
 
 class ScrambleAdapter(private val listScramble: List<Scramble>) :
     RecyclerView.Adapter<ScrambleAdapter.ScrambleViewHolder>() {

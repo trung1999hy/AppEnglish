@@ -10,12 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.englishttcm.application.MyApplication
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.CustomDialogDownloadBinding
-import com.example.englishttcm.databinding.FragmentDetailStoryBinding
 import com.example.englishttcm.storyzone.callback.OnDownloadCompleteListener
 import com.example.englishttcm.storyzone.model.Story
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
+import com.tpk.englishttcm.databinding.CustomDialogDownloadBinding
+import com.tpk.englishttcm.databinding.FragmentDetailStoryBinding
 
 class DetailStoryFragment : BaseFragment<FragmentDetailStoryBinding>() {
     private var storyViewModel: StoryViewModel? = null

@@ -11,7 +11,6 @@ import com.example.englishttcm.*
 import com.example.englishttcm.application.MyApplication
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.chatbot.view.ChatBotFragment
-import com.example.englishttcm.databinding.FragmentHomeBinding
 import com.example.englishttcm.home.adapter.PlayZoneAdapter
 import com.example.englishttcm.home.adapter.StudyZoneAdapter
 import com.example.englishttcm.home.model.GamePlayMode
@@ -25,6 +24,8 @@ import com.example.englishttcm.playzone.scramble.view.ScrambleFragment
 import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
 import com.example.purchase.InAppPurchaseActivity
+import com.tpk.englishttcm.R
+import com.tpk.englishttcm.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var listStudyTitle: ArrayList<StudyMode>

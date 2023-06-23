@@ -2,7 +2,7 @@ package com.example.englishttcm.playzone.view.fragment
 
 import android.view.ViewGroup
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentMultichoiceSelectionBinding
+import com.tpk.englishttcm.databinding.FragmentMultichoiceSelectionBinding
 
 class SelectTypeFragment : BaseFragment<FragmentMultichoiceSelectionBinding>(){
 

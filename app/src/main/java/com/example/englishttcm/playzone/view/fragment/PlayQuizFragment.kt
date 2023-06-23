@@ -10,15 +10,15 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentPlayMultiChoiceBinding
 import com.example.englishttcm.playzone.model.Quiz
 import com.example.englishttcm.playzone.view.dialog.LoseQuizDialog
 import com.example.englishttcm.playzone.view.dialog.OnBackListener
 import com.example.englishttcm.playzone.view.dialog.WinQuizDialog
 import com.example.englishttcm.playzone.viewmodel.QuizViewModel
 import com.google.android.material.card.MaterialCardView
+import com.tpk.englishttcm.R
+import com.tpk.englishttcm.databinding.FragmentPlayMultiChoiceBinding
 
 class PlayQuizFragment : BaseFragment<FragmentPlayMultiChoiceBinding>() {
 

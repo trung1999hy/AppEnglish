@@ -5,17 +5,18 @@ import android.os.Looper
 import android.view.ViewGroup
 
 import androidx.lifecycle.ViewModelProvider
-import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentScrambleGameBinding
 import com.example.englishttcm.playzone.scramble.adapter.ScrambleAdapter
 import com.example.englishttcm.playzone.scramble.viewmodel.ScrambleViewModel
 import com.example.englishttcm.playzone.view.dialog.LoseQuizDialog
 import com.example.englishttcm.playzone.view.dialog.OnBackListener
 import com.example.englishttcm.playzone.view.dialog.WinQuizDialog
+import com.tpk.englishttcm.R
+import com.tpk.englishttcm.databinding.FragmentScrambleGameBinding
 
 
-class ScrambleFragment : BaseFragment<FragmentScrambleGameBinding>() {
+class ScrambleFragment : BaseFragment<
+        FragmentScrambleGameBinding>() {
 
     private lateinit var scrambleViewModel: ScrambleViewModel
     private var handlerWin: Handler? = null

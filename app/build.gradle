@@ -6,8 +6,8 @@ plugins {
 }
 
 android {
-    namespace 'com.example.englishttcm'
-    compileSdkVersion 34
+    namespace 'com.tpk.englishttcm'
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.tpk.englishttcm"
@@ -81,7 +81,7 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
     //Read pdf
-    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation project(":android-pdf-viewer")
 
 //    def lifecycle_version = "2.3.1"
 //    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
-import com.example.englishttcm.R
+import com.tpk.englishttcm.R
 
 abstract class BaseDialog<VB: ViewBinding> : DialogFragment() {
 

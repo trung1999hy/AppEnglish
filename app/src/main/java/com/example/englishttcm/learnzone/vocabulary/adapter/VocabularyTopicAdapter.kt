@@ -7,9 +7,8 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
-import kotlin.collections.ArrayList
-import com.example.englishttcm.databinding.ItemVocabularyTopicBinding
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
+import com.tpk.englishttcm.databinding.ItemVocabularyTopicBinding
 
 class VocabularyTopicAdapter(
     private var listVocabTopic: List<VocabularyTopic>,

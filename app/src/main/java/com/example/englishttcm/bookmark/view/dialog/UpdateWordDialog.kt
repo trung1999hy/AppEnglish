@@ -3,8 +3,8 @@ package com.example.englishttcm.bookmark.view.dialog
 import android.view.ViewGroup
 import com.example.englishttcm.base.BaseDialog
 import com.example.englishttcm.bookmark.model.BookmarkWord
-import com.example.englishttcm.databinding.DialogUpdateWordBinding
 import com.example.englishttcm.learnzone.vocabulary.view.dialog.OnClickListener
+import com.tpk.englishttcm.databinding.DialogUpdateWordBinding
 
 class UpdateWordDialog(
     private val word: BookmarkWord,

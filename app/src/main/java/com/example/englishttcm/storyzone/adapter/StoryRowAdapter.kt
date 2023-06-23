@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
-import com.example.englishttcm.databinding.ItemStoryBinding
 import com.example.englishttcm.storyzone.callback.OnDownloadCompleteListener
 import com.example.englishttcm.storyzone.model.Story
 import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
+import com.tpk.englishttcm.databinding.ItemStoryBinding
 
 class StoryRowAdapter(
     private val listStory: List<Story>,

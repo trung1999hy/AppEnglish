@@ -11,7 +11,7 @@ import com.example.englishttcm.bookmark.model.BookmarkWord
 import com.example.englishttcm.bookmark.view.dialog.DeleteDialog
 import com.example.englishttcm.bookmark.view.dialog.UpdateWordDialog
 import com.example.englishttcm.bookmark.viewmodel.BookmarkViewModel
-import com.example.englishttcm.databinding.FragmentBookmarkBinding
+import com.tpk.englishttcm.databinding.FragmentBookmarkBinding
 
 class BookmarkWordFragment: BaseFragment<FragmentBookmarkBinding>(), OnItemWordClickListener {
     private lateinit var viewModel: BookmarkViewModel

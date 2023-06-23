@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.englishttcm.databinding.ItemVocabularyWordBinding
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 import com.example.englishttcm.learnzone.vocabulary.OnItemWordClickListener
+import com.tpk.englishttcm.databinding.ItemVocabularyWordBinding
 
 class VocabularyWordAdapter(
     private val listWord : List<VocabularyWord>,

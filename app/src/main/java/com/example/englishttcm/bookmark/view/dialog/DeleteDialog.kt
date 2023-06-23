@@ -2,8 +2,8 @@ package com.example.englishttcm.bookmark.view.dialog
 
 import android.view.ViewGroup
 import com.example.englishttcm.base.BaseDialog
-import com.example.englishttcm.databinding.DialogDeleteNoteBinding
 import com.example.englishttcm.learnzone.vocabulary.view.dialog.OnClickListener
+import com.tpk.englishttcm.databinding.DialogDeleteNoteBinding
 
 class DeleteDialog(private var listener: OnClickListener): BaseDialog<DialogDeleteNoteBinding>() {
 

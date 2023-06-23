@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.englishttcm.OnItemClickListener
-import com.example.englishttcm.databinding.ItemListeningBinding
 import com.example.englishttcm.learnzone.listening.model.Listening
-
+import com.tpk.englishttcm.databinding.ItemListeningBinding
 
 
 class ListeningAdapter(

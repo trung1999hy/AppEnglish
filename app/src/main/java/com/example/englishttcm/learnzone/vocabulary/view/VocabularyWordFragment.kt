@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentVocabularyWordBinding
 import com.example.englishttcm.learnzone.vocabulary.OnItemWordClickListener
 import com.example.englishttcm.learnzone.vocabulary.adapter.VocabularyWordAdapter
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
@@ -12,6 +11,7 @@ import com.example.englishttcm.learnzone.vocabulary.model.VocabularyWord
 import com.example.englishttcm.learnzone.vocabulary.view.dialog.NoteWordDialog
 import com.example.englishttcm.learnzone.vocabulary.view.dialog.OnClickListener
 import com.example.englishttcm.learnzone.vocabulary.viewmodel.VocabularyViewModel
+import com.tpk.englishttcm.databinding.FragmentVocabularyWordBinding
 
 
 class VocabularyWordFragment : BaseFragment<FragmentVocabularyWordBinding>()  {

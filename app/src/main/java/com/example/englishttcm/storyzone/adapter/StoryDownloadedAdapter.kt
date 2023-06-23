@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishttcm.OnItemClickListener
-import com.example.englishttcm.databinding.ItemStoryBinding
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
+import com.tpk.englishttcm.databinding.ItemStoryBinding
 
 class StoryDownloadedAdapter(
     private val listStory: List<StoryDownloaded>,

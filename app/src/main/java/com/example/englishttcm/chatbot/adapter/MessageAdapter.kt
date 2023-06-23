@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.englishttcm.chatbot.model.Message
-import com.example.englishttcm.databinding.ItemChatBinding
+import com.tpk.englishttcm.databinding.ItemChatBinding
 
 class MessageAdapter(
     private val listMessage: List<Message>

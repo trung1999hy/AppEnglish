@@ -7,7 +7,7 @@ import com.example.englishttcm.chatbot.OnCallApiCompleteListener
 import com.example.englishttcm.chatbot.adapter.MessageAdapter
 import com.example.englishttcm.chatbot.model.Message
 import com.example.englishttcm.chatbot.viewmodel.ChatBotViewModel
-import com.example.englishttcm.databinding.FragmentChatBotBinding
+import com.tpk.englishttcm.databinding.FragmentChatBotBinding
 
 class ChatBotFragment : BaseFragment<FragmentChatBotBinding>() {
     private var chatBotViewModel: ChatBotViewModel? = null

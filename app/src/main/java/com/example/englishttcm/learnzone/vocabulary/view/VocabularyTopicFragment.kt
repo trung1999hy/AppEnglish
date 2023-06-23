@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentVocabularyTopicBinding
 import com.example.englishttcm.learnzone.vocabulary.adapter.VocabularyTopicAdapter
 import com.example.englishttcm.learnzone.vocabulary.model.VocabularyTopic
 import com.example.englishttcm.learnzone.vocabulary.viewmodel.VocabularyViewModel
+import com.tpk.englishttcm.databinding.FragmentVocabularyTopicBinding
 import java.util.*
 
 class VocabularyTopicFragment : BaseFragment<FragmentVocabularyTopicBinding>() {

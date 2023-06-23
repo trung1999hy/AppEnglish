@@ -1,11 +1,11 @@
 /* NAM NV created on 21:50 12-4-2023 */
 package com.example.englishttcm.view.activity
 
-import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseActivity
-import com.example.englishttcm.databinding.ActivityMainBinding
 import com.example.englishttcm.home.HomeFragment
 import com.example.englishttcm.translate.view.TranslateFragment
+import com.tpk.englishttcm.R
+import com.tpk.englishttcm.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>(){
 

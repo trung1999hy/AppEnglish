@@ -2,7 +2,7 @@ package com.example.englishttcm.learnzone.vocabulary.view.dialog
 
 import android.view.ViewGroup
 import com.example.englishttcm.base.BaseDialog
-import com.example.englishttcm.databinding.DialogNoteWordBinding
+import com.tpk.englishttcm.databinding.DialogNoteWordBinding
 
 class NoteWordDialog(private var listener: OnClickListener): BaseDialog<DialogNoteWordBinding>() {
 

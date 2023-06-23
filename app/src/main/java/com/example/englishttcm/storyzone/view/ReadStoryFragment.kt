@@ -3,9 +3,9 @@ package com.example.englishttcm.storyzone.view
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentReadStoryBinding
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
+import com.tpk.englishttcm.databinding.FragmentReadStoryBinding
 
 class ReadStoryFragment : BaseFragment<FragmentReadStoryBinding>() {
     private var storyViewModel: StoryViewModel? = null

@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.englishttcm.OnItemClickListener
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.CustomDialogDeleteBinding
-import com.example.englishttcm.databinding.FragmentStoryBinding
 import com.example.englishttcm.storyzone.adapter.StoryAdapter
 import com.example.englishttcm.storyzone.adapter.StoryDownloadedAdapter
 import com.example.englishttcm.storyzone.model.StoryDownloaded
 import com.example.englishttcm.storyzone.viewmodel.StoryViewModel
+import com.tpk.englishttcm.databinding.CustomDialogDeleteBinding
+import com.tpk.englishttcm.databinding.FragmentStoryBinding
 
 class StoryFragment : BaseFragment<FragmentStoryBinding>() {
     private lateinit var storyViewModel: StoryViewModel

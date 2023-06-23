@@ -10,11 +10,11 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
-import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseFragment
-import com.example.englishttcm.databinding.FragmentTranslateBinding
 import com.example.englishttcm.translate.viewmodel.TranslateViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.tpk.englishttcm.R
+import com.tpk.englishttcm.databinding.FragmentTranslateBinding
 import java.util.Locale
 
 

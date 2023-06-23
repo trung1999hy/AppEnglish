@@ -2,10 +2,10 @@ package com.example.englishttcm.playzone.view.dialog
 
 import android.media.MediaPlayer
 import android.view.ViewGroup
-import com.example.englishttcm.R
 import com.example.englishttcm.base.BaseDialog
-import com.example.englishttcm.databinding.DialogWinBinding
 import com.example.englishttcm.playzone.view.fragment.PlayQuizFragment.Companion.mediaBg
+import com.tpk.englishttcm.R
+import com.tpk.englishttcm.databinding.DialogWinBinding
 
 class WinQuizDialog(private var listener: OnBackListener) : BaseDialog<DialogWinBinding>() {
 

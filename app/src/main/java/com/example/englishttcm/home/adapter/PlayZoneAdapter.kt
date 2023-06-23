@@ -11,8 +11,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.englishttcm.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.englishttcm.R
 import com.example.englishttcm.home.model.GamePlayMode
+import com.tpk.englishttcm.R
 
 class PlayZoneAdapter(
     private var context: Context,
