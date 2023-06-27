@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
-        android:name="com.example.englishttcm.application.MyApplication"
+        android:name="com.tpk.englishttcm.application.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,10 +20,10 @@
         android:theme="@style/Theme.EnglishTTCM"
         tools:targetApi="31">
         <service
-            android:name="com.example.englishttcm.learnzone.listening.service.MyService"
+            android:name="com.tpk.englishttcm.learnzone.listening.service.MyService"
             android:enabled="true"
             android:exported="true"></service>
-        <receiver android:name="com.example.englishttcm.learnzone.listening.receiver.Receiver"/>
+        <receiver android:name="com.tpk.englishttcm.learnzone.listening.receiver.Receiver"/>
 
 
         <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -38,7 +38,7 @@
             android:resource="@color/blue" />
 
         <activity
-            android:name="com.example.englishttcm.view.activity.SplashActivity"
+            android:name="com.tpk.englishttcm.view.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,11 +46,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.englishttcm.view.activity.MainActivity"/>
-        <activity android:name="com.example.purchase.InAppPurchaseActivity"/>
-        <activity android:name="com.example.englishttcm.translate.view.TranslateActivity"/>
+        <activity android:name="com.tpk.englishttcm.view.activity.MainActivity"/>
+        <activity android:name="com.tpk.purchase.InAppPurchaseActivity"/>
+        <activity android:name="com.tpk.englishttcm.translate.view.TranslateActivity"/>
         <service
-            android:name="com.example.englishttcm.view.activity.MyFirebaseMessagingService"
+            android:name="com.tpk.englishttcm.view.activity.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

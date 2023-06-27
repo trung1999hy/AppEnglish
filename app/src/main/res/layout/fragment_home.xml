@@ -422,7 +422,7 @@
 
     </LinearLayout>
 
-    <com.example.englishttcm.until.MovableFloatingActionButton
+    <com.tpk.englishttcm.until.MovableFloatingActionButton
         android:id="@+id/fabTranslate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
