@@ -16,15 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.example.englishttcm.until.MovableFloatingActionButton
-            android:id="@+id/fabTranslate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginBottom="@dimen/_30sdp"
-            android:layout_marginRight="@dimen/_12sdp"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/ic_translate" />
     </FrameLayout>
 
 

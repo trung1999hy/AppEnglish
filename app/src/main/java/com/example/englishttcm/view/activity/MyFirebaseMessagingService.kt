@@ -16,7 +16,7 @@ import com.google.firebase.messaging.RemoteMessage
 import com.tpk.englishttcm.R
 
 
-class MyFirebaseService : FirebaseMessagingService() {
+class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // handle a notification payload.
         if (remoteMessage.notification != null) {

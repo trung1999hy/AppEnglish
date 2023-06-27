@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.englishttcm.*
 import com.example.englishttcm.application.MyApplication
 import com.example.englishttcm.base.BaseFragment
@@ -23,6 +22,7 @@ import com.example.englishttcm.bookmark.view.BookmarkWordFragment
 import com.example.englishttcm.playzone.scramble.view.ScrambleFragment
 import com.example.englishttcm.playzone.view.fragment.SelectTypeFragment
 import com.example.englishttcm.storyzone.view.StoryFragment
+import com.example.englishttcm.translate.view.TranslateActivity
 import com.example.purchase.InAppPurchaseActivity
 import com.tpk.englishttcm.R
 import com.tpk.englishttcm.databinding.FragmentHomeBinding
@@ -41,6 +41,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         binding.tvCoinCount.text = currentCoin.toString()
         binding.btnBuyCoin.setOnClickListener {
             startActivity(Intent(context, InAppPurchaseActivity::class.java))
+        }
+        binding.fabTranslate.setOnClickListener {
+            startActivity(Intent(context, TranslateActivity::class.java))
         }
 
         setLearnData()

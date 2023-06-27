@@ -48,8 +48,6 @@ abstract class BaseFragment<VB: ViewBinding>: Fragment(){
     }
     override fun onResume() {
         super.onResume()
-        var fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
-        fab!!.visibility = View.VISIBLE
     }
 
 }

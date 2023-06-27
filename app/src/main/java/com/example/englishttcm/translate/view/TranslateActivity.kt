@@ -1,16 +1,14 @@
 package com.example.englishttcm.translate.view
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.speech.RecognizerIntent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
-import com.example.englishttcm.base.BaseFragment
+import com.example.englishttcm.base.BaseActivity
 import com.example.englishttcm.translate.viewmodel.TranslateViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tpk.englishttcm.R
@@ -18,19 +16,19 @@ import com.tpk.englishttcm.databinding.FragmentTranslateBinding
 import java.util.Locale
 
 
-class TranslateFragment : BaseFragment<FragmentTranslateBinding>(),OnItemSelectedListener {
+class TranslateActivity : BaseActivity<FragmentTranslateBinding>(),OnItemSelectedListener {
     private lateinit var translateViewModel: TranslateViewModel
 
 
-    override fun getLayout(container: ViewGroup?): FragmentTranslateBinding =
-        FragmentTranslateBinding.inflate(layoutInflater, container, false)
+    override fun getLayout(): FragmentTranslateBinding =
+        FragmentTranslateBinding.inflate(layoutInflater)
 
     private var srcLangId = 0
     private var tarLangId = 1
     override fun initViews() {
         translateViewModel = ViewModelProvider(this)[TranslateViewModel::class.java]
         val sourceSpnAdpt = ArrayAdapter(
-            requireContext(),
+            this,
             R.layout.spinner_item,
             arrayOf("Tiếng Anh", "Tiếng Việt")
         )
@@ -38,7 +36,7 @@ class TranslateFragment : BaseFragment<FragmentTranslateBinding>(),OnItemSelecte
         binding.spnSource.adapter = sourceSpnAdpt
         binding.spnSource.onItemSelectedListener = this
         val targetSpnAdpt = ArrayAdapter(
-            requireContext(),
+            this,
             R.layout.spinner_item,
             arrayOf("Tiếng Anh", "Tiếng Việt")
         )
@@ -50,14 +48,14 @@ class TranslateFragment : BaseFragment<FragmentTranslateBinding>(),OnItemSelecte
         binding.btnTranslate.setOnClickListener {
             loading(true)
             val sourceText = binding.edSourcetext.text.toString()
-            translateViewModel.getTranslateText(srcLangId,tarLangId,sourceText).observe(viewLifecycleOwner){
+            translateViewModel.getTranslateText(srcLangId,tarLangId,sourceText).observe(this){
                 binding.tvTargettext.visibility = View.VISIBLE
                 binding.tvTargettext.text = it
                 loading(false)
             }
         }
         binding.ivBack.setOnClickListener {
-            callback.backToPrevious()
+            onBackPressed()
         }
         binding.ivExchange.setOnClickListener {
             swapSpinnerContent()
@@ -92,12 +90,6 @@ class TranslateFragment : BaseFragment<FragmentTranslateBinding>(),OnItemSelecte
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
-        fab!!.visibility = View.INVISIBLE
     }
     private fun loading(isLoading: Boolean) {
         if (isLoading) {
