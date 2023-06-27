@@ -15,7 +15,6 @@ import com.example.englishttcm.MyServiceCallback
 import com.example.englishttcm.base.BaseFragment
 import com.example.englishttcm.learnzone.listening.model.Listening
 import com.example.englishttcm.learnzone.listening.service.MyService
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tpk.englishttcm.R
 import com.tpk.englishttcm.databinding.FragmentLearnListeningBinding
 
@@ -199,12 +198,6 @@ class LearnListenFragment : BaseFragment<FragmentLearnListeningBinding>(), MySer
             binding.btnPlayOrPause.visibility = View.VISIBLE
             binding.progressBar.visibility = View.INVISIBLE
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val fab = activity?.findViewById<FloatingActionButton>(R.id.fabTranslate)
-        fab!!.visibility = View.INVISIBLE
     }
 
     override fun onPlayingStateChanged(isPlaying: Boolean) {
