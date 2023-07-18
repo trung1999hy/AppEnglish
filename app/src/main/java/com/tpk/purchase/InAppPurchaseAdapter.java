@@ -83,6 +83,8 @@ public class InAppPurchaseAdapter extends RecyclerView.Adapter<InAppPurchaseAdap
         switch (productId) {
             case Constant.KEY_1_COIN:
                 return String.format(context.getResources().getString(R.string.message_purchase_one), price + "/50 vàng");
+            case Constant.KEY_COIN:
+                return String.format(context.getResources().getString(R.string.message_purchase_one), price + "/10 vàng");
             case Constant.KEY_2_COIN:
                 return String.format(context.getResources().getString(R.string.message_purchase_one), price + "/100 vàng");
             case Constant.KEY_3_COIN:

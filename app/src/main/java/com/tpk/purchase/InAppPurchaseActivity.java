@@ -123,6 +123,10 @@ public class InAppPurchaseActivity extends AppCompatActivity implements InAppPur
                         .setProductId(Constant.KEY_1_COIN)
                         .setProductType(INAPP)
                         .build(),
+                QueryProductDetailsParams.Product.newBuilder()
+                        .setProductId(Constant.KEY_COIN)
+                        .setProductType(INAPP)
+                        .build(),
 
                 //Product 2
                 QueryProductDetailsParams.Product.newBuilder()
@@ -252,6 +256,8 @@ public class InAppPurchaseActivity extends AppCompatActivity implements InAppPur
         switch (coin) {
             case Constant.KEY_1_COIN:
                 return 50;
+            case Constant.KEY_COIN:
+                return 10;
             case Constant.KEY_2_COIN:
                 return 100;
             case Constant.KEY_3_COIN:

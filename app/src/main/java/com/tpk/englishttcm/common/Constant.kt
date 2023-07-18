@@ -1,6 +1,7 @@
 package com.tpk.englishttcm.common
 
 object Constant {
+    const val KEY_COIN = "key_in_app_2000" // 10 coin
     const val KEY_1_COIN = "key_in_app_1" // 50 coin
 
     const val KEY_2_COIN = "key_in_app_2" // 100 coin
