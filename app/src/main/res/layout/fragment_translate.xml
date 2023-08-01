@@ -53,7 +53,7 @@
 
         <Spinner
             android:id="@+id/spn_source"
-            android:layout_width="@dimen/_50sdp"
+            android:layout_width="@dimen/_57sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_3sdp"
@@ -70,7 +70,7 @@
 
         <Spinner
             android:id="@+id/spn_target"
-            android:layout_width="@dimen/_50sdp"
+            android:layout_width="@dimen/_57sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_3sdp"
