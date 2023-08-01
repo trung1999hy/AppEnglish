@@ -1,93 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/btnBackTopic"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_back_circle"
-        android:layout_alignParentStart="true"
-        app:tint="@color/yellow"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="12dp"
-        android:contentDescription="@string/back_home" />
-
-    <TextView
-        android:id="@+id/txt_title_topic"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/toolbar_vocab_word"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/topic_vocab"
-        android:textStyle="bold"
-        android:textSize="36sp"
-        android:textColor="@color/yellow"
-        android:fontFamily="@font/fat_font_1"
-        android:layout_marginTop="24dp"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp">
+
+        <ImageView
+            android:id="@+id/btnBackTopic"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/back_home"
+            android:src="@drawable/ic_back_circle"
+            app:tint="@color/yellow" />
+
+        <TextView
+            android:id="@+id/txt_title_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/fat_font_1"
+            android:text="@string/topic_vocab"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/_29ssp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpg_word"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/txt_title_topic"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginBottom="100dp"/>
+        android:layout_above="@id/layout_btn_select"
+        android:layout_below="@id/toolbar_vocab_word"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:layout_marginVertical="@dimen/_10sdp" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="125dp"
-        android:layout_height="40dp"
+
+    <RelativeLayout
+        android:id="@+id/layout_btn_select"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginStart="50dp"
-        app:cardCornerRadius="20dp"
-        android:id="@+id/cv_previous">
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_20sdp">
 
-        <LinearLayout
-            android:id="@+id/btn_prev"
-            android:layout_width="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_previous"
+            android:layout_width="125dp"
             android:layout_height="match_parent"
-            android:background="@color/yellow"
-            android:gravity="center">
+            android:layout_alignParentStart="true"
+            app:cardCornerRadius="@dimen/_10sdp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/previous"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:id="@+id/tv_previous" />
+            <LinearLayout
+                android:id="@+id/btn_prev"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/yellow"
+                android:gravity="center">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_previous"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/previous"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp" />
 
-    </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="125dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginEnd="50dp"
-        app:cardCornerRadius="20dp"
-        android:id="@+id/cv_next">
+        </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
-            android:id="@+id/btn_next"
-            android:layout_width="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_next"
+            android:layout_width="125dp"
             android:layout_height="match_parent"
-            android:background="@color/yellow"
-            android:gravity="center">
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:cardCornerRadius="@dimen/_10sdp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/next"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/yellow"
+                android:gravity="center">
 
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/next"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15ssp" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
 
 </RelativeLayout>

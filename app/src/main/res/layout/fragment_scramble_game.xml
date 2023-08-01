@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".playzone.scramble.view.ScrambleFragment">
+    tools:context=".ui.fragment.game.scramble.ScrambleFragment">
 
     <TextView
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
         android:text="@string/score"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="@dimen/_19ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Score: 20" />
-    />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp2_scramble"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,9 +35,9 @@
         android:id="@+id/tv_scramble_how_to_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/_4sdp"
         android:text="@string/how_tp_play_scramble"
-        android:textSize="18sp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vp2_scramble" />
@@ -49,9 +46,9 @@
         android:id="@+id/tv_scramble_conditions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/_4sdp"
         android:text="@string/conditions"
-        android:textSize="18sp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_scramble_how_to_play" />
@@ -61,11 +58,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_18sdp"
         android:hint="@string/enter_word"
         app:boxStrokeColor="@color/black"
-        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidth="@dimen/_1sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_scramble_conditions">
@@ -78,41 +75,43 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/btn_skip"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="308dp"
-        android:text="@string/skip"
-        app:layout_constraintHorizontal_bias="0.873"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_input" />
-
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/submit"
+    <RelativeLayout
+        android:id="@+id/layout_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_60sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_input" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_input">
+
+        <Button
+            android:id="@+id/btn_skip"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:text="@string/skip" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:text="@string/submit" />
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/tv_answered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/_4sdp"
         android:text="@string/answered"
         android:textColor="@color/red"
-        android:textSize="18sp"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_submit"
+        app:layout_constraintTop_toBottomOf="@+id/layout_btn"
         tools:text="You scramble 1 words!" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

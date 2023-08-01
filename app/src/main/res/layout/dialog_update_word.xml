@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black_60">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="@dimen/_400sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_11sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="24dp"
-        app:cardCornerRadius="20dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,123 +24,130 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/_18sdp"
                 android:fontFamily="@font/fat_font_2"
                 android:gravity="center"
                 android:text="@string/update"
                 android:textColor="@color/green"
-                android:textSize="36sp"
+                android:textSize="@dimen/_30ssp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtWord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tvQuestionDelete"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:fontFamily="sans-serif"
                 android:text="word"
-                android:textSize="24sp"
-                android:layout_below="@+id/tvQuestionDelete"/>
+                android:textSize="@dimen/_20ssp" />
+
             <EditText
                 android:id="@+id/edtMean"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/edtWord"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:fontFamily="sans-serif"
                 android:text="mean"
-                android:textSize="24sp"
-                android:layout_below="@+id/edtWord"/>
+                android:textSize="@dimen/_20ssp" />
+
             <EditText
                 android:id="@+id/edtSpeaker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/edtMean"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
+                android:enabled="false"
                 android:fontFamily="sans-serif"
                 android:text="speaker"
-                android:textSize="24sp"
-                android:layout_below="@+id/edtMean"
-                android:enabled="false"/>
+                android:textSize="@dimen/_20ssp" />
+
             <EditText
                 android:id="@+id/edtPronounce"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/edtSpeaker"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
+                android:enabled="false"
                 android:fontFamily="sans-serif"
                 android:text="pronounce"
-                android:textSize="24sp"
-                android:layout_below="@+id/edtSpeaker"
-                android:enabled="false"/>
+                android:textSize="@dimen/_20ssp" />
+
             <EditText
                 android:id="@+id/edtExample"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/edtPronounce"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:fontFamily="sans-serif"
                 android:text="example"
-                android:textSize="24sp"
-                android:layout_below="@+id/edtPronounce"/>
+                android:textSize="@dimen/_20ssp" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnUpdate"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="@dimen/_15sdp"
-                android:layout_marginBottom="36dp"
-                app:cardCornerRadius="20dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edtExample"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_18sdp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/ocean"
-                    android:gravity="center">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnUpdate"
+                    android:layout_width="@dimen/_98sdp"
+                    android:layout_height="@dimen/_37sdp"
+                    app:cardCornerRadius="@dimen/_11sdp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/fat_font_1"
-                        android:text="@string/update"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/ocean"
+                        android:gravity="center">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fat_font_1"
+                            android:text="@string/update"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_15ssp"
+                            android:textStyle="bold" />
 
-            </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnExit"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="@dimen/_150sdp"
-                android:layout_marginBottom="36dp"
-                app:cardCornerRadius="20dp">
+                </com.google.android.material.card.MaterialCardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/ocean"
-                    android:gravity="center">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnExit"
+                    android:layout_width="@dimen/_98sdp"
+                    android:layout_height="@dimen/_37sdp"
+                    android:layout_alignParentEnd="true"
+                    app:cardCornerRadius="@dimen/_11sdp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/fat_font_1"
-                        android:text="@string/exit"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/ocean"
+                        android:gravity="center">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fat_font_1"
+                            android:text="@string/exit"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_15ssp"
+                            android:textStyle="bold" />
 
-            </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>

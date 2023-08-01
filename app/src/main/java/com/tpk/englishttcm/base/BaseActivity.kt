@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.tpk.englishttcm.OnActionCallback
+import com.tpk.englishttcm.callback.OnActionCallback
 import com.tpk.englishttcm.R
 
-abstract class BaseActivity<VM: ViewBinding> : AppCompatActivity(), OnActionCallback{
+abstract class BaseActivity<VM: ViewBinding> : AppCompatActivity(), OnActionCallback {
 
     protected lateinit var binding: VM
 

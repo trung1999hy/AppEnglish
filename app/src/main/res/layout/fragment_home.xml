@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!-- NAM NV created on 22:47 12-4-2023-->
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
@@ -10,30 +10,28 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="769dp">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:id="@+id/layout_header"
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_height="@dimen/_120sdp"
                 android:background="@drawable/header_home_background">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btnBuyCoin"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="25dp"
-                    app:cardCornerRadius="15dp">
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    app:cardCornerRadius="@dimen/_10sdp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -41,8 +39,8 @@
                         android:background="@color/white">
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/img_gold" />
 
@@ -53,150 +51,164 @@
                             android:layout_gravity="center_vertical"
                             android:text="@string/buy_coin"
                             android:textColor="@color/black"
-                            android:textSize="13sp"
+                            android:textSize="@dimen/_10ssp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
-
-                <ImageView
-                    android:id="@+id/iv_app"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
-                    android:layout_alignParentBottom="true"
-                    android:src="@drawable/app_icon" />
-
-                <TextView
-                    android:id="@+id/tv_name_user"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/iv_app"
-                    android:text="@string/title"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:layout_below="@id/btnBuyCoin"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/layout_win"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="25dp"
-                    android:layout_toEndOf="@id/iv_app"
-                    app:cardCornerRadius="15dp">
+                    <ImageView
+                        android:id="@+id/iv_app"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_90sdp"
+                        android:src="@drawable/app_icon" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="5dp"
-                            android:src="@drawable/img_win" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_win_count"
+                            android:id="@+id/tv_name_user"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="8dp"
-                            android:text="0"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
+                            android:text="@string/title"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/layout_trophy"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="25dp"
-                    android:layout_toEndOf="@id/layout_win"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="35dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="5dp"
-                            android:src="@drawable/img_trophy" />
-
-                        <TextView
-                            android:id="@+id/tv_trophy_count"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="8dp"
-                            android:text="0"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal">
 
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/layout_win"
+                                android:layout_width="@dimen/_63sdp"
+                                android:layout_height="@dimen/_32sdp"
+                                app:cardCornerRadius="@dimen/_9sdp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_20sdp"
+                                        android:layout_height="@dimen/_28sdp"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginStart="@dimen/_4sdp"
+                                        android:src="@drawable/img_win" />
+
+                                    <TextView
+                                        android:id="@+id/tv_win_count"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginStart="@dimen/_4sdp"
+                                        android:text="0"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/_13ssp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/layout_trophy"
+                                android:layout_width="@dimen/_63sdp"
+                                android:layout_height="@dimen/_32sdp"
+                                android:layout_marginStart="@dimen/_4sdp"
+                                app:cardCornerRadius="@dimen/_9sdp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_20sdp"
+                                        android:layout_height="@dimen/_28sdp"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginStart="@dimen/_4sdp"
+                                        android:src="@drawable/img_trophy" />
+
+                                    <TextView
+                                        android:id="@+id/tv_trophy_count"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginStart="@dimen/_4sdp"
+                                        android:text="0"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/_13ssp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/layout_coin"
+                                android:layout_width="@dimen/_63sdp"
+                                android:layout_height="@dimen/_32sdp"
+                                android:layout_marginStart="@dimen/_4sdp"
+                                app:cardCornerRadius="@dimen/_9sdp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/white">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_20sdp"
+                                        android:layout_height="@dimen/_28sdp"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginStart="@dimen/_4sdp"
+                                        android:src="@drawable/img_gold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_coin_count"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginStart="@dimen/_4sdp"
+                                        android:text="@string/win_count"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/_13ssp"
+                                        android:textStyle="bold" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+                        </LinearLayout>
                     </LinearLayout>
 
-                </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/layout_coin"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="25dp"
-                    android:layout_toEndOf="@id/layout_trophy"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/white">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/img_gold" />
-
-                        <TextView
-                            android:id="@+id/tv_coin_count"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:text="@string/win_count"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
 
             </RelativeLayout>
 
             <ScrollView
                 android:id="@+id/scv_all_features"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/layout_header"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:scrollbars="none">
 
                 <RelativeLayout
@@ -210,8 +222,8 @@
 
                         <ImageView
                             android:id="@+id/iv_study_zone"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:src="@drawable/ic_study_zone"
                             app:tint="@color/black" />
 
@@ -219,11 +231,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="@dimen/_4sdp"
                             android:layout_toEndOf="@id/iv_study_zone"
                             android:text="@string/learning"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:textSize="@dimen/_15ssp"
                             android:textStyle="bold" />
 
                     </RelativeLayout>
@@ -233,7 +245,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/layout_title_study"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:orientation="horizontal"
                         app:spanCount="2" />
 
@@ -242,23 +254,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/rcv_study_zone"
-                        android:layout_marginTop="12dp">
+                        android:layout_marginTop="@dimen/_8sdp">
 
                         <ImageView
                             android:id="@+id/iv_play_zone"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:src="@drawable/ic_play_game" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="@dimen/_4sdp"
                             android:layout_toEndOf="@id/iv_play_zone"
                             android:text="@string/playing_game"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:textSize="@dimen/_15ssp"
                             android:textStyle="bold" />
 
                     </RelativeLayout>
@@ -268,7 +280,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/layout_play_zone"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="1"
@@ -279,23 +291,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/rcv_play_zone"
-                        android:layout_marginTop="12dp">
+                        android:layout_marginTop="@dimen/_8sdp">
 
                         <ImageView
                             android:id="@+id/story"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
                             android:src="@drawable/story" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="@dimen/_4sdp"
                             android:layout_toEndOf="@id/story"
                             android:text="@string/more_features"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:textSize="@dimen/_15ssp"
                             android:textStyle="bold" />
 
                     </RelativeLayout>
@@ -306,8 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/story_and_quote"
                         android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        app:cardCornerRadius="20dp">
+                        android:layout_marginTop="@dimen/_15sdp">
 
                         <LinearLayout
                             android:id="@+id/btn_book"
@@ -422,22 +433,14 @@
 
     </LinearLayout>
 
-    <com.tpk.englishttcm.until.MovableFloatingActionButton
+    <com.tpk.englishttcm.utils.MovableFloatingActionButton
         android:id="@+id/fabTranslate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/ic_translate"
-        android:layout_marginBottom="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_translate" />
 
-
-
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

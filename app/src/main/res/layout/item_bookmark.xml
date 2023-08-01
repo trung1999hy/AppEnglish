@@ -21,52 +21,52 @@
                 android:id="@+id/txtNameWord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:gravity="center"
                 android:text="@string/word"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_24ssp"
                 android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/btnDelete"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_delete"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_250sdp"
+                android:layout_width="@dimen/_33sdp"
+                android:layout_height="@dimen/_33sdp"
                 android:layout_gravity="center"
-                />
+                android:layout_marginLeft="@dimen/_250sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:src="@drawable/ic_delete" />
+
             <ImageView
                 android:id="@+id/btnRepair"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_repair"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_250sdp"
-                android:layout_gravity="center"
+                android:layout_width="@dimen/_33sdp"
+                android:layout_height="@dimen/_33sdp"
                 android:layout_below="@+id/btnDelete"
-                />
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_250sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:src="@drawable/ic_repair" />
 
             <ImageView
                 android:id="@+id/speaker"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/volume"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_12sdp"
-                android:background="@drawable/hex"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_below="@+id/txtNameWord"
                 android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/hex"
                 android:contentDescription="@string/speaker"
-                android:layout_below="@+id/txtNameWord" />
+                android:src="@drawable/volume" />
 
             <TextView
                 android:id="@+id/txtPronounce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_50sdp"
                 android:layout_below="@+id/txtNameWord"
+                android:layout_marginLeft="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:gravity="center"
                 android:text="@string/pronounce"
                 android:textColor="@color/black"
@@ -76,9 +76,9 @@
                 android:id="@+id/txtMean"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_below="@+id/speaker"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:gravity="center"
                 android:text="@string/mean"
                 android:textColor="@color/black"
@@ -88,14 +88,14 @@
                 android:id="@+id/txtExample"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginLeft="@dimen/_12sdp"
                 android:layout_below="@+id/txtMean"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:gravity="center"
                 android:text="Ex:"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
 
 
         </RelativeLayout>

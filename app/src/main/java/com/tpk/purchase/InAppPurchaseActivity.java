@@ -28,7 +28,7 @@ import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import com.android.billingclient.api.QueryPurchasesParams;
 import com.tpk.englishttcm.application.MyApplication;
-import com.tpk.englishttcm.common.Constant;
+import com.tpk.englishttcm.utils.Constant;
 import com.google.common.collect.ImmutableList;
 import com.tpk.englishttcm.R;
 

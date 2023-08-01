@@ -7,13 +7,13 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/_240sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginHorizontal="24dp"
-        app:cardCornerRadius="20dp">
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_14sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,30 +25,30 @@
                 android:layout_height="wrap_content"
                 android:text="@string/game_over"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/_18sdp"
                 android:textStyle="bold"
                 android:textColor="@color/yellow"
                 android:fontFamily="@font/fat_font_1"
-                android:textSize="36sp"/>
+                android:textSize="@dimen/_28ssp"/>
 
             <ImageView
                 android:id="@+id/iv_lose"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
                 android:layout_below="@id/tv_game_over"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:src="@drawable/crying_star"
                 android:contentDescription="@string/iv_lose" />
 
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="150dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="36dp"
-                app:cardCornerRadius="20dp">
+                android:layout_marginBottom="@dimen/_28sdp"
+                app:cardCornerRadius="@dimen/_13sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/back_detail_activity"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/_15ssp"
                         android:textStyle="bold"
                         android:fontFamily="@font/fat_font_1"
                         android:id="@+id/tv_back"/>

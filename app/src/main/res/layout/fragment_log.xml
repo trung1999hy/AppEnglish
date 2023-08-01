@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--NAM NV created oin 8:20 on 13-4-2023-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +6,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="@dimen/_45sdp"
         app:tabMode="fixed"
         android:id="@+id/tab_log"
         app:tabIndicatorGravity="stretch"
@@ -15,15 +14,15 @@
         app:tabSelectedTextColor="@color/white"
         app:tabIndicatorColor="@null"
         app:tabIndicator="@drawable/custom_log_tab_layout"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_8sdp"/>
     
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tab_log"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginHorizontal="@dimen/_8sdp"
         android:id="@+id/vpg_log"/>
 
 </RelativeLayout>

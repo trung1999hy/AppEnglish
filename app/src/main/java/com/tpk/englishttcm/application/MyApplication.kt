@@ -7,7 +7,7 @@ import android.app.NotificationManager
 import android.os.Build
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.tpk.englishttcm.until.PreferenceManager
+import com.tpk.englishttcm.utils.PreferenceManager
 
 private const val AD_UNIT_ID = "ca-app-pub-3940256099942544/3419835294"
 private const val LOG_TAG = "MyApplication"

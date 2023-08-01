@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginHorizontal="24dp"
-        app:cardCornerRadius="8dp"
         android:id="@+id/layout_iv_word"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_130sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_7sdp"
         app:strokeColor="@color/grey"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/_1sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/img_word"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/img_word"
                 android:contentDescription="@string/word" />
 
         </RelativeLayout>
@@ -31,23 +31,23 @@
         android:id="@+id/txt_mean"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mean"
         android:layout_below="@id/layout_iv_word"
-        android:textSize="28sp"
-        android:textColor="@color/black"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="@string/mean"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_23ssp" />
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginHorizontal="24dp"
-        app:cardCornerRadius="8dp"
         android:id="@+id/layout_word"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
         android:layout_below="@+id/txt_mean"
-        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:cardCornerRadius="@dimen/_7sdp"
         app:strokeColor="@color/grey"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/_1sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -60,27 +60,27 @@
                 android:layout_centerInParent="true"
                 android:text="@string/word"
                 android:textColor="@color/black"
-                android:textSize="36sp" />
+                android:textSize="@dimen/_23sdp" />
 
             <TextView
                 android:id="@+id/txt_pronounce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pronounce"
-                android:layout_centerInParent="true"
-                android:textSize="18sp"
                 android:layout_below="@id/txt_word"
-                android:layout_marginTop="8dp"/>
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="@string/pronounce"
+                android:textSize="@dimen/_13ssp" />
 
             <ImageView
                 android:id="@+id/btnNote"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/ic_add"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
-                android:visibility="gone"/>
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_add"
+                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -88,21 +88,21 @@
 
     <LinearLayout
         android:id="@+id/layout_speaker"
-        android:layout_width="65dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/_55sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_below="@id/layout_word"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/hex"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/hex"
         android:gravity="center">
 
         <ImageView
             android:id="@+id/speaker"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/volume"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
             android:layout_gravity="center"
-            android:contentDescription="@string/speaker" />
+            android:contentDescription="@string/speaker"
+            android:src="@drawable/volume" />
 
     </LinearLayout>
 
@@ -110,11 +110,11 @@
         android:id="@+id/txt_example"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_below="@+id/layout_speaker"
         android:layout_centerHorizontal="true"
-        android:text="Ex:"
+        android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center"
-        android:textSize="@dimen/_16ssp"/>
+        android:text="Ex:"
+        android:textSize="@dimen/_16ssp" />
 
 </RelativeLayout>

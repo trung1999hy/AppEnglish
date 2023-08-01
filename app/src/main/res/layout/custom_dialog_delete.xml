@@ -14,28 +14,34 @@
             android:id="@+id/txt_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_15sdp"
             android:layout_centerInParent="true"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:text="@string/question_delete"
             android:textSize="@dimen/_15ssp"
-            android:textStyle="bold"
-            android:text="@string/question_delete"/>
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn_yes"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_question"
-            android:layout_marginStart="@dimen/_25sdp"
-            android:layout_alignParentStart="true"
-            android:text="@string/answer_yes"/>
+            android:layout_marginHorizontal="@dimen/_25sdp">
 
-        <Button
-            android:id="@+id/btn_no"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_question"
-            android:layout_marginEnd="@dimen/_25sdp"
-            android:layout_alignParentEnd="true"
-            android:text="@string/answer_no" />
+            <Button
+                android:id="@+id/btn_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="@string/answer_yes" />
+
+            <Button
+                android:id="@+id/btn_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/answer_no" />
+        </RelativeLayout>
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

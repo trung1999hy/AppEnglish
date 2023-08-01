@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.tpk.englishttcm.OnActionCallback
+import com.tpk.englishttcm.callback.OnActionCallback
 
 abstract class BaseFragment<VB: ViewBinding>: Fragment(){
 

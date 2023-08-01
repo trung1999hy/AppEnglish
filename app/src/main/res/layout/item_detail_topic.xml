@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
+    android:layout_height="@dimen/_67sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="18dp"
-        app:strokeWidth="1dp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:strokeWidth="@dimen/_1sdp"
         app:strokeColor="@color/grey"
-        android:layout_margin="8dp">
+        android:layout_margin="@dimen/_5sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -20,10 +20,10 @@
                 android:id="@+id/tv_detail_topic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/_12sdp"
                 android:layout_centerVertical="true"
                 android:text="@string/story"
-                android:textSize="20sp"
+                android:textSize="@dimen/_15ssp"
                 android:maxLines="1"
                 android:textColor="@color/black"/>
 

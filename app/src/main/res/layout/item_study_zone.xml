@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- NAM NV created on 09:59 13-4-2023-->
+<?xml version="1.0" encoding="utf-8"?><!-- NAM NV created on 09:59 13-4-2023-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="235dp"
-    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="8dp"
-    android:layout_marginStart="12dp">
+    android:layout_width="@dimen/_200sdp"
+    android:layout_height="@dimen/_80sdp"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_5sdp">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_win"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="20dp"
-        android:id="@+id/layout_win">
+        app:cardCornerRadius="@dimen/_10sdp">
 
         <RelativeLayout
             android:id="@+id/layout_item_study"
@@ -23,40 +22,40 @@
                 android:id="@+id/tv_title_study"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:text="@string/vocabulary"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textSize="@dimen/_14ssp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_study_zone"
-                android:layout_below="@+id/tv_title_study"
                 android:id="@+id/ic_play"
-                android:layout_marginStart="5dp"/>
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_below="@+id/tv_title_study"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:src="@drawable/ic_study_zone" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/learning_now"
                 android:layout_below="@id/tv_title_study"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@id/ic_play"
+                android:text="@string/learning_now"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="8dp"/>
+                android:textSize="@dimen/_12ssp" />
 
             <ImageView
                 android:id="@+id/iv_title"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
                 android:layout_alignParentEnd="true"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_marginEnd="12dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/img_vocabulary"/>
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:src="@drawable/img_vocabulary" />
 
         </RelativeLayout>
 

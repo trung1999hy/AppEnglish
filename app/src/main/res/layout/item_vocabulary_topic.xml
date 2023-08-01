@@ -11,7 +11,7 @@
         android:layout_marginTop="@dimen/_12sdp"
         app:cardCornerRadius="@dimen/_16sdp"
         app:strokeColor="@color/blue"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/_1sdp">
 
         <RelativeLayout
             android:id="@+id/rlTopic"
@@ -20,10 +20,10 @@
 
             <ImageView
                 android:id="@+id/imgTopic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/app_icon" />
 
